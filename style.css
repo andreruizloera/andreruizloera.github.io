@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f9f9f7;
+  color: #222;
+  display: flex;
+  min-height: 100vh;
+}
+
+nav {
+  width: 180px;
+  min-height: 100vh;
+  padding: 40px 30px;
+  border-right: 1px solid #e0e0e0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.nav-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-family: Georgia, serif;
+}
+
+.nav-logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav ul li a:hover {
+  color: #000;
+}
+
+nav ul li a.active {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Annotation sub-nav */
+.subnav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding-left: 12px;
+  border-left: 2px solid #e0e0e0;
+}
+
+.subnav li a {
+  text-decoration: none;
+  color: #888;
+  font-size: 0.85rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.subnav li a:hover {
+  color: #333;
+}
+
+.subnav li a.active {
+  color: #000;
+  font-weight: 600;
+}
+
+main {
+  margin-left: 180px;
+  padding: 60px 80px;
+  max-width: 900px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-family: Georgia, serif;
+  margin-bottom: 16px;
+  margin-top: 40px;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 36px;
+}
+
+main p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+
+main p a {
+  color: #222;
+  text-decoration: underline;
+}
+
+.links {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.links a {
+  color: #888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.links a:hover {
+  color: #333;
+}
+
+.sep {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+/* Entry cards for research, press, annotations */
+.entry {
+  margin-bottom: 32px;
+  max-width: 640px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #eee;
+}
+
+.entry:last-child {
+  border-bottom: none;
+}
+
+.entry h3 {
+  font-size: 1.05rem;
+  font-family: Georgia, serif;
+  margin-bottom: 4px;
+}
+
+.entry h3 a {
+  text-decoration: none;
+  color: #222;
+}
+
+.entry h3 a:hover {
+  text-decoration: underline;
+}
+
+.entry .meta {
+  color: #888;
+  font-size: 0.82rem;
+  margin-bottom: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.entry p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+.empty-note {
+  color: #aaa;
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+}
+
+/* Annotation detail page */
+.annotation-body {
+  max-width: 660px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.annotation-body h2 {
+  margin-top: 32px;
+  font-size: 1.15rem;
+}
+
+.annotation-body blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 16px;
+  color: #555;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 32px;
+  font-size: 0.85rem;
+  color: #888;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link:hover {
+  color: #333;
+}
+
+/* MathJax / LaTeX rendered math spacing */
+.math-block {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+/* Book list annotation links */
+.book-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-link:hover {
+  text-decoration: underline;
+}

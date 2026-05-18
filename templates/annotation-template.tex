@@ -1,0 +1,109 @@
+% ============================================================
+%  ANNOTATION TEMPLATE — Andre Ruiz Loera
+%  Instructions:
+%    1. Fill in the fields below.
+%    2. Write your notes in the sections provided.
+%    3. Compile with pdflatex or xelatex.
+%    4. Also copy annotation-template.html, rename it to match
+%       your book (e.g. rudin-principles.html), and paste your
+%       content there so it shows on the website.
+% ============================================================
+
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[margin=1.2in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+% Convenience macros
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\inner}[2]{\langle #1,\, #2 \rangle}
+
+% ── FILL IN THESE FIELDS ────────────────────────────────────
+\newcommand{\booktitle}{Title of the Book}
+\newcommand{\bookauthor}{Author Name}
+\newcommand{\bookyear}{Year Published}
+\newcommand{\category}{Math | Finance | Philosophy | Books | Other}
+\newcommand{\dateread}{Month Year}
+% ────────────────────────────────────────────────────────────
+
+\title{\booktitle \\ \large Annotations \& Notes}
+\author{Andre Ruiz Loera \\ \small \textit{\category}}
+\date{Read: \dateread}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+% ── OVERVIEW ────────────────────────────────────────────────
+\section{Overview}
+% 2–4 sentences: what is this book about and why did you read it?
+
+
+% ── KEY IDEAS ───────────────────────────────────────────────
+\section{Key Ideas}
+% Bullet the main concepts, theorems, or arguments.
+\begin{itemize}
+  \item
+\end{itemize}
+
+% ── CHAPTER NOTES ───────────────────────────────────────────
+\section{Chapter Notes}
+
+\subsection{Chapter 1 — }
+% Notes, definitions, proofs, examples, questions.
+
+
+% ── NOTABLE PASSAGES ────────────────────────────────────────
+\section{Notable Passages}
+% Direct quotes worth keeping.
+\begin{quote}
+  ``Paste quote here.'' \hfill --- \bookauthor
+\end{quote}
+
+% ── EXERCISES / PROBLEMS ────────────────────────────────────
+\section{Exercises \& Problems}
+% Work through selected exercises here.
+
+\subsection*{Problem X.Y}
+\textit{Statement of the problem.}
+
+\begin{proof}
+  % Your solution.
+\end{proof}
+
+% ── TAKEAWAYS ───────────────────────────────────────────────
+\section{Takeaways}
+% What will you remember in a year? What changed how you think?
+\begin{itemize}
+  \item
+\end{itemize}
+
+\end{document}

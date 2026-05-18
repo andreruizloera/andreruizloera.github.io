@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <!--
+    INSTRUCTIONS:
+    1. Copy this file into the right category folder, e.g.:
+         annotations/math/rudin-principles.html
+    2. Replace all PLACEHOLDER values below.
+    3. Add an entry card in the matching category index.html.
+    4. MathJax renders LaTeX math inline: $...$ and display: $$...$$
+  -->
+  <title>BOOK TITLE — Annotations — Andre Ruiz Loera</title>
+
+  <!-- MathJax for LaTeX math rendering -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <!-- Depth from category subfolder back to root -->
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-logo"><a href="../../index.html">ARL</a></div>
+    <ul>
+      <li><a href="../../index.html">About</a></li>
+      <li><a href="../../research/index.html">Research</a></li>
+      <li><a href="../index.html" class="active">Annotations</a></li>
+      <li><a href="../../press/index.html">Press</a></li>
+    </ul>
+    <ul class="subnav">
+      <li><a href="../books/index.html">Books</a></li>
+      <li><a href="../math/index.html">Math</a></li>
+      <li><a href="../finance/index.html">Finance</a></li>
+      <li><a href="../philosophy/index.html">Philosophy</a></li>
+      <li><a href="../other/index.html">Other</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <a class="back-link" href="index.html">← Back to CATEGORY</a>
+
+    <h1>BOOK TITLE</h1>
+    <p class="subtitle">AUTHOR · YEAR PUBLISHED</p>
+
+    <div class="annotation-body">
+
+      <h2>Overview</h2>
+      <p>Why you read it and what it covers.</p>
+
+      <h2>Key Ideas</h2>
+      <ul>
+        <li>Idea one</li>
+        <li>Idea two</li>
+      </ul>
+
+      <h2>Notes</h2>
+
+      <!-- Example math usage: -->
+      <!-- Inline: $f(x) = x^2$ -->
+      <!-- Display: $$\int_0^\infty e^{-x}\,dx = 1$$ -->
+
+      <p>Your notes here. Math renders automatically: $e^{i\pi} + 1 = 0$.</p>
+
+      <div class="math-block">
+        $$\text{Replace this with a key equation or result.}$$
+      </div>
+
+      <h2>Notable Passages</h2>
+      <blockquote>
+        "Paste a quote here." — AUTHOR
+      </blockquote>
+
+      <h2>Takeaways</h2>
+      <ul>
+        <li>What you'll remember in a year.</li>
+      </ul>
+
+    </div>
+  </main>
+</body>
+</html>
