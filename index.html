@@ -17,6 +17,7 @@
       <li><a href="reading-lists/index.html">Reading Lists</a></li>
       <li><a href="press/index.html">Press</a></li>
     </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">dark</button>
   </nav>
 
   <main>
@@ -33,5 +34,20 @@
       <a href="#">LinkedIn</a>
     </div>
   </main>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('theme-btn').textContent = t === 'dark' ? 'light' : 'dark';
+      });
+    })();
+    function toggleTheme() {
+      var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      document.getElementById('theme-btn').textContent = t === 'dark' ? 'light' : 'dark';
+    }
+  </script>
 </body>
 </html>

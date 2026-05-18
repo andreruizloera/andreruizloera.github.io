@@ -7,10 +7,10 @@
   <title>Computer Science — Reading Lists — Andre Ruiz Loera</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
-    .book-section h2 { font-size: 1.05rem; font-family: Georgia, serif; margin-bottom: 10px; margin-top: 36px; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; color: #333; }
+    .book-section h2 { font-size: 1.05rem; font-family: Georgia, serif; margin-bottom: 10px; margin-top: 36px; border-bottom: 1px solid var(--border); padding-bottom: 6px; color: var(--text); }
     .book-list { list-style: none; padding: 0; max-width: 680px; }
-    .book-list li { font-family: Arial, Helvetica, sans-serif; font-size: 0.9rem; padding: 5px 0; border-bottom: 1px solid #f2f2f2; display: flex; justify-content: space-between; gap: 16px; color: #222; }
-    .book-list li .author { color: #999; font-size: 0.84rem; white-space: nowrap; flex-shrink: 0; }
+    .book-list li { font-family: Arial, Helvetica, sans-serif; font-size: 0.9rem; padding: 5px 0; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; gap: 16px; color: var(--text); }
+    .book-list li .author { color: var(--text-muted); font-size: 0.84rem; white-space: nowrap; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -23,6 +23,7 @@
       <li><a href="index.html" class="active">Reading Lists</a></li>
       <li><a href="../press/index.html">Press</a></li>
     </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">dark</button>
   </nav>
 
   <main>
@@ -86,5 +87,20 @@
     </div>
 
   </main>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('theme-btn').textContent = t === 'dark' ? 'light' : 'dark';
+      });
+    })();
+    function toggleTheme() {
+      var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      document.getElementById('theme-btn').textContent = t === 'dark' ? 'light' : 'dark';
+    }
+  </script>
 </body>
 </html>
