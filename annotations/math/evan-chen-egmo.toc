@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Overview}{2}{section.1}%
+\contentsline {section}{\numberline {2}Chapter Notes}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Chapter 1 — Angle Chasing}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Chapter 2 — Circles}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Chapter 3 — Lengths and Ratios}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Chapter 4 — Assorted Configurations}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Chapter 5 — Classical Geometry Revisited}{3}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Chapter 6 — Inversive Geometry}{3}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Exercises \& Problems}{4}{section.3}%
+\contentsline {section}{\numberline {4}Takeaways}{4}{section.4}%
