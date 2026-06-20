@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <title>I Read All Sixty Free Templates. They Run the Same Five Moves. — Andre Ruiz Loera</title>
+  <title>How to Design Better with AI — Andre Ruiz Loera</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
     /* ---- Post-scoped styles: animations, all original, no libraries ---- */
@@ -120,27 +120,67 @@
     .post-meta { font-family: Arial, Helvetica, sans-serif; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
     .post-meta .tag { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-left: 6px; font-size: 0.78rem; }
 
-    /* ---- Mid-page showpiece: rotating 3D ring + expandable prompt ---- */
+    /* ---- Mid-page showpiece: live hero demo (discipline on/off) ---- */
     .showcase { margin: 28px 0 8px; }
-    .stage {
-      perspective: 1100px; height: 300px; margin: 8px 0 4px;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; cursor: grab; user-select: none; touch-action: pan-y;
+    .demo-toggle { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; color: var(--text-muted); }
+    .switch { width: 48px; height: 27px; border-radius: 999px; border: none; background: #2e7d5b; position: relative; cursor: pointer; flex: none; transition: background 0.3s ease; }
+    .switch .knob { position: absolute; top: 3px; left: 3px; width: 21px; height: 21px; border-radius: 50%; background: #fff; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .switch.on .knob { transform: translateX(21px); }
+    .switch.off { background: #b9b4a8; }
+
+    .heroDemo {
+      position: relative; height: 380px; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border); background: #0b0e14; color: #fff;
+      display: flex; flex-direction: column; justify-content: center; padding: 40px;
+      transition: background 0.5s ease, color 0.5s ease;
     }
-    .stage:active { cursor: grabbing; }
-    .ring { position: relative; width: 190px; height: 120px; transform-style: preserve-3d; will-change: transform; }
-    .card3d {
-      position: absolute; inset: 0; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 6px; padding: 14px;
-      border-radius: 14px; border: 1px solid rgba(255,255,255,0.16);
-      background-image: linear-gradient(150deg, #1f2937, #0e7490 60%, #5b21b6);
-      color: #fff; box-shadow: 0 12px 34px rgba(0,0,0,0.38);
+    .heroDemo .spot {
+      position: absolute; inset: -40%;
+      background:
+        radial-gradient(circle at 30% 38%, rgba(212,175,55,0.20), transparent 42%),
+        radial-gradient(circle at 72% 62%, rgba(14,116,144,0.22), transparent 46%);
+      animation: spot-drift 12s ease-in-out infinite alternate;
     }
-    .card3d .c-name { font-family: Georgia, serif; font-size: 1.02rem; font-weight: 700; text-align: center; line-height: 1.2; }
-    .card3d .c-tag { font-family: 'Courier New', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.72); }
+    @keyframes spot-drift { from { transform: translate(-4%, -2%); } to { transform: translate(6%, 4%); } }
+    .heroDemo .kick { position: relative; font-family: 'Courier New', monospace; letter-spacing: 0.2em; font-size: 0.7rem; text-transform: uppercase; color: #d4af37; margin-bottom: 14px; }
+    .heroDemo .hl { position: relative; font-family: Georgia, serif; font-size: 2rem; line-height: 1.08; max-width: 58%; margin: 0 0 14px; }
+    .heroDemo .sub { position: relative; font-family: Arial, Helvetica, sans-serif; color: rgba(255,255,255,0.66); font-size: 0.95rem; line-height: 1.5; max-width: 50%; margin: 0 0 22px; }
+    .heroDemo .cta { position: relative; display: flex; gap: 10px; flex-wrap: wrap; }
+    .heroDemo .btn-gold { background: #d4af37; color: #1a1407; border: none; border-radius: 999px; padding: 11px 22px; font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+    .heroDemo .btn-ghost { display: none; }
+
+    /* original artifact: a gold paper-jet + drawn flight trail */
+    .heroDemo .trail { position: absolute; right: 3%; top: 0; width: 56%; height: 100%; pointer-events: none; opacity: 0.55; }
+    .heroDemo .trail path { fill: none; stroke: #d4af37; stroke-width: 1.4; stroke-dasharray: 5 11; animation: trail-move 3.2s linear infinite; }
+    @keyframes trail-move { to { stroke-dashoffset: -16; } }
+    .heroDemo .plane { position: absolute; right: 7%; top: 50%; width: 168px; height: 168px; transform: translateY(-50%); animation: plane-float 7s ease-in-out infinite; filter: drop-shadow(0 14px 22px rgba(0,0,0,0.45)); }
+    @keyframes plane-float { 0%,100% { transform: translateY(-56%) rotate(-5deg); } 50% { transform: translateY(-44%) rotate(-1deg); } }
+    .heroDemo .generic-blob { display: none; }
+
+    /* GENERIC state — discipline off */
+    .heroDemo.generic { background: #ece9e2; color: #2a2a2a; }
+    .heroDemo.generic .spot, .heroDemo.generic .plane, .heroDemo.generic .trail { display: none; }
+    .heroDemo.generic .kick { color: #9a9a9a; letter-spacing: 0.04em; text-transform: none; font-family: Arial, Helvetica, sans-serif; }
+    .heroDemo.generic .hl { font-family: Arial, Helvetica, sans-serif; color: #2a2a2a; max-width: 66%; }
+    .heroDemo.generic .sub { color: #6a6a6a; max-width: 62%; }
+    .heroDemo.generic .btn-gold { background: #3b6fb0; color: #fff; }
+    .heroDemo.generic .btn-ghost { display: inline-block; background: transparent; border: 1px solid #b9b4a8; color: #555; border-radius: 999px; padding: 11px 22px; font-family: Arial, Helvetica, sans-serif; font-size: 0.9rem; cursor: pointer; }
+    .heroDemo.generic .generic-blob {
+      display: flex; position: absolute; right: 9%; top: 50%; transform: translateY(-50%);
+      width: 150px; height: 150px; border-radius: 16px; align-items: center; justify-content: center;
+      text-align: center; line-height: 1.3; font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; color: #8a8579;
+      background: repeating-linear-gradient(45deg, #ddd9d0, #ddd9d0 12px, #d2cec4 12px, #d2cec4 24px); border: 1px solid #c8c4ba;
+    }
+
     .stage-hint {
       text-align: center; font-family: 'Courier New', monospace; font-size: 0.68rem;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 8px 0 0;
+    }
+    @media (max-width: 640px) {
+      .heroDemo { padding: 26px; height: 420px; }
+      .heroDemo .hl { max-width: 100%; font-size: 1.5rem; }
+      .heroDemo .sub { max-width: 100%; }
+      .heroDemo .plane { width: 110px; right: 4%; opacity: 0.4; }
     }
 
     .prompt-box { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 16px; background: var(--bg); }
@@ -199,7 +239,7 @@
       <!-- HERO -->
       <div class="hero">
         <p class="kicker">I did the homework so you don&rsquo;t have to</p>
-        <h1 class="stagger" id="hero-title">I Read All Sixty Free Templates. They Run the Same Five Moves.</h1>
+        <h1 class="stagger" id="hero-title">How to Design Better with AI</h1>
         <p class="lede">
           I went through every free template on a popular motion-design site looking for sixty different
           ideas. I found one idea wearing sixty fake company names. The good ones aren&rsquo;t good because
@@ -338,19 +378,46 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
         backgrounds &mdash; one calm motion, tuned well, beats ten loud ones. It&rsquo;s always the restraint.
       </p>
 
-      <h2 class="reveal">Exhibit B: the whole thesis, spinning</h2>
+      <h2 class="reveal">Exhibit B: the thesis, with a light switch</h2>
       <p class="reveal">
-        Cheap demos aside, here&rsquo;s one that isn&rsquo;t cheap to look at: every fake company from the
-        marquee, now orbiting in actual 3D. It won&rsquo;t stop on its own &mdash; grab it and throw it.
-        (Yes, it&rsquo;s still just CSS transforms and a <code class="inline">requestAnimationFrame</code>
-        loop. The geometry is a circle. The &ldquo;impressive&rdquo; is, one more time, a lie you&rsquo;re
-        choosing to enjoy.)
+        Enough theory. Here&rsquo;s a hero section I built from scratch &mdash; my own code, an invented jet
+        company &mdash; wired to a switch that turns the discipline on and off. Go flip it. Same words, near
+        enough the same layout, except one version commits to a single idea and the other hedges like a page
+        that&rsquo;s a little scared of you.
       </p>
       <div class="showcase reveal">
-        <div class="stage" id="stage">
-          <div class="ring" id="ring"></div>
+        <div class="demo-toggle">
+          <span>Discipline</span>
+          <button class="switch on" id="disc-btn" aria-pressed="true" aria-label="Toggle design discipline"><span class="knob"></span></button>
+          <span id="disc-label">on &mdash; a committed fiction</span>
         </div>
-        <p class="stage-hint">drag to spin &middot; release to let it fly</p>
+        <div class="heroDemo" id="heroDemo">
+          <div class="spot"></div>
+          <svg class="trail" viewBox="0 0 260 180" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M6 168 Q 120 150 150 70 Q 168 18 250 10" />
+          </svg>
+          <svg class="plane" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M4 46 L96 8 L57 59 Z" fill="#e7c75a" />
+            <path d="M57 59 L96 8 L70 96 Z" fill="#b8932f" />
+          </svg>
+          <div class="generic-blob" aria-hidden="true">stock photo<br>of a handshake</div>
+          <p class="kick" id="hd-kick">SkyElite &middot; Private Aviation</p>
+          <h3 class="hl" id="hd-hl">Skip the airport. Keep your morning.</h3>
+          <p class="sub" id="hd-sub">Members-only jets on two hours&rsquo; notice. One plane, one phone number, zero terminals.</p>
+          <div class="cta">
+            <button class="btn-gold" id="hd-cta">Request access</button>
+            <button class="btn-ghost">Learn More</button>
+            <button class="btn-ghost">Contact Sales</button>
+          </div>
+        </div>
+        <p class="stage-hint">flip the switch &middot; same content, with the discipline and without it</p>
+        <p class="reveal" style="margin-top:18px;">
+          The &ldquo;off&rdquo; version isn&rsquo;t broken. The words are fine, the layout&rsquo;s fine.
+          It&rsquo;s just <em>frightened</em> &mdash; three buttons because it couldn&rsquo;t commit to one, a
+          headline that could belong to any company alive, a stock-photo-shaped hole where an idea should
+          be. &ldquo;On&rdquo; isn&rsquo;t more effort. It&rsquo;s the same effort aimed at one specific
+          lie and not blinking.
+        </p>
 
         <div class="prompt-box" id="prompt-box">
           <button class="prompt-toggle" id="prompt-toggle" aria-expanded="false">
@@ -508,72 +575,46 @@ Constraints over adjectives.</pre>
         });
       }
 
-      // ---- Exhibit B: rotating 3D ring ----
+      // ---- Exhibit B: live hero demo, discipline on/off ----
       (function() {
-        var ring = document.getElementById('ring');
-        var stage = document.getElementById('stage');
-        if (!ring || !stage) return;
-        var items = [
-          ['SkyElite','Private Jets'], ['Orbis','NFT'], ['Securify','Data Security'],
-          ['Neuralyn','AI'], ['Datacore','Booking'], ['Aetheris','Voyage'],
-          ['Celestia','Studio'], ['Luminex','Hero'], ['Nexora','Automation'], ['Convix','Software']
-        ];
-        var n = items.length;
-        var step = 360 / n;
-        var cardW = 190;
-        var radius = Math.round((cardW / 2) / Math.tan(Math.PI / n));
-        var cards = [];
-        items.forEach(function(it, i) {
-          var card = document.createElement('div');
-          card.className = 'card3d';
-          card.style.transform = 'rotateY(' + (i * step) + 'deg) translateZ(' + radius + 'px)';
-          var name = document.createElement('div'); name.className = 'c-name'; name.textContent = it[0];
-          var tag = document.createElement('div'); tag.className = 'c-tag'; tag.textContent = it[1];
-          card.appendChild(name); card.appendChild(tag);
-          ring.appendChild(card);
-          cards.push({ el: card, base: i * step });
-        });
+        var hero = document.getElementById('heroDemo');
+        var btn = document.getElementById('disc-btn');
+        var label = document.getElementById('disc-label');
+        var kick = document.getElementById('hd-kick');
+        var hl = document.getElementById('hd-hl');
+        var sub = document.getElementById('hd-sub');
+        var cta = document.getElementById('hd-cta');
+        if (!hero || !btn) return;
 
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var IDLE = reduce ? 0 : 0.18;   // resting spin speed, deg/frame
-        var rot = -12, vel = IDLE;
-        var dragging = false, lastX = 0, lastT = 0;
-        var clamp = function(v) { return Math.max(-22, Math.min(22, v)); };
+        var committed = {
+          kick: 'SkyElite · Private Aviation',
+          hl: 'Skip the airport. Keep your morning.',
+          sub: 'Members-only jets on two hours’ notice. One plane, one phone number, zero terminals.',
+          cta: 'Request access'
+        };
+        var generic = {
+          kick: 'Welcome',
+          hl: 'We Build Modern Digital Solutions',
+          sub: 'Innovative, scalable, end-to-end experiences that empower forward-thinking brands to unlock synergy at scale.',
+          cta: 'Get Started'
+        };
 
-        function frame() {
-          if (!dragging) {
-            rot += vel;
-            vel += (IDLE - vel) * 0.04;   // ease back toward the idle drift
-          }
-          ring.style.transform = 'translateZ(-' + radius + 'px) rotateY(' + rot + 'deg)';
-          for (var i = 0; i < cards.length; i++) {
-            var world = (cards[i].base + rot) * Math.PI / 180;
-            var front = Math.cos(world);  // 1 = facing the viewer
-            cards[i].el.style.opacity = (0.22 + 0.78 * (front + 1) / 2).toFixed(3);
-          }
-          requestAnimationFrame(frame);
+        function render(on) {
+          var d = on ? committed : generic;
+          kick.textContent = d.kick;
+          hl.textContent = d.hl;
+          sub.textContent = d.sub;
+          cta.textContent = d.cta;
+          hero.classList.toggle('generic', !on);
+          btn.classList.toggle('on', on);
+          btn.classList.toggle('off', !on);
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          label.textContent = on ? 'on — a committed fiction' : 'off — generic mush';
         }
-        requestAnimationFrame(frame);
 
-        function pointX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
-        function onDown(e) { dragging = true; lastX = pointX(e); lastT = (window.performance ? performance.now() : 0); }
-        function onMove(e) {
-          if (!dragging) return;
-          var x = pointX(e), dx = x - lastX;
-          rot += dx * 0.45;
-          var now = (window.performance ? performance.now() : lastT + 16);
-          var dt = (now - lastT) || 16;
-          vel = clamp((dx * 0.45) * (16 / dt));
-          lastX = x; lastT = now;
-        }
-        function onUp() { dragging = false; }
-
-        stage.addEventListener('mousedown', onDown);
-        window.addEventListener('mousemove', onMove);
-        window.addEventListener('mouseup', onUp);
-        stage.addEventListener('touchstart', onDown, { passive: true });
-        stage.addEventListener('touchmove', onMove, { passive: true });
-        window.addEventListener('touchend', onUp);
+        var on = true;
+        btn.addEventListener('click', function() { on = !on; render(on); });
+        render(true);
       })();
 
       // ---- Expandable prompt + copy ----
