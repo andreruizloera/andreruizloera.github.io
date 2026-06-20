@@ -143,23 +143,36 @@
     }
     @keyframes spot-drift { from { transform: translate(-4%, -2%); } to { transform: translate(6%, 4%); } }
     .heroDemo .kick { position: relative; font-family: 'Courier New', monospace; letter-spacing: 0.2em; font-size: 0.7rem; text-transform: uppercase; color: #d4af37; margin-bottom: 14px; }
-    .heroDemo .hl { position: relative; font-family: Georgia, serif; font-size: 2rem; line-height: 1.08; max-width: 58%; margin: 0 0 14px; }
+    .heroDemo .hl { position: relative; font-family: Georgia, serif; font-size: 2rem; line-height: 1.08; max-width: 54%; margin: 0 0 14px; }
     .heroDemo .sub { position: relative; font-family: Arial, Helvetica, sans-serif; color: rgba(255,255,255,0.66); font-size: 0.95rem; line-height: 1.5; max-width: 50%; margin: 0 0 22px; }
     .heroDemo .cta { position: relative; display: flex; gap: 10px; flex-wrap: wrap; }
     .heroDemo .btn-gold { background: #d4af37; color: #1a1407; border: none; border-radius: 999px; padding: 11px 22px; font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
     .heroDemo .btn-ghost { display: none; }
 
-    /* original artifact: a gold paper-jet + drawn flight trail */
-    .heroDemo .trail { position: absolute; right: 3%; top: 0; width: 56%; height: 100%; pointer-events: none; opacity: 0.55; }
-    .heroDemo .trail path { fill: none; stroke: #d4af37; stroke-width: 1.4; stroke-dasharray: 5 11; animation: trail-move 3.2s linear infinite; }
-    @keyframes trail-move { to { stroke-dashoffset: -16; } }
-    .heroDemo .plane { position: absolute; right: 7%; top: 50%; width: 168px; height: 168px; transform: translateY(-50%); animation: plane-float 7s ease-in-out infinite; filter: drop-shadow(0 14px 22px rgba(0,0,0,0.45)); }
-    @keyframes plane-float { 0%,100% { transform: translateY(-56%) rotate(-5deg); } 50% { transform: translateY(-44%) rotate(-1deg); } }
+    /* original artifact: a rotating 3D collectible (WebGL) with a CSS-gem fallback */
+    .heroDemo .collectible { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 210px; height: 300px; }
+    .heroDemo .gem-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(150,110,255,0.32), rgba(79,210,224,0.12) 45%, transparent 68%);
+      filter: blur(6px); animation: gem-glow 6s ease-in-out infinite alternate;
+    }
+    @keyframes gem-glow { from { transform: scale(0.9); opacity: 0.78; } to { transform: scale(1.07); opacity: 1; } }
+    .heroDemo .gem-canvas { position: relative; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+    .heroDemo .gem-canvas:active { cursor: grabbing; }
+    .heroDemo .gem-fallback { display: none; }
+    .heroDemo .collectible.fallback .gem-canvas { display: none; }
+    .heroDemo .collectible.fallback .gem-fallback {
+      display: block; position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px;
+      background: conic-gradient(from 0deg, #9a6cff, #4fd2e0, #ffd27f, #9a6cff);
+      clip-path: polygon(50% 0, 100% 38%, 50% 100%, 0 38%);
+      animation: gem-spin 8s linear infinite;
+    }
+    @keyframes gem-spin { to { transform: rotate(360deg); } }
     .heroDemo .generic-blob { display: none; }
 
     /* GENERIC state — discipline off */
     .heroDemo.generic { background: #ece9e2; color: #2a2a2a; }
-    .heroDemo.generic .spot, .heroDemo.generic .plane, .heroDemo.generic .trail { display: none; }
+    .heroDemo.generic .spot, .heroDemo.generic .collectible { display: none; }
     .heroDemo.generic .kick { color: #9a9a9a; letter-spacing: 0.04em; text-transform: none; font-family: Arial, Helvetica, sans-serif; }
     .heroDemo.generic .hl { font-family: Arial, Helvetica, sans-serif; color: #2a2a2a; max-width: 66%; }
     .heroDemo.generic .sub { color: #6a6a6a; max-width: 62%; }
@@ -180,7 +193,7 @@
       .heroDemo { padding: 26px; height: 420px; }
       .heroDemo .hl { max-width: 100%; font-size: 1.5rem; }
       .heroDemo .sub { max-width: 100%; }
-      .heroDemo .plane { width: 110px; right: 4%; opacity: 0.4; }
+      .heroDemo .collectible { width: 150px; height: 210px; right: 1%; opacity: 0.9; }
     }
 
     .prompt-box { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 16px; background: var(--bg); }
@@ -380,10 +393,11 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
 
       <h2 class="reveal">Exhibit B: the thesis, with a light switch</h2>
       <p class="reveal">
-        Enough theory. Here&rsquo;s a hero section I built from scratch &mdash; my own code, an invented jet
-        company &mdash; wired to a switch that turns the discipline on and off. Go flip it. Same words, near
-        enough the same layout, except one version commits to a single idea and the other hedges like a page
-        that&rsquo;s a little scared of you.
+        Enough theory. Here&rsquo;s a hero section I built from scratch &mdash; my own code, an invented
+        collectibles label, a real 3D piece rotating in WebGL &mdash; wired to a switch that turns the
+        discipline on and off. Go flip it (and drag the gem). Same words, near enough the same layout, except
+        one version commits to a single idea and the other hedges like a page that&rsquo;s a little scared of
+        you.
       </p>
       <div class="showcase reveal">
         <div class="demo-toggle">
@@ -393,24 +407,22 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
         </div>
         <div class="heroDemo" id="heroDemo">
           <div class="spot"></div>
-          <svg class="trail" viewBox="0 0 260 180" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M6 168 Q 120 150 150 70 Q 168 18 250 10" />
-          </svg>
-          <svg class="plane" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M4 46 L96 8 L57 59 Z" fill="#e7c75a" />
-            <path d="M57 59 L96 8 L70 96 Z" fill="#b8932f" />
-          </svg>
+          <div class="collectible" id="collectible">
+            <div class="gem-glow"></div>
+            <canvas class="gem-canvas" id="gem-canvas"></canvas>
+            <div class="gem-fallback"></div>
+          </div>
           <div class="generic-blob" aria-hidden="true">stock photo<br>of a handshake</div>
-          <p class="kick" id="hd-kick">SkyElite &middot; Private Aviation</p>
-          <h3 class="hl" id="hd-hl">Skip the airport. Keep your morning.</h3>
-          <p class="sub" id="hd-sub">Members-only jets on two hours&rsquo; notice. One plane, one phone number, zero terminals.</p>
+          <p class="kick" id="hd-kick">Orbis &middot; Editions</p>
+          <h3 class="hl" id="hd-hl">One drop. Five hundred pieces. Gone by noon.</h3>
+          <p class="sub" id="hd-sub">Hand-numbered digital collectibles. The timer hits zero at twelve; so does your chance.</p>
           <div class="cta">
-            <button class="btn-gold" id="hd-cta">Request access</button>
+            <button class="btn-gold" id="hd-cta">Join the drop</button>
             <button class="btn-ghost">Learn More</button>
             <button class="btn-ghost">Contact Sales</button>
           </div>
         </div>
-        <p class="stage-hint">flip the switch &middot; same content, with the discipline and without it</p>
+        <p class="stage-hint">flip the switch &middot; drag the gem to spin it</p>
         <p class="reveal" style="margin-top:18px;">
           The &ldquo;off&rdquo; version isn&rsquo;t broken. The words are fine, the layout&rsquo;s fine.
           It&rsquo;s just <em>frightened</em> &mdash; three buttons because it couldn&rsquo;t commit to one, a
@@ -426,23 +438,21 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
           </button>
           <div class="prompt-body" id="prompt-body">
             <div class="prompt-inner">
-<pre id="prompt-text">Build ONE hero section for SkyElite — a private-jet charter for people who
-find first class insulting. Five rules, no exceptions:
+<pre id="prompt-text">Build ONE hero section for Orbis — a digital collectibles label that does
+single timed drops. Five rules, no exceptions:
 
-1. Brand: quiet luxury. The name should feel like it already has a waitlist.
-2. The vertical earns the look: private aviation, so commit to black, warm
-   gold, and a lot of negative space. (A dentist could not get away with
-   this. SkyElite can.)
-3. One artifact: a single jet, lit like a watch ad, angled three-quarters.
-   No stock photos, no icon soup.
-4. One motion: a slow parallax drift on the jet as the page scrolls. Nothing
-   else moves — no carousels, no bouncing badges. Respect prefers-reduced-motion
-   and kill the parallax if it is set.
-5. One message, one button: a six-word headline and a single "Request access"
-   CTA. No nav menu of feelings.
+1. Brand: scarcity as luxury. It should feel like you are already late.
+2. The vertical earns the look: collectibles, so commit to near-black, one
+   electric accent, and a single hero object that looks worth owning.
+3. One artifact: a 3D collectible, slowly rotating and bobbing, lit so the
+   edges catch. No grids of thumbnails, no logo wall.
+4. One motion: the object rotates; nothing else moves. Respect
+   prefers-reduced-motion and let it sit still if asked.
+5. One message, one button: a countdown-flavored headline and a single
+   "Join the drop" CTA. No secondary links begging for attention.
 
-Type: one serif display face with confidence issues, one clean sans for body.
-Rule of thumb: if a choice doesn't make SkyElite feel more real, delete it.
+Type: one confident display face, one clean sans. Numbers should feel minted.
+Rule of thumb: if a choice doesn't make the drop feel scarcer, cut it.
 Constraints over adjectives.</pre>
               <button class="copy-btn" id="copy-btn">Copy prompt</button>
             </div>
@@ -587,10 +597,10 @@ Constraints over adjectives.</pre>
         if (!hero || !btn) return;
 
         var committed = {
-          kick: 'SkyElite · Private Aviation',
-          hl: 'Skip the airport. Keep your morning.',
-          sub: 'Members-only jets on two hours’ notice. One plane, one phone number, zero terminals.',
-          cta: 'Request access'
+          kick: 'Orbis · Editions',
+          hl: 'One drop. Five hundred pieces. Gone by noon.',
+          sub: 'Hand-numbered digital collectibles. The timer hits zero at twelve; so does your chance.',
+          cta: 'Join the drop'
         };
         var generic = {
           kick: 'Welcome',
@@ -643,6 +653,99 @@ Constraints over adjectives.</pre>
         }
       })();
     });
+  </script>
+
+  <!-- Exhibit B artifact: original 3D collectible in WebGL (Three.js via CDN), CSS-gem fallback -->
+  <script type="module">
+    (async function () {
+      var host = document.getElementById('collectible');
+      var canvas = document.getElementById('gem-canvas');
+      if (!host || !canvas) return;
+      function fallback() { host.classList.add('fallback'); }
+
+      var THREE;
+      try {
+        THREE = await import('https://unpkg.com/three@0.160.0/build/three.module.js');
+      } catch (e) { fallback(); return; }
+
+      try {
+        var w = host.clientWidth || 210, h = host.clientHeight || 300;
+        var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(w, h, false);
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+        camera.position.set(0, 0, 4.4);
+
+        var group = new THREE.Group();
+        scene.add(group);
+
+        // The collectible: a faceted gem (octahedron) + crisp edge lines.
+        var geo = new THREE.OctahedronGeometry(1.18, 0);
+        var gem = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+          color: 0x7a5cff, metalness: 0.6, roughness: 0.12,
+          flatShading: true, emissive: 0x160a33, emissiveIntensity: 0.6
+        }));
+        gem.scale.set(1, 1.22, 1);
+        group.add(gem);
+
+        var edges = new THREE.LineSegments(
+          new THREE.EdgesGeometry(geo),
+          new THREE.LineBasicMaterial({ color: 0xcdbcff, transparent: true, opacity: 0.7 })
+        );
+        edges.scale.copy(gem.scale);
+        group.add(edges);
+
+        scene.add(new THREE.AmbientLight(0x556070, 0.85));
+        var key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(2, 3, 4); scene.add(key);
+        var pGold = new THREE.PointLight(0xffd27f, 18, 14); scene.add(pGold);
+        var pTeal = new THREE.PointLight(0x4fd2e0, 18, 14); scene.add(pTeal);
+        var pViolet = new THREE.PointLight(0xb06cff, 14, 14); pViolet.position.set(0, 2.5, -3); scene.add(pViolet);
+
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var idle = reduce ? 0 : 0.006;
+        var spin = idle, t = 0;
+        var dragging = false, lastX = 0, lastY = 0;
+
+        canvas.addEventListener('pointerdown', function (e) {
+          dragging = true; lastX = e.clientX; lastY = e.clientY;
+          try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+        });
+        canvas.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          var dx = e.clientX - lastX, dy = e.clientY - lastY;
+          group.rotation.y += dx * 0.01;
+          group.rotation.x += dy * 0.01;
+          spin = Math.max(-0.08, Math.min(0.08, dx * 0.01));
+          lastX = e.clientX; lastY = e.clientY;
+        });
+        function endDrag() { dragging = false; }
+        canvas.addEventListener('pointerup', endDrag);
+        canvas.addEventListener('pointercancel', endDrag);
+
+        window.addEventListener('resize', function () {
+          var nw = host.clientWidth || w, nh = host.clientHeight || h;
+          renderer.setSize(nw, nh, false);
+          camera.aspect = nw / nh; camera.updateProjectionMatrix();
+        });
+
+        function animate() {
+          t += 0.016;
+          if (!dragging) {
+            group.rotation.y += spin;
+            spin += (idle - spin) * 0.05;
+            if (!reduce) group.rotation.x += (Math.sin(t * 0.5) * 0.12 - group.rotation.x) * 0.02;
+          }
+          if (!reduce) group.position.y = Math.sin(t * 1.1) * 0.12;
+          pGold.position.set(Math.cos(t) * 3.2, 1.6, Math.sin(t) * 3.2 + 1.5);
+          pTeal.position.set(Math.cos(t + 2.1) * 3.2, -1.6, Math.sin(t + 2.1) * 3.2 + 1.5);
+          renderer.render(scene, camera);
+          requestAnimationFrame(animate);
+        }
+        animate();
+      } catch (e) { fallback(); }
+    })();
   </script>
 </body>
 </html>
