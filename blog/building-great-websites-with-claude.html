@@ -7,7 +7,7 @@
   <title>How to Design Better with AI — Andre Ruiz Loera</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* ---- Post-scoped styles: the animations, all original ---- */
+    /* ---- Post-scoped styles: the animations ---- */
     .post { max-width: 680px; }
     .post p { max-width: 680px; }
 
@@ -39,7 +39,8 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Word-by-word headline */
+    /* Word-by-word headline. Each word is inline-block so it can transform;
+       the space between words is a separate text node so it never collapses. */
     .stagger .word {
       display: inline-block; opacity: 0; transform: translateY(0.4em);
       transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
@@ -139,8 +140,8 @@
         <h1 class="stagger" id="hero-title">How to Design Better with AI</h1>
         <p class="lede">
           The animated sites you screenshot aren&rsquo;t doing anything exotic. It&rsquo;s a handful of small
-          effects, all cheap, mostly just CSS. Here&rsquo;s each one running live, with the code, and how to
-          get AI to build them for you.
+          effects, all cheap, mostly just CSS. Here&rsquo;s each one running live, with the code, and how to get
+          AI to build them for you.
         </p>
       </div>
 
@@ -152,14 +153,14 @@
       <p class="reveal">
         I pulled apart the templates on one of the big motion-design sites to figure out what makes them feel
         expensive. It comes down to about six effects. None of them needs a designer, and most don&rsquo;t even
-        need a library. Every demo below is live and built from scratch &mdash; view source if you want the
-        real thing.
+        need a library. Every demo below is live and built from scratch &mdash; view source if you want the real
+        thing.
       </p>
 
       <h2 class="reveal">A drifting gradient background</h2>
       <p class="reveal">
-        The most common one. The big gradient at the top of this page is four colors and a single keyframe
-        that slides the background position back and forth. People assume it&rsquo;s a shader. It isn&rsquo;t:
+        The most common one. The big gradient at the top of this page is four colors and a single keyframe that
+        slides the background position back and forth. People assume it&rsquo;s a shader. It isn&rsquo;t:
       </p>
       <pre class="code reveal"><code>.hero {
   background-image: linear-gradient(120deg, #1f2937, #0e7490, #5b21b6, #1f2937);
@@ -203,8 +204,9 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
       <p class="demo-cap">live demo &middot; staggered text</p>
       <p class="reveal">
         Split the headline into one span per word, give each a slightly later
-        <code class="inline">transition-delay</code>, and run the same fade-up. The big title at the top of the
-        page does exactly this. Scroll it off and back and it replays.
+        <code class="inline">transition-delay</code>, and run the same fade-up. The title at the top of the page
+        does exactly this. (Watch the spaces &mdash; if you wrap each word in an inline-block, you have to add
+        the gaps back as real spaces between them, or the whole line jams together.)
       </p>
 
       <h2 class="reveal">An infinite marquee</h2>
@@ -244,8 +246,8 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
         This is the one that actually impresses people, and it&rsquo;s the only one here that needs a library.
         It&rsquo;s a faceted gem rendered with Three.js, using a glass-like material that bends light (with a
         little rainbow dispersion along the edges) and a small generated environment so it has something to
-        reflect. It rotates on its own; grab it and throw it. It&rsquo;s about forty lines of setup. If WebGL
-        isn&rsquo;t available it quietly falls back to a spinning CSS gem.
+        reflect. It rotates on its own; grab it and throw it. It&rsquo;s about forty lines of setup, and if
+        WebGL isn&rsquo;t available it quietly falls back to a spinning CSS gem.
       </p>
 
       <h2 class="reveal">Getting AI to build these</h2>
@@ -256,16 +258,16 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
       <ul class="tips reveal">
         <li><strong>Name the exact effect.</strong> &ldquo;A scroll reveal that fades up with ease-out-expo&rdquo;
           gets you something usable. &ldquo;Make it animated&rdquo; doesn&rsquo;t.</li>
-        <li><strong>Ask for one main motion, not ten.</strong> Too much movement is the most common way this
-          goes wrong &mdash; it stops looking designed and starts looking nervous.</li>
-        <li><strong>Give it numbers.</strong> Durations, easing curves, how far things travel. &ldquo;Fade up
-          24px over 0.6s&rdquo; beats &ldquo;smooth and modern.&rdquo;</li>
-        <li><strong>Say &ldquo;respect prefers-reduced-motion.&rdquo;</strong> One media query turns the
-          animation off for people who need it. Easy to forget, worth not forgetting.</li>
+        <li><strong>Ask for one main motion, not ten.</strong> Too much movement is the most common way this goes
+          wrong &mdash; it stops looking designed and starts looking nervous.</li>
+        <li><strong>Give it numbers.</strong> Durations, easing curves, how far things travel. &ldquo;Fade up 24px
+          over 0.6s&rdquo; beats &ldquo;smooth and modern.&rdquo;</li>
+        <li><strong>Say &ldquo;respect prefers-reduced-motion.&rdquo;</strong> One media query turns the animation
+          off for people who need it. Easy to forget, worth not forgetting.</li>
       </ul>
       <p class="reveal">
-        Here&rsquo;s a prompt that builds most of this page&rsquo;s hero in one go. Expand it, copy it, change
-        the numbers:
+        Here&rsquo;s a prompt that builds most of this page&rsquo;s hero in one go. Expand it, copy it, change the
+        numbers:
       </p>
       <div class="prompt-box" id="prompt-box">
         <button class="prompt-toggle" id="prompt-toggle" aria-expanded="false">
@@ -280,6 +282,7 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
   (background-size around 300%) and animate its position over ~14s. No shader.
 - Headline: reveal it word by word on load. Wrap each word in a span and
   fade it up with a small stagger, easing cubic-bezier(0.22, 1, 0.36, 1).
+  Keep the spaces between words.
 - On scroll: fade the sections below up by 24px as they enter view, same
   easing, once each (IntersectionObserver).
 - One accent: a single 3D object with Three.js, slowly rotating, drag to spin.
@@ -323,7 +326,7 @@ skip the animations and render the final state.</pre>
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Marquee — fill with the effect names, doubled so -50% loops seamlessly
+      // Marquee — the effect names, doubled so -50% loops seamlessly
       var labels = ['gradient drift', 'scroll reveal', 'staggered text', 'infinite marquee',
                     'cursor tilt', '3D in WebGL', 'eased transitions', 'reduced-motion safe'];
       var track = document.getElementById('marquee-track');
@@ -331,15 +334,18 @@ skip the animations and render the final state.</pre>
         var s = document.createElement('span'); s.className = 'chip'; s.textContent = l; track.appendChild(s);
       });
 
-      // Split staggered headlines into words with stepped delays
+      // Split staggered headlines into words. A real space text node goes
+      // between each word span so the spacing never collapses.
       document.querySelectorAll('.stagger').forEach(function (el) {
         var words = el.textContent.trim().split(/\s+/);
         el.textContent = '';
         words.forEach(function (w, i) {
           var s = document.createElement('span');
-          s.className = 'word'; s.textContent = w + ' ';
+          s.className = 'word';
+          s.textContent = w;
           s.style.transitionDelay = (i * 0.07) + 's';
           el.appendChild(s);
+          el.appendChild(document.createTextNode(' '));
         });
       });
 
@@ -380,7 +386,7 @@ skip the animations and render the final state.</pre>
     });
   </script>
 
-  <!-- The 3D object: original WebGL gem (Three.js via import map), CSS-gem fallback -->
+  <!-- The 3D object: WebGL gem (Three.js via import map), CSS-gem fallback -->
   <script type="importmap">
   {
     "imports": {
@@ -414,7 +420,6 @@ skip the animations and render the final state.</pre>
         var group = new THREE.Group();
         scene.add(group);
 
-        // Reflections/refractions need something to bend: a small studio environment.
         var envTex = null;
         try {
           var envMod = await import('three/addons/environments/RoomEnvironment.js');
