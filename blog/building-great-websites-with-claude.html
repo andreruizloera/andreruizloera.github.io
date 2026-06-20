@@ -120,6 +120,53 @@
     .post-meta { font-family: Arial, Helvetica, sans-serif; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
     .post-meta .tag { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-left: 6px; font-size: 0.78rem; }
 
+    /* ---- Mid-page showpiece: rotating 3D ring + expandable prompt ---- */
+    .showcase { margin: 28px 0 8px; }
+    .stage {
+      perspective: 1100px; height: 300px; margin: 8px 0 4px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; cursor: grab; user-select: none; touch-action: pan-y;
+    }
+    .stage:active { cursor: grabbing; }
+    .ring { position: relative; width: 190px; height: 120px; transform-style: preserve-3d; will-change: transform; }
+    .card3d {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px; padding: 14px;
+      border-radius: 14px; border: 1px solid rgba(255,255,255,0.16);
+      background-image: linear-gradient(150deg, #1f2937, #0e7490 60%, #5b21b6);
+      color: #fff; box-shadow: 0 12px 34px rgba(0,0,0,0.38);
+    }
+    .card3d .c-name { font-family: Georgia, serif; font-size: 1.02rem; font-weight: 700; text-align: center; line-height: 1.2; }
+    .card3d .c-tag { font-family: 'Courier New', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.72); }
+    .stage-hint {
+      text-align: center; font-family: 'Courier New', monospace; font-size: 0.68rem;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px;
+    }
+
+    .prompt-box { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 16px; background: var(--bg); }
+    .prompt-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background: var(--border-subtle); border: none; cursor: pointer; padding: 14px 18px;
+      font-family: Arial, Helvetica, sans-serif; font-size: 0.92rem; color: var(--text); text-align: left;
+    }
+    .prompt-toggle .chev { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .prompt-box.open .prompt-toggle .chev { transform: rotate(90deg); }
+    .prompt-body {
+      max-height: 0; opacity: 0; overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
+    }
+    .prompt-box.open .prompt-body { max-height: 900px; opacity: 1; }
+    .prompt-inner { padding: 16px 18px; }
+    .prompt-inner pre {
+      margin: 0 0 14px; white-space: pre-wrap; word-wrap: break-word;
+      font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.65; color: var(--text);
+    }
+    .copy-btn {
+      border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 8px;
+      padding: 6px 14px; font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; cursor: pointer;
+    }
+    .copy-btn:hover { border-color: var(--text-muted); }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
@@ -291,6 +338,57 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
         backgrounds &mdash; one calm motion, tuned well, beats ten loud ones. It&rsquo;s always the restraint.
       </p>
 
+      <h2 class="reveal">Exhibit B: the whole thesis, spinning</h2>
+      <p class="reveal">
+        Cheap demos aside, here&rsquo;s one that isn&rsquo;t cheap to look at: every fake company from the
+        marquee, now orbiting in actual 3D. It won&rsquo;t stop on its own &mdash; grab it and throw it.
+        (Yes, it&rsquo;s still just CSS transforms and a <code class="inline">requestAnimationFrame</code>
+        loop. The geometry is a circle. The &ldquo;impressive&rdquo; is, one more time, a lie you&rsquo;re
+        choosing to enjoy.)
+      </p>
+      <div class="showcase reveal">
+        <div class="stage" id="stage">
+          <div class="ring" id="ring"></div>
+        </div>
+        <p class="stage-hint">drag to spin &middot; release to let it fly</p>
+
+        <div class="prompt-box" id="prompt-box">
+          <button class="prompt-toggle" id="prompt-toggle" aria-expanded="false">
+            <span><span class="chev">&#9656;</span> &nbsp;The prompt that builds one of these &mdash; expand and analyze it</span>
+            <span style="color:var(--text-muted);font-size:0.78rem;">click</span>
+          </button>
+          <div class="prompt-body" id="prompt-body">
+            <div class="prompt-inner">
+<pre id="prompt-text">Build ONE hero section for SkyElite — a private-jet charter for people who
+find first class insulting. Five rules, no exceptions:
+
+1. Brand: quiet luxury. The name should feel like it already has a waitlist.
+2. The vertical earns the look: private aviation, so commit to black, warm
+   gold, and a lot of negative space. (A dentist could not get away with
+   this. SkyElite can.)
+3. One artifact: a single jet, lit like a watch ad, angled three-quarters.
+   No stock photos, no icon soup.
+4. One motion: a slow parallax drift on the jet as the page scrolls. Nothing
+   else moves — no carousels, no bouncing badges. Respect prefers-reduced-motion
+   and kill the parallax if it is set.
+5. One message, one button: a six-word headline and a single "Request access"
+   CTA. No nav menu of feelings.
+
+Type: one serif display face with confidence issues, one clean sans for body.
+Rule of thumb: if a choice doesn't make SkyElite feel more real, delete it.
+Constraints over adjectives.</pre>
+              <button class="copy-btn" id="copy-btn">Copy prompt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="reveal">
+        Read that prompt and notice what it mostly does: it <em>removes options.</em> One artifact, one
+        motion, one CTA, &ldquo;constraints over adjectives.&rdquo; That&rsquo;s the five moves rewritten as
+        instructions. A great prompt isn&rsquo;t a pile of adjectives &mdash; it&rsquo;s a committed fiction
+        with the exits welded shut.
+      </p>
+
       <h2 class="reveal">Why &ldquo;everything agrees&rdquo; reads as money</h2>
       <p class="reveal">
         Your brain can&rsquo;t picture &ldquo;a SaaS,&rdquo; but it can picture a black-and-gold jet site with
@@ -409,6 +507,100 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
           tilt.style.transform = 'perspective(800px) rotateX(0) rotateY(0)';
         });
       }
+
+      // ---- Exhibit B: rotating 3D ring ----
+      (function() {
+        var ring = document.getElementById('ring');
+        var stage = document.getElementById('stage');
+        if (!ring || !stage) return;
+        var items = [
+          ['SkyElite','Private Jets'], ['Orbis','NFT'], ['Securify','Data Security'],
+          ['Neuralyn','AI'], ['Datacore','Booking'], ['Aetheris','Voyage'],
+          ['Celestia','Studio'], ['Luminex','Hero'], ['Nexora','Automation'], ['Convix','Software']
+        ];
+        var n = items.length;
+        var step = 360 / n;
+        var cardW = 190;
+        var radius = Math.round((cardW / 2) / Math.tan(Math.PI / n));
+        var cards = [];
+        items.forEach(function(it, i) {
+          var card = document.createElement('div');
+          card.className = 'card3d';
+          card.style.transform = 'rotateY(' + (i * step) + 'deg) translateZ(' + radius + 'px)';
+          var name = document.createElement('div'); name.className = 'c-name'; name.textContent = it[0];
+          var tag = document.createElement('div'); tag.className = 'c-tag'; tag.textContent = it[1];
+          card.appendChild(name); card.appendChild(tag);
+          ring.appendChild(card);
+          cards.push({ el: card, base: i * step });
+        });
+
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var IDLE = reduce ? 0 : 0.18;   // resting spin speed, deg/frame
+        var rot = -12, vel = IDLE;
+        var dragging = false, lastX = 0, lastT = 0;
+        var clamp = function(v) { return Math.max(-22, Math.min(22, v)); };
+
+        function frame() {
+          if (!dragging) {
+            rot += vel;
+            vel += (IDLE - vel) * 0.04;   // ease back toward the idle drift
+          }
+          ring.style.transform = 'translateZ(-' + radius + 'px) rotateY(' + rot + 'deg)';
+          for (var i = 0; i < cards.length; i++) {
+            var world = (cards[i].base + rot) * Math.PI / 180;
+            var front = Math.cos(world);  // 1 = facing the viewer
+            cards[i].el.style.opacity = (0.22 + 0.78 * (front + 1) / 2).toFixed(3);
+          }
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+
+        function pointX(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+        function onDown(e) { dragging = true; lastX = pointX(e); lastT = (window.performance ? performance.now() : 0); }
+        function onMove(e) {
+          if (!dragging) return;
+          var x = pointX(e), dx = x - lastX;
+          rot += dx * 0.45;
+          var now = (window.performance ? performance.now() : lastT + 16);
+          var dt = (now - lastT) || 16;
+          vel = clamp((dx * 0.45) * (16 / dt));
+          lastX = x; lastT = now;
+        }
+        function onUp() { dragging = false; }
+
+        stage.addEventListener('mousedown', onDown);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+        stage.addEventListener('touchstart', onDown, { passive: true });
+        stage.addEventListener('touchmove', onMove, { passive: true });
+        window.addEventListener('touchend', onUp);
+      })();
+
+      // ---- Expandable prompt + copy ----
+      (function() {
+        var box = document.getElementById('prompt-box');
+        var toggle = document.getElementById('prompt-toggle');
+        var copyBtn = document.getElementById('copy-btn');
+        var promptText = document.getElementById('prompt-text');
+        if (toggle && box) {
+          toggle.addEventListener('click', function() {
+            var open = box.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+        }
+        if (copyBtn && promptText) {
+          copyBtn.addEventListener('click', function() {
+            var text = promptText.textContent;
+            var done = function() {
+              copyBtn.textContent = 'Copied';
+              setTimeout(function() { copyBtn.textContent = 'Copy prompt'; }, 1600);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(done, done);
+            } else { done(); }
+          });
+        }
+      })();
     });
   </script>
 </body>
