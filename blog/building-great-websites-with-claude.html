@@ -7,17 +7,7 @@
   <title>How to Design Better with AI — Andre Ruiz Loera</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* ---- Post-scoped styles: the animations ---- */
     .post { max-width: 680px; }
-    .post p { max-width: 680px; }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.in { opacity: 1; transform: none; }
 
     /* Drifting gradient hero */
     .hero {
@@ -30,91 +20,27 @@
       content: ""; position: absolute; inset: 0; pointer-events: none;
       background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.22), transparent 45%);
     }
-    .hero .kicker { font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
-    .hero h1 { color: #fff; font-size: 2.5rem; line-height: 1.1; margin-bottom: 16px; }
-    .hero .lede { font-family: Arial, Helvetica, sans-serif; color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; max-width: 560px; }
+    .hero h1 { color: #fff; font-size: 2.5rem; line-height: 1.1; margin: 0; }
     @keyframes gradient-drift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Word-by-word headline. Each word is inline-block so it can transform;
-       the space between words is a separate text node so it never collapses. */
+    /* Word-by-word reveal. A real space text node sits between word spans
+       so the spacing never collapses. */
     .stagger .word {
       display: inline-block; opacity: 0; transform: translateY(0.4em);
       transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
     }
     .stagger.in .word { opacity: 1; transform: none; }
 
-    /* Infinite marquee */
-    .marquee { position: relative; overflow: hidden; padding: 6px 0; margin: 8px 0 4px; }
-    .marquee__track { display: flex; width: max-content; gap: 12px; animation: marquee 22s linear infinite; }
-    .chip { white-space: nowrap; border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: 0.82rem; color: var(--text-muted); font-family: 'Courier New', monospace; background: var(--bg); }
-    .marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none; }
-    .marquee::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
-    .marquee::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* Demo frame */
-    .demo { border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin: 24px 0 8px; background: var(--border-subtle); }
-    .demo-cap { text-align: center; font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; }
-
-    /* Cursor-tilt card */
-    .tilt { max-width: 360px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; padding: 24px; background: var(--bg); transition: transform 0.15s ease-out; transform-style: preserve-3d; will-change: transform; }
-    .tilt h4 { font-family: Georgia, serif; font-size: 1.15rem; margin-bottom: 8px; }
-    .tilt p { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
-
-    /* 3D object stage */
-    .gemstage { position: relative; height: 340px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); margin: 24px 0 8px; background: radial-gradient(circle at 50% 38%, #16161f, #0b0e14 72%); }
-    .collectible { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 240px; height: 300px; }
-    .gem-glow { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(150,110,255,0.30), rgba(79,210,224,0.10) 45%, transparent 68%); filter: blur(6px); animation: gem-glow 6s ease-in-out infinite alternate; }
-    @keyframes gem-glow { from { transform: scale(0.9); opacity: 0.78; } to { transform: scale(1.07); opacity: 1; } }
-    .gem-canvas { position: relative; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
-    .gem-canvas:active { cursor: grabbing; }
-    .gem-fallback { display: none; }
-    .collectible.fallback .gem-canvas { display: none; }
-    .collectible.fallback .gem-fallback {
-      display: block; position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px;
-      background: conic-gradient(from 0deg, #9a6cff, #4fd2e0, #ffd27f, #9a6cff);
-      clip-path: polygon(50% 0, 100% 38%, 50% 100%, 0 38%); animation: gem-spin 8s linear infinite;
-    }
-    @keyframes gem-spin { to { transform: rotate(360deg); } }
-
-    /* Code blocks */
-    pre.code { background: var(--border-subtle); border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin: 20px 0; max-width: 680px; }
-    pre.code code { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text); line-height: 1.6; }
-    code.inline { font-family: 'Courier New', monospace; font-size: 0.85em; background: var(--border-subtle); padding: 1px 5px; border-radius: 4px; }
-
-    /* Expandable prompt */
-    .prompt-box { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin: 18px 0; background: var(--bg); }
-    .prompt-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--border-subtle); border: none; cursor: pointer; padding: 14px 18px; font-family: Arial, Helvetica, sans-serif; font-size: 0.92rem; color: var(--text); text-align: left; }
-    .prompt-toggle .chev { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
-    .prompt-box.open .prompt-toggle .chev { transform: rotate(90deg); }
-    .prompt-body { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease; }
-    .prompt-box.open .prompt-body { max-height: 900px; opacity: 1; }
-    .prompt-inner { padding: 16px 18px; }
-    .prompt-inner pre { margin: 0 0 14px; white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.65; color: var(--text); }
-    .copy-btn { border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 8px; padding: 6px 14px; font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; cursor: pointer; }
-    .copy-btn:hover { border-color: var(--text-muted); }
-
-    .callout { border-radius: 16px; padding: 24px; margin: 28px 0; max-width: 680px; background: var(--text); color: var(--bg); }
-    .callout strong { font-family: Georgia, serif; font-size: 1.3rem; }
-    .callout p { color: var(--bg); opacity: 0.85; margin: 10px 0 0; }
-
-    ul.tips { max-width: 680px; margin: 0 0 20px 20px; }
-    ul.tips li { font-family: Arial, Helvetica, sans-serif; line-height: 1.7; margin-bottom: 10px; }
-
-    .post-meta { font-family: Arial, Helvetica, sans-serif; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
-    .post-meta .tag { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-left: 6px; font-size: 0.78rem; }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-      .reveal, .stagger .word { opacity: 1 !important; transform: none !important; }
+      .stagger .word { opacity: 1 !important; transform: none !important; }
     }
     @media (max-width: 700px) {
       .hero { padding: 32px 24px; } .hero h1 { font-size: 1.9rem; }
-      .collectible { width: 180px; height: 240px; }
     }
   </style>
 </head>
@@ -136,181 +62,14 @@
 
     <article class="post">
       <div class="hero">
-        <p class="kicker">How the animated sites are actually built</p>
         <h1 class="stagger" id="hero-title">How to Design Better with AI</h1>
-        <p class="lede">
-          The animated sites you screenshot aren&rsquo;t doing anything exotic. It&rsquo;s a handful of small
-          effects, all cheap, mostly just CSS. Here&rsquo;s each one running live, with the code, and how to get
-          AI to build them for you.
-        </p>
       </div>
-
-      <p class="post-meta">
-        June 20, 2026 &middot; 7 min read
-        <span class="tag">Animation</span><span class="tag">CSS</span><span class="tag">Claude</span>
-      </p>
-
-      <p class="reveal">
-        I pulled apart the templates on one of the big motion-design sites to figure out what makes them feel
-        expensive. It comes down to about six effects. None of them needs a designer, and most don&rsquo;t even
-        need a library. Every demo below is live and built from scratch &mdash; view source if you want the real
-        thing.
-      </p>
-
-      <h2 class="reveal">A drifting gradient background</h2>
-      <p class="reveal">
-        The most common one. The big gradient at the top of this page is four colors and a single keyframe that
-        slides the background position back and forth. People assume it&rsquo;s a shader. It isn&rsquo;t:
-      </p>
-      <pre class="code reveal"><code>.hero {
-  background-image: linear-gradient(120deg, #1f2937, #0e7490, #5b21b6, #1f2937);
-  background-size: 300% 300%;          /* bigger than the box, so it has room to move */
-  animation: gradient-drift 14s ease infinite;
-}
-@keyframes gradient-drift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}</code></pre>
-      <p class="reveal">
-        The only trick is making the gradient bigger than its container so there&rsquo;s somewhere to slide,
-        then moving it slowly. Keep it slow &mdash; fast gradients look cheap.
-      </p>
-
-      <h2 class="reveal">Things that fade in as you scroll</h2>
-      <p class="reveal">
-        Almost every &ldquo;cinematic&rdquo; site is mostly this: elements start invisible and slightly low,
-        then fade up when they enter the screen. One IntersectionObserver, one CSS class:
-      </p>
-      <pre class="code reveal"><code>const io = new IntersectionObserver((entries) =&gt; {
-  for (const e of entries) {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }
-}, { threshold: 0.2 });
-document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code></pre>
-      <p class="reveal">
-        The part people get wrong is the easing. That
-        <code class="inline">cubic-bezier(0.22, 1, 0.36, 1)</code> &mdash; fast to start, slow to land &mdash;
-        is most of the difference between this looking deliberate and looking like a slideshow. Every paragraph
-        on this page came in on that curve.
-      </p>
-
-      <h2 class="reveal">Headlines that reveal word by word</h2>
-      <div class="demo reveal">
-        <p class="stagger" style="font-family:Georgia,serif;font-size:1.5rem;font-weight:700;margin:0;max-width:none;">
-          Split the line into words. Reveal them one at a time.
-        </p>
-      </div>
-      <p class="demo-cap">live demo &middot; staggered text</p>
-      <p class="reveal">
-        Split the headline into one span per word, give each a slightly later
-        <code class="inline">transition-delay</code>, and run the same fade-up. The title at the top of the page
-        does exactly this. (Watch the spaces &mdash; if you wrap each word in an inline-block, you have to add
-        the gaps back as real spaces between them, or the whole line jams together.)
-      </p>
-
-      <h2 class="reveal">An infinite marquee</h2>
-      <div class="marquee reveal">
-        <div class="marquee__track" id="marquee-track"></div>
-      </div>
-      <p class="demo-cap">live demo &middot; infinite marquee</p>
-      <p class="reveal">
-        A strip that scrolls forever. The trick is to duplicate the list, then move the track by exactly
-        &minus;50%. When the loop restarts, the second copy is sitting exactly where the first one started, so
-        there&rsquo;s no visible jump. The fading edges are just a gradient mask on each side.
-      </p>
-
-      <h2 class="reveal">A card that tilts toward your cursor</h2>
-      <div class="demo reveal">
-        <div class="tilt" id="tilt">
-          <h4>Move your cursor over me</h4>
-          <p>I turn your pointer position into a few degrees of rotation, then ease back to flat when you leave.</p>
-        </div>
-      </div>
-      <p class="demo-cap">live demo &middot; hover / move your cursor over the card</p>
-      <p class="reveal">
-        Track where the cursor is over the card, map that to a small rotation on two axes, done. The only thing
-        that makes it feel good instead of cheap is easing it back to flat so it settles instead of snapping.
-      </p>
-
-      <h2 class="reveal">A real 3D object</h2>
-      <div class="gemstage reveal">
-        <div class="collectible" id="collectible">
-          <div class="gem-glow"></div>
-          <canvas class="gem-canvas" id="gem-canvas"></canvas>
-          <div class="gem-fallback"></div>
-        </div>
-      </div>
-      <p class="demo-cap">live demo &middot; 3D object (WebGL) &middot; drag to spin</p>
-      <p class="reveal">
-        This is the one that actually impresses people, and it&rsquo;s the only one here that needs a library.
-        It&rsquo;s a faceted gem rendered with Three.js, using a glass-like material that bends light (with a
-        little rainbow dispersion along the edges) and a small generated environment so it has something to
-        reflect. It rotates on its own; grab it and throw it. It&rsquo;s about forty lines of setup, and if
-        WebGL isn&rsquo;t available it quietly falls back to a spinning CSS gem.
-      </p>
-
-      <h2 class="reveal">Getting AI to build these</h2>
-      <p class="reveal">
-        You can have Claude write any of these in one shot, but how you ask decides what you get. Vague prompts
-        give vague animations. What works for me:
-      </p>
-      <ul class="tips reveal">
-        <li><strong>Name the exact effect.</strong> &ldquo;A scroll reveal that fades up with ease-out-expo&rdquo;
-          gets you something usable. &ldquo;Make it animated&rdquo; doesn&rsquo;t.</li>
-        <li><strong>Ask for one main motion, not ten.</strong> Too much movement is the most common way this goes
-          wrong &mdash; it stops looking designed and starts looking nervous.</li>
-        <li><strong>Give it numbers.</strong> Durations, easing curves, how far things travel. &ldquo;Fade up 24px
-          over 0.6s&rdquo; beats &ldquo;smooth and modern.&rdquo;</li>
-        <li><strong>Say &ldquo;respect prefers-reduced-motion.&rdquo;</strong> One media query turns the animation
-          off for people who need it. Easy to forget, worth not forgetting.</li>
-      </ul>
-      <p class="reveal">
-        Here&rsquo;s a prompt that builds most of this page&rsquo;s hero in one go. Expand it, copy it, change the
-        numbers:
-      </p>
-      <div class="prompt-box" id="prompt-box">
-        <button class="prompt-toggle" id="prompt-toggle" aria-expanded="false">
-          <span><span class="chev">&#9656;</span> &nbsp;A prompt for an animated hero</span>
-          <span style="color:var(--text-muted);font-size:0.78rem;">click</span>
-        </button>
-        <div class="prompt-body" id="prompt-body">
-          <div class="prompt-inner">
-<pre id="prompt-text">Build a hero section with these animations and nothing else moving:
-
-- Background: a slow gradient drift. Use a large multi-stop gradient
-  (background-size around 300%) and animate its position over ~14s. No shader.
-- Headline: reveal it word by word on load. Wrap each word in a span and
-  fade it up with a small stagger, easing cubic-bezier(0.22, 1, 0.36, 1).
-  Keep the spaces between words.
-- On scroll: fade the sections below up by 24px as they enter view, same
-  easing, once each (IntersectionObserver).
-- One accent: a single 3D object with Three.js, slowly rotating, drag to spin.
-
-Keep the motion to just these. Respect prefers-reduced-motion: if it's set,
-skip the animations and render the final state.</pre>
-            <button class="copy-btn" id="copy-btn">Copy prompt</button>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="reveal">That&rsquo;s the whole list</h2>
-      <div class="callout reveal">
-        <strong>None of these is hard. The effects are free and mostly a few lines each.</strong>
-        <p>What separates the good version from the cheap one is the easing and the restraint: slow curves, and
-        one motion instead of ten. Pick a couple, tune them until they feel right, and stop there.</p>
-      </div>
-      <p class="reveal">
-        Grab whichever effect you liked, drop it into your next project, and spend your time on the timing. That
-        is where all the &ldquo;how is this built&rdquo; actually lives.
-      </p>
     </article>
   </main>
 
   <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
 
   <script>
-    // Theme toggle (matches the rest of the site)
     (function () {
       var t = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', t);
@@ -326,16 +85,7 @@ skip the animations and render the final state.</pre>
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Marquee — the effect names, doubled so -50% loops seamlessly
-      var labels = ['gradient drift', 'scroll reveal', 'staggered text', 'infinite marquee',
-                    'cursor tilt', '3D in WebGL', 'eased transitions', 'reduced-motion safe'];
-      var track = document.getElementById('marquee-track');
-      if (track) labels.concat(labels).forEach(function (l) {
-        var s = document.createElement('span'); s.className = 'chip'; s.textContent = l; track.appendChild(s);
-      });
-
-      // Split staggered headlines into words. A real space text node goes
-      // between each word span so the spacing never collapses.
+      // Split the title into words, with a real space between each so it doesn't jam together.
       document.querySelectorAll('.stagger').forEach(function (el) {
         var words = el.textContent.trim().split(/\s+/);
         el.textContent = '';
@@ -348,153 +98,9 @@ skip the animations and render the final state.</pre>
           el.appendChild(document.createTextNode(' '));
         });
       });
-
-      // Scroll reveal
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { threshold: 0.2 });
-      document.querySelectorAll('.reveal, .stagger').forEach(function (el) { io.observe(el); });
       var hero = document.getElementById('hero-title');
       if (hero) requestAnimationFrame(function () { hero.classList.add('in'); });
-
-      // Cursor tilt
-      var tilt = document.getElementById('tilt');
-      if (tilt) {
-        tilt.addEventListener('mousemove', function (e) {
-          var r = tilt.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-          tilt.style.transform = 'perspective(800px) rotateX(' + ((0.5 - py) * 16) + 'deg) rotateY(' + ((px - 0.5) * 16) + 'deg)';
-        });
-        tilt.addEventListener('mouseleave', function () { tilt.style.transform = 'perspective(800px) rotateX(0) rotateY(0)'; });
-      }
-
-      // Expandable prompt + copy
-      var box = document.getElementById('prompt-box'),
-          toggle = document.getElementById('prompt-toggle'),
-          copyBtn = document.getElementById('copy-btn'),
-          promptText = document.getElementById('prompt-text');
-      if (toggle && box) toggle.addEventListener('click', function () {
-        var open = box.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      if (copyBtn && promptText) copyBtn.addEventListener('click', function () {
-        var text = promptText.textContent;
-        var done = function () { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy prompt'; }, 1600); };
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
-        else done();
-      });
     });
-  </script>
-
-  <!-- The 3D object: WebGL gem (Three.js via import map), CSS-gem fallback -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
-  <script type="module">
-    (async function () {
-      var host = document.getElementById('collectible');
-      var canvas = document.getElementById('gem-canvas');
-      if (!host || !canvas) return;
-      function fallback() { host.classList.add('fallback'); }
-
-      var THREE;
-      try { THREE = await import('three'); } catch (e) { fallback(); return; }
-
-      try {
-        var w = host.clientWidth || 240, h = host.clientHeight || 300;
-        var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-        renderer.setSize(w, h, false);
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.15;
-
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
-        camera.position.set(0, 0, 4.4);
-
-        var group = new THREE.Group();
-        scene.add(group);
-
-        var envTex = null;
-        try {
-          var envMod = await import('three/addons/environments/RoomEnvironment.js');
-          var pmrem = new THREE.PMREMGenerator(renderer);
-          envTex = pmrem.fromScene(new envMod.RoomEnvironment(), 0.04).texture;
-          scene.environment = envTex;
-        } catch (_) {}
-
-        var geo = new THREE.IcosahedronGeometry(1.16, 0);
-        var mat;
-        if (envTex) {
-          mat = new THREE.MeshPhysicalMaterial({
-            transmission: 1, thickness: 1.6, ior: 2.33, roughness: 0.02, metalness: 0,
-            clearcoat: 1, clearcoatRoughness: 0.03, dispersion: 4,
-            attenuationColor: new THREE.Color(0x7a5cff), attenuationDistance: 1.5,
-            envMapIntensity: 1.4, flatShading: true
-          });
-        } else {
-          mat = new THREE.MeshStandardMaterial({
-            color: 0x7a5cff, metalness: 0.6, roughness: 0.12, flatShading: true,
-            emissive: 0x160a33, emissiveIntensity: 0.6
-          });
-        }
-        var gem = new THREE.Mesh(geo, mat);
-        gem.scale.set(1, 1.18, 1);
-        group.add(gem);
-
-        scene.add(new THREE.AmbientLight(0xffffff, 0.25));
-        var key = new THREE.DirectionalLight(0xffffff, 2.4); key.position.set(3, 4, 5); scene.add(key);
-        var rim = new THREE.DirectionalLight(0xbfa0ff, 1.2); rim.position.set(-4, -1, -2); scene.add(rim);
-        var pGold = new THREE.PointLight(0xffd27f, 14, 14); scene.add(pGold);
-        var pTeal = new THREE.PointLight(0x4fd2e0, 14, 14); scene.add(pTeal);
-
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var idle = reduce ? 0 : 0.006;
-        var spin = idle, t = 0;
-        var dragging = false, lastX = 0, lastY = 0;
-
-        canvas.addEventListener('pointerdown', function (e) {
-          dragging = true; lastX = e.clientX; lastY = e.clientY;
-          try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
-        });
-        canvas.addEventListener('pointermove', function (e) {
-          if (!dragging) return;
-          var dx = e.clientX - lastX, dy = e.clientY - lastY;
-          group.rotation.y += dx * 0.01; group.rotation.x += dy * 0.01;
-          spin = Math.max(-0.08, Math.min(0.08, dx * 0.01));
-          lastX = e.clientX; lastY = e.clientY;
-        });
-        function endDrag() { dragging = false; }
-        canvas.addEventListener('pointerup', endDrag);
-        canvas.addEventListener('pointercancel', endDrag);
-
-        window.addEventListener('resize', function () {
-          var nw = host.clientWidth || w, nh = host.clientHeight || h;
-          renderer.setSize(nw, nh, false);
-          camera.aspect = nw / nh; camera.updateProjectionMatrix();
-        });
-
-        function animate() {
-          t += 0.016;
-          if (!dragging) {
-            group.rotation.y += spin;
-            spin += (idle - spin) * 0.05;
-            if (!reduce) group.rotation.x += (Math.sin(t * 0.5) * 0.12 - group.rotation.x) * 0.02;
-          }
-          if (!reduce) group.position.y = Math.sin(t * 1.1) * 0.12;
-          pGold.position.set(Math.cos(t) * 3.2, 1.6, Math.sin(t) * 3.2 + 1.5);
-          pTeal.position.set(Math.cos(t + 2.1) * 3.2, -1.6, Math.sin(t + 2.1) * 3.2 + 1.5);
-          renderer.render(scene, camera);
-          requestAnimationFrame(animate);
-        }
-        animate();
-      } catch (e) { fallback(); }
-    })();
   </script>
 </body>
 </html>
