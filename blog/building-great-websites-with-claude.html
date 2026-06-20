@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <title>How to Build Great Websites with Claude — Andre Ruiz Loera</title>
+  <title>Nobody Wants a Generic Hero. They Want SkyElite Private Jets. — Andre Ruiz Loera</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
     /* ---- Post-scoped styles: animations, all original, no libraries ---- */
@@ -64,7 +64,7 @@
 
     /* Infinite marquee */
     .marquee { position: relative; overflow: hidden; padding: 6px 0; margin: 8px 0 4px; }
-    .marquee__track { display: flex; width: max-content; gap: 12px; animation: marquee 18s linear infinite; }
+    .marquee__track { display: flex; width: max-content; gap: 12px; animation: marquee 26s linear infinite; }
     .chip {
       white-space: nowrap; border: 1px solid var(--border); border-radius: 999px;
       padding: 8px 16px; font-size: 0.82rem; color: var(--text-muted);
@@ -120,6 +120,8 @@
     .post-meta { font-family: Arial, Helvetica, sans-serif; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
     .post-meta .tag { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-left: 6px; font-size: 0.78rem; }
 
+    .aside { font-style: italic; color: var(--text-muted); }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
@@ -151,47 +153,99 @@
     <article class="post">
       <!-- HERO -->
       <div class="hero">
-        <p class="kicker">A field guide</p>
-        <h1 class="stagger" id="hero-title">How to Build Great Websites with Claude</h1>
+        <p class="kicker">Field notes from the free bin</p>
+        <h1 class="stagger" id="hero-title">Nobody Wants a Generic Hero. They Want SkyElite Private Jets.</h1>
         <p class="lede">
-          The &ldquo;crazy&rdquo; designs you screenshot from award galleries aren&rsquo;t magic.
-          They&rsquo;re a handful of repeatable techniques. This post walks the stack &mdash;
-          and every effect you see here is live, running in your browser, and written from scratch.
+          I went through every free template on a popular motion-design site expecting landfill. Instead I
+          found the cheat code, and it&rsquo;s almost insultingly simple. The good ones aren&rsquo;t good
+          because of the animation. They&rsquo;re good because they&rsquo;re aggressively, deranged-ly
+          <em>specific</em>. That&rsquo;s the whole post. Stay for the jokes and five live demos.
         </p>
       </div>
 
       <p class="post-meta">
-        June 20, 2026 &middot; 9 min read
-        <span class="tag">Claude</span><span class="tag">Web Design</span><span class="tag">Animation</span>
+        June 20, 2026 &middot; 8 min read
+        <span class="tag">Specificity</span><span class="tag">Web Design</span><span class="tag">Claude</span>
       </p>
 
       <p class="reveal">
-        I kept sending myself links to sites like motionsites.ai and Awwwards winners thinking
-        <em>how is this even built?</em> After rebuilding a few, the answer is anticlimactic:
-        it&rsquo;s mostly four or five effects, composed with taste, on a boring-but-solid stack.
-        The hard part isn&rsquo;t the WebGL &mdash; it&rsquo;s the restraint. Here&rsquo;s the whole
-        playbook, plus how I actually drive Claude to produce it.
+        Here&rsquo;s what I expected from the <em>free</em> tier of a template marketplace: beige. Lorem
+        ipsum. A &ldquo;Get Started&rdquo; button hovering over a stock photo of two people pointing at a
+        laptop and laughing about spreadsheets. The kind of filler whose entire job is to make you click
+        &ldquo;Upgrade.&rdquo;
+      </p>
+      <p class="reveal">
+        Here&rsquo;s what I actually found. A hero section for a private jet charter called <strong>SkyElite</strong>.
+        An NFT mint page for a company named <strong>Orbis</strong>. A data-security landing page for
+        <strong>Securify</strong>. A booking flow for <strong>Datacore</strong>. A <em>404 page</em> &mdash;
+        a 404 page &mdash; with a complete fake brand identity called <strong>Nexto</strong>. And, I swear to
+        you, an unsolicited styleguide for <strong>Duolingo</strong>, a company that did not ask.
+      </p>
+      <p class="reveal">
+        None of these businesses exist. Someone sat down, invented a startup that sounds like it just closed
+        a Series B, gave it a name made of expensive vowels, and then designed for <em>that</em> &mdash;
+        instead of designing for &ldquo;a SaaS.&rdquo; And that, the whole choice, right there, is why the
+        free one looks like it cost forty grand and your version looks like a hackathon.
       </p>
 
-      <h2 class="reveal">The stack that does the heavy lifting</h2>
+      <h2 class="reveal">The trick is they commit to a bit</h2>
       <p class="reveal">
-        You don&rsquo;t need a bespoke renderer. Almost everything in the &ldquo;premium&rdquo; look
-        comes from this short list, and it&rsquo;s all free:
+        Every free template that actually slapped did the same four things, and once you see it you
+        can&rsquo;t unsee it:
       </p>
       <div class="marquee reveal">
         <div class="marquee__track" id="marquee-track"></div>
       </div>
+      <p class="demo-cap">live demo &middot; exhibit A &middot; real template names, i did not make these up</p>
       <p class="reveal">
-        The marquee above is the first live demo. It&rsquo;s a few lines of CSS: render the list
-        twice, translate the track by exactly &minus;50%, loop forever. That &ldquo;seamless infinite
-        scroll&rdquo; you see on logo walls everywhere &mdash; that&rsquo;s the whole trick.
+        One: a <strong>fake brand name that sounds VC-funded</strong> &mdash; Aetheris, Velorah, Neuralyn,
+        Luminex. Pure vowel soup. Means nothing. Feels like it costs $90/month. Two: a <strong>specific
+        vertical</strong> &mdash; not &ldquo;business,&rdquo; but <em>private jets</em>, <em>biotech</em>,
+        <em>data security for a company that booked you a meeting room.</em> Three: a <strong>specific hero
+        artifact</strong> &mdash; a dashboard, a 3D collectible, an audio player, an actual product doing an
+        actual thing. Four: <strong>exactly one</strong> signature motion. Not ten. One.
+      </p>
+      <p class="reveal">
+        Compare the forgettable ones. There&rsquo;s a free hero literally called &ldquo;Modern Agency.&rdquo;
+        Be honest &mdash; you forgot it while reading the words &ldquo;Modern Agency.&rdquo; Right next to it
+        is &ldquo;Logoisum Video Agency,&rdquo; which is a fake company with a fake logo and a fake reel, and
+        somehow <em>that</em> is the one that feels real. Specificity is not a garnish. It&rsquo;s the meal.
       </p>
 
-      <h2 class="reveal">Effect 1 &mdash; Scroll reveals (80% of the &ldquo;feel&rdquo;)</h2>
+      <h2 class="reveal">Okay but <em>why</em> does specific win</h2>
       <p class="reveal">
-        If you add one thing, add this. Content fades and rises as it enters the viewport. It costs
-        nothing and instantly reads as &ldquo;designed.&rdquo; In plain JS it&rsquo;s an
-        IntersectionObserver that flips one class:
+        Because your brain physically cannot picture &ldquo;a SaaS.&rdquo; Try it. Nothing. Static. But you
+        can picture a black-and-gold private jet site with too much negative space and a font that thinks
+        it&rsquo;s an ad for a watch. A specific design does the imagining <em>for</em> the viewer, so it
+        reads as a real product instead of a wireframe wearing a product costume.
+      </p>
+      <p class="reveal">
+        It also makes every other decision for you, which is the actual luxury. The second you decide
+        it&rsquo;s &ldquo;private jets,&rdquo; the palette is decided, the type is decided, the motion is
+        decided (slow, smug, gliding). &ldquo;A modern website&rdquo; has infinite correct answers, which is
+        a polite way of saying zero. A constraint isn&rsquo;t a cage. It&rsquo;s the person who finally tells
+        you what to order so you can stop reading the menu.
+      </p>
+      <p class="reveal">
+        And there&rsquo;s the cheap-but-effective part: a fake-yet-specific brand pattern-matches to real
+        products you&rsquo;ve already trusted, so your &ldquo;this looks legit&rdquo; reflex fires before your
+        skepticism wakes up. It&rsquo;s credibility cosplay. It works on you. It worked on me. I spent a
+        Tuesday studying the marketing of jet companies that don&rsquo;t exist.
+      </p>
+
+      <h2 class="reveal">The five tricks they wrap around the specificity</h2>
+      <p class="reveal">
+        Here&rsquo;s the part that should annoy you: the actual <em>animation</em> tech is free, public, and
+        about as exotic as a sandwich. Every &ldquo;how is this even built&rdquo; effect below is running live
+        on this page, written from scratch, no libraries. The specificity is the magic. These are just the
+        five tricks it gets dressed in.
+      </p>
+
+      <h2 class="reveal">1. Scroll reveals (a.k.a. the entire personality of 90% of award sites)</h2>
+      <p class="reveal">
+        Stuff fades up as it enters the screen. That&rsquo;s it. That&rsquo;s the effect that 90% of
+        &ldquo;cinematic&rdquo; portfolios are built on. It is twelve lines of JavaScript and it has fooled
+        the entire internet into thinking a budget was involved:
       </p>
       <pre class="code reveal"><code>const io = new IntersectionObserver((entries) =&gt; {
   for (const e of entries) {
@@ -200,29 +254,31 @@
 }, { threshold: 0.2 });
 document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code></pre>
       <p class="reveal">
-        The easing curve matters more than people admit. That
-        <code class="inline">cubic-bezier(0.22, 1, 0.36, 1)</code> is an &ldquo;ease-out-expo&rdquo;
-        &mdash; fast start, gentle settle. Linear easing is what makes amateur animation feel cheap.
-        Every block on this page, including this paragraph, animated in with that curve.
+        The one thing people botch is the easing. That
+        <code class="inline">cubic-bezier(0.22, 1, 0.36, 1)</code> curve &mdash; fast start, slow landing
+        &mdash; is the difference between &ldquo;designed&rdquo; and &ldquo;PowerPoint.&rdquo; Linear easing
+        is the Comic Sans of motion. Every paragraph you&rsquo;re reading floated in on that curve, and
+        you didn&rsquo;t even clap.
       </p>
 
-      <h2 class="reveal">Effect 2 &mdash; Word-by-word headline reveals</h2>
+      <h2 class="reveal">2. Word-by-word headlines (the &ldquo;we have a film budget&rdquo; flex)</h2>
       <div class="demo reveal">
         <p class="stagger" id="demo-stagger" style="font-family:Georgia,serif;font-size:1.5rem;font-weight:700;margin:0;max-width:none;">
-          Split the line into words. Stagger them. Let the easing do the rest.
+          Split the line into words. Stagger them. Take all the credit.
         </p>
       </div>
       <p class="demo-cap">live demo &middot; staggered text</p>
       <p class="reveal">
-        Split the headline into word spans, then add a stepped <code class="inline">transition-delay</code>
-        to each. The hero title at the top of this post uses exactly this. Scroll it back into view and
-        it replays.
+        Chop the headline into words, give each one a slightly later start, let the easing do the acting.
+        The giant title at the top of this page is the same trick. Scroll it offscreen and back and
+        it&rsquo;ll perform again, like a needy little actor, because it is one.
       </p>
 
-      <h2 class="reveal">Effect 3 &mdash; Animated gradient backdrops</h2>
+      <h2 class="reveal">3. Gradient backdrops (no, it&rsquo;s not WebGL, please stop)</h2>
       <p class="reveal">
-        The hero at the top of this post is a pure-CSS drifting gradient &mdash; a 300%-sized multi-stop
-        background nudged around with one keyframe. No canvas, no shader, runs on a phone from 2018:
+        The big drifting gradient up top is four colors and one keyframe. That&rsquo;s the entire spell.
+        People see it and go &ldquo;whoa, shaders&rdquo; and I have to gently tell them it&rsquo;s the CSS
+        equivalent of moving a houseplant three inches every few seconds:
       </p>
       <pre class="code reveal"><code>@keyframes gradient-drift {
   0%   { background-position: 0% 50%; }
@@ -230,52 +286,65 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
   100% { background-position: 0% 50%; }
 }</code></pre>
       <p class="reveal">
-        People assume these are WebGL. Most of the time they&rsquo;re four color stops and an
-        <code class="inline">animation</code> line. Reach for real shaders only when you need
-        fluid/noise effects CSS can&rsquo;t fake.
+        Save the real WebGL for when you genuinely need fluid or noise that CSS can&rsquo;t fake. Which is
+        roughly never, on a landing page, for a jet company that isn&rsquo;t real.
       </p>
 
-      <h2 class="reveal">Effect 4 &mdash; Pointer-tracking 3D tilt</h2>
+      <h2 class="reveal">4. The cursor-tilt card (where the easing does 100% of the work)</h2>
       <div class="demo reveal">
         <div class="tilt" id="tilt">
-          <h4>Move your cursor here</h4>
-          <p>The card tracks your pointer, maps position to a few degrees of rotation, and eases back
-          so it settles instead of snapping.</p>
+          <h4>Move your cursor over me</h4>
+          <p>I track your pointer, turn it into a few degrees of rotation, and ease back to flat. Take the
+          easing out and I become a haunted business card.</p>
         </div>
       </div>
       <p class="demo-cap">live demo &middot; hover / move your cursor over the card</p>
       <p class="reveal">
-        The &ldquo;expensive&rdquo; feeling here is entirely the smoothing. Without an eased transition
-        the card jitters one-to-one with the mouse and feels broken; with it, the card has weight.
-        That&rsquo;s the recurring lesson &mdash; the physics, not the geometry, sells it.
+        The geometry here is trivial &mdash; map cursor position to rotation, done. The entire
+        &ldquo;ooh, expensive&rdquo; feeling comes from the eased transition that lets it <em>settle</em>
+        instead of snapping. Rip that out and the card twitches one-to-one with your mouse like it owes
+        someone money. The physics sells it. It&rsquo;s always the physics.
       </p>
 
-      <h2 class="reveal">How I actually drive Claude to build this</h2>
-      <p class="reveal">The stack is half the battle; prompting is the other half. What consistently works for me:</p>
+      <h2 class="reveal">So how does this help you (and your suffering AI)</h2>
+      <p class="reveal">
+        Here&rsquo;s the bit that loops back. The reason your AI-generated sites come out beige is the exact
+        same reason the &ldquo;Modern Agency&rdquo; template is beige: <strong>you weren&rsquo;t specific.</strong>
+        &ldquo;Make it pop&rdquo; is the &ldquo;Modern Agency&rdquo; of prompts. When I want Claude to build
+        something that doesn&rsquo;t look like every other gradient-and-a-button site, I do this:
+      </p>
       <ul class="tips reveal">
-        <li><strong>Name the effect, not the vibe.</strong> &ldquo;Add a scroll-reveal with ease-out-expo
-          and a staggered word headline&rdquo; beats &ldquo;make it pop.&rdquo; Claude knows the named techniques.</li>
-        <li><strong>Ask for one reusable primitive at a time.</strong> A reveal, a marquee &mdash; then
-          compose them. Small pieces are easy to verify and reuse.</li>
-        <li><strong>Demand reduced-motion support up front.</strong> One
-          <code class="inline">prefers-reduced-motion</code> media query disables every animation for users
-          who need it. It&rsquo;s an accessibility requirement, not a nicety.</li>
-        <li><strong>Insist on original code.</strong> Don&rsquo;t paste someone&rsquo;s template and ship it
-          &mdash; the effects are generic, the implementations should be yours. Everything on this page was
-          written from the primitives, not copied from a gallery.</li>
+        <li><strong>Invent the fake company first.</strong> &ldquo;Build the hero for SkyElite, a private jet
+          charter for people who sigh at commercial lounges&rdquo; gets you a real design. &ldquo;Build a
+          SaaS hero&rdquo; gets you sludge. Give the AI a thing to be <em>about</em>.</li>
+        <li><strong>Name the effect, not the feeling.</strong> &ldquo;Scroll reveal with ease-out-expo and a
+          staggered word headline&rdquo; beats &ldquo;make it modern and clean,&rdquo; which means nothing and
+          everyone knows it.</li>
+        <li><strong>Ask for one reusable piece at a time.</strong> A reveal. A marquee. Then snap them together.
+          Small parts are easy to check; &ldquo;build me a website&rdquo; is how you get 1,400 lines you
+          don&rsquo;t trust.</li>
+        <li><strong>Demand reduced-motion up front,</strong> because some of us get seasick. One
+          <code class="inline">prefers-reduced-motion</code> media query turns all of this off. It&rsquo;s not
+          a bonus, it&rsquo;s the rent you pay for using animation.</li>
+        <li><strong>Write your own code.</strong> Don&rsquo;t paste someone&rsquo;s template and ship it &mdash;
+          the techniques are generic, so the implementation may as well be yours. Everything here was built
+          from the parts, not lifted from a gallery. (Yes, I&rsquo;m aware of the irony of saying that in a
+          post about studying other people&rsquo;s templates. Studying the trick is allowed. Stealing the
+          drawing is not.)</li>
       </ul>
 
-      <h2 class="reveal">The honest takeaway</h2>
+      <h2 class="reveal">The actual takeaway, with the jokes turned off for one paragraph</h2>
       <div class="callout reveal">
-        <strong>80% taste, 20% tech.</strong>
-        <p>The techniques are free and everyone has them. What separates a great site is typography,
-        timing, easing, and the discipline to use three effects instead of ten. Claude can write all of
-        it in an afternoon &mdash; your job is to art-direct.</p>
+        <strong>The free template wasn&rsquo;t more talented than you. It just had the nerve to be about something.</strong>
+        <p>The libraries are free. The easing curves are public. The thing separating &ldquo;looks like money&rdquo;
+        from &ldquo;looks like a tutorial&rdquo; is the willingness to commit to one specific, slightly absurd,
+        fully-imagined idea instead of hedging toward &ldquo;clean and modern.&rdquo; Specificity is the budget.</p>
       </div>
       <p class="reveal">
-        Pick one effect from this page, ask Claude for a clean reusable version, and drop it into your next
-        project. Stack a few of those and you&rsquo;ve got the &ldquo;how is this built&rdquo; site. It was
-        never the WebGL.
+        So next time, before you write a line: invent the dumb specific brand. SkyElite. Orbis. Securify.
+        Whatever. Design for <em>that</em> &mdash; the made-up company with the expensive vowels &mdash; and
+        watch your generic side project quietly start to look like it raised a round. It was never the WebGL.
+        It was that you refused to pick a lane.
       </p>
     </article>
   </main>
@@ -299,11 +368,12 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Marquee — duplicate items so -50% loops seamlessly
-      var stack = ['React + Vite','Tailwind CSS','Framer Motion','GSAP ScrollTrigger',
-                   'Lenis (smooth scroll)','React Three Fiber','Shaders / WebGL','Embla (carousels)'];
+      // Marquee — the actual (gloriously specific) free template names. Doubled so -50% loops seamlessly.
+      var names = ['SkyElite Private Jets','Orbis NFT','Securify Data Security','Datacore Booking',
+                   'Neuralyn','Aetheris Voyage','Velorah','Logoisum Video Agency',
+                   'Duolingo Styleguide (unsolicited)','Nexto 404','USD Halo','IntelligentX'];
       var track = document.getElementById('marquee-track');
-      stack.concat(stack).forEach(function(label) {
+      names.concat(names).forEach(function(label) {
         var span = document.createElement('span');
         span.className = 'chip';
         span.textContent = label;
@@ -317,7 +387,7 @@ document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code><
         words.forEach(function(w, i) {
           var s = document.createElement('span');
           s.className = 'word';
-          s.textContent = w + ' ';
+          s.textContent = w + ' ';
           s.style.transitionDelay = (i * 0.07) + 's';
           el.appendChild(s);
         });
