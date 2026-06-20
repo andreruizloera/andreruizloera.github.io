@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>How to Build Great Websites with Claude — Andre Ruiz Loera</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ---- Post-scoped styles: animations, all original, no libraries ---- */
+    .post { max-width: 680px; }
+    .post p { max-width: 680px; }
+
+    /* Scroll reveal: IntersectionObserver toggles .in */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Animated gradient hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      padding: 48px 40px;
+      margin: 8px 0 40px;
+      color: #fff;
+      background-image: linear-gradient(120deg, #1f2937, #0e7490, #5b21b6, #1f2937);
+      background-size: 300% 300%;
+      animation: gradient-drift 14s ease infinite;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.22), transparent 45%);
+      pointer-events: none;
+    }
+    .hero .kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-bottom: 12px;
+    }
+    .hero h1 { color: #fff; font-size: 2.5rem; line-height: 1.1; margin-bottom: 16px; }
+    .hero .lede {
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; max-width: 560px;
+    }
+    @keyframes gradient-drift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Word-by-word headline stagger */
+    .stagger .word {
+      display: inline-block;
+      opacity: 0; transform: translateY(0.4em);
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .stagger.in .word { opacity: 1; transform: none; }
+
+    /* Infinite marquee */
+    .marquee { position: relative; overflow: hidden; padding: 6px 0; margin: 8px 0 4px; }
+    .marquee__track { display: flex; width: max-content; gap: 12px; animation: marquee 18s linear infinite; }
+    .chip {
+      white-space: nowrap; border: 1px solid var(--border); border-radius: 999px;
+      padding: 8px 16px; font-size: 0.82rem; color: var(--text-muted);
+      font-family: 'Courier New', monospace; background: var(--bg);
+    }
+    .marquee::before, .marquee::after {
+      content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
+    }
+    .marquee::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+    .marquee::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Demo frame */
+    .demo {
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px; margin: 24px 0 8px; background: var(--border-subtle);
+    }
+    .demo-cap {
+      text-align: center; font-family: 'Courier New', monospace; font-size: 0.7rem;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px;
+    }
+
+    /* Tilt card */
+    .tilt {
+      max-width: 360px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px;
+      padding: 24px; background: var(--bg);
+      transition: transform 0.15s ease-out; transform-style: preserve-3d; will-change: transform;
+    }
+    .tilt h4 { font-family: Georgia, serif; font-size: 1.15rem; margin-bottom: 8px; }
+    .tilt p { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
+
+    /* Code blocks */
+    pre.code {
+      background: var(--border-subtle); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px; overflow-x: auto; margin: 20px 0; max-width: 680px;
+    }
+    pre.code code { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+    code.inline {
+      font-family: 'Courier New', monospace; font-size: 0.85em;
+      background: var(--border-subtle); padding: 1px 5px; border-radius: 4px;
+    }
+
+    .callout {
+      border-radius: 16px; padding: 24px; margin: 28px 0; max-width: 680px;
+      background: var(--text); color: var(--bg);
+    }
+    .callout strong { font-family: Georgia, serif; font-size: 1.3rem; }
+    .callout p { color: var(--bg); opacity: 0.85; margin: 10px 0 0; }
+
+    ul.tips { max-width: 680px; margin: 0 0 20px 20px; }
+    ul.tips li { font-family: Arial, Helvetica, sans-serif; line-height: 1.7; margin-bottom: 10px; }
+
+    .post-meta { font-family: Arial, Helvetica, sans-serif; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
+    .post-meta .tag { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-left: 6px; font-size: 0.78rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal, .stagger .word { opacity: 1 !important; transform: none !important; }
+    }
+    @media (max-width: 700px) {
+      .hero { padding: 32px 24px; } .hero h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo"><a href="../index.html">ARL</a></div>
+    <ul>
+      <li><a href="../index.html">About</a></li>
+      <li><a href="../research/index.html">Research</a></li>
+      <li><a href="../blog/index.html" class="active">Blog</a></li>
+      <li><a href="../annotations/index.html">Annotations</a></li>
+      <li><a href="../reading-lists/index.html">Reading Lists</a></li>
+      <li><a href="../press/index.html">Press</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <a href="index.html" class="back-link">&larr; All posts</a>
+
+    <article class="post">
+      <!-- HERO -->
+      <div class="hero">
+        <p class="kicker">A field guide</p>
+        <h1 class="stagger" id="hero-title">How to Build Great Websites with Claude</h1>
+        <p class="lede">
+          The &ldquo;crazy&rdquo; designs you screenshot from award galleries aren&rsquo;t magic.
+          They&rsquo;re a handful of repeatable techniques. This post walks the stack &mdash;
+          and every effect you see here is live, running in your browser, and written from scratch.
+        </p>
+      </div>
+
+      <p class="post-meta">
+        June 20, 2026 &middot; 9 min read
+        <span class="tag">Claude</span><span class="tag">Web Design</span><span class="tag">Animation</span>
+      </p>
+
+      <p class="reveal">
+        I kept sending myself links to sites like motionsites.ai and Awwwards winners thinking
+        <em>how is this even built?</em> After rebuilding a few, the answer is anticlimactic:
+        it&rsquo;s mostly four or five effects, composed with taste, on a boring-but-solid stack.
+        The hard part isn&rsquo;t the WebGL &mdash; it&rsquo;s the restraint. Here&rsquo;s the whole
+        playbook, plus how I actually drive Claude to produce it.
+      </p>
+
+      <h2 class="reveal">The stack that does the heavy lifting</h2>
+      <p class="reveal">
+        You don&rsquo;t need a bespoke renderer. Almost everything in the &ldquo;premium&rdquo; look
+        comes from this short list, and it&rsquo;s all free:
+      </p>
+      <div class="marquee reveal">
+        <div class="marquee__track" id="marquee-track"></div>
+      </div>
+      <p class="reveal">
+        The marquee above is the first live demo. It&rsquo;s a few lines of CSS: render the list
+        twice, translate the track by exactly &minus;50%, loop forever. That &ldquo;seamless infinite
+        scroll&rdquo; you see on logo walls everywhere &mdash; that&rsquo;s the whole trick.
+      </p>
+
+      <h2 class="reveal">Effect 1 &mdash; Scroll reveals (80% of the &ldquo;feel&rdquo;)</h2>
+      <p class="reveal">
+        If you add one thing, add this. Content fades and rises as it enters the viewport. It costs
+        nothing and instantly reads as &ldquo;designed.&rdquo; In plain JS it&rsquo;s an
+        IntersectionObserver that flips one class:
+      </p>
+      <pre class="code reveal"><code>const io = new IntersectionObserver((entries) =&gt; {
+  for (const e of entries) {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+}, { threshold: 0.2 });
+document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code></pre>
+      <p class="reveal">
+        The easing curve matters more than people admit. That
+        <code class="inline">cubic-bezier(0.22, 1, 0.36, 1)</code> is an &ldquo;ease-out-expo&rdquo;
+        &mdash; fast start, gentle settle. Linear easing is what makes amateur animation feel cheap.
+        Every block on this page, including this paragraph, animated in with that curve.
+      </p>
+
+      <h2 class="reveal">Effect 2 &mdash; Word-by-word headline reveals</h2>
+      <div class="demo reveal">
+        <p class="stagger" id="demo-stagger" style="font-family:Georgia,serif;font-size:1.5rem;font-weight:700;margin:0;max-width:none;">
+          Split the line into words. Stagger them. Let the easing do the rest.
+        </p>
+      </div>
+      <p class="demo-cap">live demo &middot; staggered text</p>
+      <p class="reveal">
+        Split the headline into word spans, then add a stepped <code class="inline">transition-delay</code>
+        to each. The hero title at the top of this post uses exactly this. Scroll it back into view and
+        it replays.
+      </p>
+
+      <h2 class="reveal">Effect 3 &mdash; Animated gradient backdrops</h2>
+      <p class="reveal">
+        The hero at the top of this post is a pure-CSS drifting gradient &mdash; a 300%-sized multi-stop
+        background nudged around with one keyframe. No canvas, no shader, runs on a phone from 2018:
+      </p>
+      <pre class="code reveal"><code>@keyframes gradient-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}</code></pre>
+      <p class="reveal">
+        People assume these are WebGL. Most of the time they&rsquo;re four color stops and an
+        <code class="inline">animation</code> line. Reach for real shaders only when you need
+        fluid/noise effects CSS can&rsquo;t fake.
+      </p>
+
+      <h2 class="reveal">Effect 4 &mdash; Pointer-tracking 3D tilt</h2>
+      <div class="demo reveal">
+        <div class="tilt" id="tilt">
+          <h4>Move your cursor here</h4>
+          <p>The card tracks your pointer, maps position to a few degrees of rotation, and eases back
+          so it settles instead of snapping.</p>
+        </div>
+      </div>
+      <p class="demo-cap">live demo &middot; hover / move your cursor over the card</p>
+      <p class="reveal">
+        The &ldquo;expensive&rdquo; feeling here is entirely the smoothing. Without an eased transition
+        the card jitters one-to-one with the mouse and feels broken; with it, the card has weight.
+        That&rsquo;s the recurring lesson &mdash; the physics, not the geometry, sells it.
+      </p>
+
+      <h2 class="reveal">How I actually drive Claude to build this</h2>
+      <p class="reveal">The stack is half the battle; prompting is the other half. What consistently works for me:</p>
+      <ul class="tips reveal">
+        <li><strong>Name the effect, not the vibe.</strong> &ldquo;Add a scroll-reveal with ease-out-expo
+          and a staggered word headline&rdquo; beats &ldquo;make it pop.&rdquo; Claude knows the named techniques.</li>
+        <li><strong>Ask for one reusable primitive at a time.</strong> A reveal, a marquee &mdash; then
+          compose them. Small pieces are easy to verify and reuse.</li>
+        <li><strong>Demand reduced-motion support up front.</strong> One
+          <code class="inline">prefers-reduced-motion</code> media query disables every animation for users
+          who need it. It&rsquo;s an accessibility requirement, not a nicety.</li>
+        <li><strong>Insist on original code.</strong> Don&rsquo;t paste someone&rsquo;s template and ship it
+          &mdash; the effects are generic, the implementations should be yours. Everything on this page was
+          written from the primitives, not copied from a gallery.</li>
+      </ul>
+
+      <h2 class="reveal">The honest takeaway</h2>
+      <div class="callout reveal">
+        <strong>80% taste, 20% tech.</strong>
+        <p>The techniques are free and everyone has them. What separates a great site is typography,
+        timing, easing, and the discipline to use three effects instead of ten. Claude can write all of
+        it in an afternoon &mdash; your job is to art-direct.</p>
+      </div>
+      <p class="reveal">
+        Pick one effect from this page, ask Claude for a clean reusable version, and drop it into your next
+        project. Stack a few of those and you&rsquo;ve got the &ldquo;how is this built&rdquo; site. It was
+        never the WebGL.
+      </p>
+    </article>
+  </main>
+
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
+
+  <script>
+    // Theme toggle (matches the rest of the site)
+    (function() {
+      var t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
+      });
+    })();
+    function toggleTheme() {
+      var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Marquee — duplicate items so -50% loops seamlessly
+      var stack = ['React + Vite','Tailwind CSS','Framer Motion','GSAP ScrollTrigger',
+                   'Lenis (smooth scroll)','React Three Fiber','Shaders / WebGL','Embla (carousels)'];
+      var track = document.getElementById('marquee-track');
+      stack.concat(stack).forEach(function(label) {
+        var span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = label;
+        track.appendChild(span);
+      });
+
+      // Split staggered headlines into word spans with stepped delays
+      document.querySelectorAll('.stagger').forEach(function(el) {
+        var words = el.textContent.trim().split(/\s+/);
+        el.textContent = '';
+        words.forEach(function(w, i) {
+          var s = document.createElement('span');
+          s.className = 'word';
+          s.textContent = w + ' ';
+          s.style.transitionDelay = (i * 0.07) + 's';
+          el.appendChild(s);
+        });
+      });
+
+      // Scroll reveal
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.reveal, .stagger').forEach(function(el) { io.observe(el); });
+      // Hero title is above the fold — trigger it immediately
+      var hero = document.getElementById('hero-title');
+      if (hero) requestAnimationFrame(function() { hero.classList.add('in'); });
+
+      // Pointer-tracking tilt
+      var tilt = document.getElementById('tilt');
+      if (tilt) {
+        tilt.addEventListener('mousemove', function(e) {
+          var r = tilt.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;
+          var py = (e.clientY - r.top) / r.height;
+          var rx = (0.5 - py) * 16;
+          var ry = (px - 0.5) * 16;
+          tilt.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+        });
+        tilt.addEventListener('mouseleave', function() {
+          tilt.style.transform = 'perspective(800px) rotateX(0) rotateY(0)';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
