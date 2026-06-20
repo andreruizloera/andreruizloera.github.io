@@ -7,228 +7,113 @@
   <title>How to Design Better with AI — Andre Ruiz Loera</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* ---- Post-scoped styles: animations, all original, no libraries ---- */
+    /* ---- Post-scoped styles: the animations, all original ---- */
     .post { max-width: 680px; }
     .post p { max-width: 680px; }
 
-    /* Scroll reveal: IntersectionObserver toggles .in */
+    /* Scroll reveal */
     .reveal {
-      opacity: 0;
-      transform: translateY(24px);
+      opacity: 0; transform: translateY(24px);
       transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
                   transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* Animated gradient hero */
+    /* Drifting gradient hero */
     .hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      padding: 48px 40px;
-      margin: 8px 0 40px;
-      color: #fff;
+      position: relative; overflow: hidden; border-radius: 16px;
+      padding: 48px 40px; margin: 8px 0 40px; color: #fff;
       background-image: linear-gradient(120deg, #1f2937, #0e7490, #5b21b6, #1f2937);
-      background-size: 300% 300%;
-      animation: gradient-drift 14s ease infinite;
+      background-size: 300% 300%; animation: gradient-drift 14s ease infinite;
     }
     .hero::after {
-      content: "";
-      position: absolute; inset: 0;
+      content: ""; position: absolute; inset: 0; pointer-events: none;
       background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.22), transparent 45%);
-      pointer-events: none;
     }
-    .hero .kicker {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7); margin-bottom: 12px;
-    }
+    .hero .kicker { font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
     .hero h1 { color: #fff; font-size: 2.5rem; line-height: 1.1; margin-bottom: 16px; }
-    .hero .lede {
-      font-family: Arial, Helvetica, sans-serif;
-      color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; max-width: 560px;
-    }
+    .hero .lede { font-family: Arial, Helvetica, sans-serif; color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; max-width: 560px; }
     @keyframes gradient-drift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Word-by-word headline stagger */
+    /* Word-by-word headline */
     .stagger .word {
-      display: inline-block;
-      opacity: 0; transform: translateY(0.4em);
+      display: inline-block; opacity: 0; transform: translateY(0.4em);
       transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
     }
     .stagger.in .word { opacity: 1; transform: none; }
 
     /* Infinite marquee */
     .marquee { position: relative; overflow: hidden; padding: 6px 0; margin: 8px 0 4px; }
-    .marquee__track { display: flex; width: max-content; gap: 12px; animation: marquee 26s linear infinite; }
-    .chip {
-      white-space: nowrap; border: 1px solid var(--border); border-radius: 999px;
-      padding: 8px 16px; font-size: 0.82rem; color: var(--text-muted);
-      font-family: 'Courier New', monospace; background: var(--bg);
-    }
-    .marquee::before, .marquee::after {
-      content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
-    }
+    .marquee__track { display: flex; width: max-content; gap: 12px; animation: marquee 22s linear infinite; }
+    .chip { white-space: nowrap; border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; font-size: 0.82rem; color: var(--text-muted); font-family: 'Courier New', monospace; background: var(--bg); }
+    .marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none; }
     .marquee::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
     .marquee::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* Demo frame */
-    .demo {
-      border: 1px solid var(--border); border-radius: 16px;
-      padding: 28px; margin: 24px 0 8px; background: var(--border-subtle);
-    }
-    .demo-cap {
-      text-align: center; font-family: 'Courier New', monospace; font-size: 0.7rem;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px;
-    }
+    .demo { border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin: 24px 0 8px; background: var(--border-subtle); }
+    .demo-cap { text-align: center; font-family: 'Courier New', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; }
 
-    /* Tilt card */
-    .tilt {
-      max-width: 360px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px;
-      padding: 24px; background: var(--bg);
-      transition: transform 0.15s ease-out; transform-style: preserve-3d; will-change: transform;
-    }
+    /* Cursor-tilt card */
+    .tilt { max-width: 360px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; padding: 24px; background: var(--bg); transition: transform 0.15s ease-out; transform-style: preserve-3d; will-change: transform; }
     .tilt h4 { font-family: Georgia, serif; font-size: 1.15rem; margin-bottom: 8px; }
     .tilt p { font-size: 0.92rem; color: var(--text-muted); margin: 0; }
 
-    /* Code blocks */
-    pre.code {
-      background: var(--border-subtle); border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; overflow-x: auto; margin: 20px 0; max-width: 680px;
+    /* 3D object stage */
+    .gemstage { position: relative; height: 340px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); margin: 24px 0 8px; background: radial-gradient(circle at 50% 38%, #16161f, #0b0e14 72%); }
+    .collectible { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 240px; height: 300px; }
+    .gem-glow { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(150,110,255,0.30), rgba(79,210,224,0.10) 45%, transparent 68%); filter: blur(6px); animation: gem-glow 6s ease-in-out infinite alternate; }
+    @keyframes gem-glow { from { transform: scale(0.9); opacity: 0.78; } to { transform: scale(1.07); opacity: 1; } }
+    .gem-canvas { position: relative; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+    .gem-canvas:active { cursor: grabbing; }
+    .gem-fallback { display: none; }
+    .collectible.fallback .gem-canvas { display: none; }
+    .collectible.fallback .gem-fallback {
+      display: block; position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px;
+      background: conic-gradient(from 0deg, #9a6cff, #4fd2e0, #ffd27f, #9a6cff);
+      clip-path: polygon(50% 0, 100% 38%, 50% 100%, 0 38%); animation: gem-spin 8s linear infinite;
     }
-    pre.code code { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text); line-height: 1.6; }
-    code.inline {
-      font-family: 'Courier New', monospace; font-size: 0.85em;
-      background: var(--border-subtle); padding: 1px 5px; border-radius: 4px;
-    }
+    @keyframes gem-spin { to { transform: rotate(360deg); } }
 
-    .callout {
-      border-radius: 16px; padding: 24px; margin: 28px 0; max-width: 680px;
-      background: var(--text); color: var(--bg);
-    }
+    /* Code blocks */
+    pre.code { background: var(--border-subtle); border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin: 20px 0; max-width: 680px; }
+    pre.code code { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+    code.inline { font-family: 'Courier New', monospace; font-size: 0.85em; background: var(--border-subtle); padding: 1px 5px; border-radius: 4px; }
+
+    /* Expandable prompt */
+    .prompt-box { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin: 18px 0; background: var(--bg); }
+    .prompt-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--border-subtle); border: none; cursor: pointer; padding: 14px 18px; font-family: Arial, Helvetica, sans-serif; font-size: 0.92rem; color: var(--text); text-align: left; }
+    .prompt-toggle .chev { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .prompt-box.open .prompt-toggle .chev { transform: rotate(90deg); }
+    .prompt-body { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease; }
+    .prompt-box.open .prompt-body { max-height: 900px; opacity: 1; }
+    .prompt-inner { padding: 16px 18px; }
+    .prompt-inner pre { margin: 0 0 14px; white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.65; color: var(--text); }
+    .copy-btn { border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 8px; padding: 6px 14px; font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; cursor: pointer; }
+    .copy-btn:hover { border-color: var(--text-muted); }
+
+    .callout { border-radius: 16px; padding: 24px; margin: 28px 0; max-width: 680px; background: var(--text); color: var(--bg); }
     .callout strong { font-family: Georgia, serif; font-size: 1.3rem; }
     .callout p { color: var(--bg); opacity: 0.85; margin: 10px 0 0; }
 
-    ul.tips, ol.moves { max-width: 680px; margin: 0 0 20px 20px; }
-    ul.tips li, ol.moves li { font-family: Arial, Helvetica, sans-serif; line-height: 1.7; margin-bottom: 10px; }
+    ul.tips { max-width: 680px; margin: 0 0 20px 20px; }
+    ul.tips li { font-family: Arial, Helvetica, sans-serif; line-height: 1.7; margin-bottom: 10px; }
 
     .post-meta { font-family: Arial, Helvetica, sans-serif; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
     .post-meta .tag { border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; margin-left: 6px; font-size: 0.78rem; }
 
-    /* ---- Mid-page showpiece: live hero demo (discipline on/off) ---- */
-    .showcase { margin: 28px 0 8px; }
-    .demo-toggle { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; color: var(--text-muted); }
-    .switch { width: 48px; height: 27px; border-radius: 999px; border: none; background: #2e7d5b; position: relative; cursor: pointer; flex: none; transition: background 0.3s ease; }
-    .switch .knob { position: absolute; top: 3px; left: 3px; width: 21px; height: 21px; border-radius: 50%; background: #fff; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
-    .switch.on .knob { transform: translateX(21px); }
-    .switch.off { background: #b9b4a8; }
-
-    .heroDemo {
-      position: relative; height: 380px; border-radius: 16px; overflow: hidden;
-      border: 1px solid var(--border); background: #0b0e14; color: #fff;
-      display: flex; flex-direction: column; justify-content: center; padding: 40px;
-      transition: background 0.5s ease, color 0.5s ease;
-    }
-    .heroDemo .spot {
-      position: absolute; inset: -40%;
-      background:
-        radial-gradient(circle at 30% 38%, rgba(212,175,55,0.20), transparent 42%),
-        radial-gradient(circle at 72% 62%, rgba(14,116,144,0.22), transparent 46%);
-      animation: spot-drift 12s ease-in-out infinite alternate;
-    }
-    @keyframes spot-drift { from { transform: translate(-4%, -2%); } to { transform: translate(6%, 4%); } }
-    .heroDemo .kick { position: relative; font-family: 'Courier New', monospace; letter-spacing: 0.2em; font-size: 0.7rem; text-transform: uppercase; color: #d4af37; margin-bottom: 14px; }
-    .heroDemo .hl { position: relative; font-family: Georgia, serif; font-size: 2rem; line-height: 1.08; max-width: 54%; margin: 0 0 14px; }
-    .heroDemo .sub { position: relative; font-family: Arial, Helvetica, sans-serif; color: rgba(255,255,255,0.66); font-size: 0.95rem; line-height: 1.5; max-width: 50%; margin: 0 0 22px; }
-    .heroDemo .cta { position: relative; display: flex; gap: 10px; flex-wrap: wrap; }
-    .heroDemo .btn-gold { background: #d4af37; color: #1a1407; border: none; border-radius: 999px; padding: 11px 22px; font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
-    .heroDemo .btn-ghost { display: none; }
-
-    /* original artifact: a rotating 3D collectible (WebGL) with a CSS-gem fallback */
-    .heroDemo .collectible { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 210px; height: 300px; }
-    .heroDemo .gem-glow {
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(150,110,255,0.32), rgba(79,210,224,0.12) 45%, transparent 68%);
-      filter: blur(6px); animation: gem-glow 6s ease-in-out infinite alternate;
-    }
-    @keyframes gem-glow { from { transform: scale(0.9); opacity: 0.78; } to { transform: scale(1.07); opacity: 1; } }
-    .heroDemo .gem-canvas { position: relative; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
-    .heroDemo .gem-canvas:active { cursor: grabbing; }
-    .heroDemo .gem-fallback { display: none; }
-    .heroDemo .collectible.fallback .gem-canvas { display: none; }
-    .heroDemo .collectible.fallback .gem-fallback {
-      display: block; position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px;
-      background: conic-gradient(from 0deg, #9a6cff, #4fd2e0, #ffd27f, #9a6cff);
-      clip-path: polygon(50% 0, 100% 38%, 50% 100%, 0 38%);
-      animation: gem-spin 8s linear infinite;
-    }
-    @keyframes gem-spin { to { transform: rotate(360deg); } }
-    .heroDemo .generic-blob { display: none; }
-
-    /* GENERIC state — discipline off */
-    .heroDemo.generic { background: #ece9e2; color: #2a2a2a; }
-    .heroDemo.generic .spot, .heroDemo.generic .collectible { display: none; }
-    .heroDemo.generic .kick { color: #9a9a9a; letter-spacing: 0.04em; text-transform: none; font-family: Arial, Helvetica, sans-serif; }
-    .heroDemo.generic .hl { font-family: Arial, Helvetica, sans-serif; color: #2a2a2a; max-width: 66%; }
-    .heroDemo.generic .sub { color: #6a6a6a; max-width: 62%; }
-    .heroDemo.generic .btn-gold { background: #3b6fb0; color: #fff; }
-    .heroDemo.generic .btn-ghost { display: inline-block; background: transparent; border: 1px solid #b9b4a8; color: #555; border-radius: 999px; padding: 11px 22px; font-family: Arial, Helvetica, sans-serif; font-size: 0.9rem; cursor: pointer; }
-    .heroDemo.generic .generic-blob {
-      display: flex; position: absolute; right: 9%; top: 50%; transform: translateY(-50%);
-      width: 150px; height: 150px; border-radius: 16px; align-items: center; justify-content: center;
-      text-align: center; line-height: 1.3; font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; color: #8a8579;
-      background: repeating-linear-gradient(45deg, #ddd9d0, #ddd9d0 12px, #d2cec4 12px, #d2cec4 24px); border: 1px solid #c8c4ba;
-    }
-
-    .stage-hint {
-      text-align: center; font-family: 'Courier New', monospace; font-size: 0.68rem;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 8px 0 0;
-    }
-    @media (max-width: 640px) {
-      .heroDemo { padding: 26px; height: 420px; }
-      .heroDemo .hl { max-width: 100%; font-size: 1.5rem; }
-      .heroDemo .sub { max-width: 100%; }
-      .heroDemo .collectible { width: 150px; height: 210px; right: 1%; opacity: 0.9; }
-    }
-
-    .prompt-box { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 16px; background: var(--bg); }
-    .prompt-toggle {
-      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      background: var(--border-subtle); border: none; cursor: pointer; padding: 14px 18px;
-      font-family: Arial, Helvetica, sans-serif; font-size: 0.92rem; color: var(--text); text-align: left;
-    }
-    .prompt-toggle .chev { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
-    .prompt-box.open .prompt-toggle .chev { transform: rotate(90deg); }
-    .prompt-body {
-      max-height: 0; opacity: 0; overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
-    }
-    .prompt-box.open .prompt-body { max-height: 900px; opacity: 1; }
-    .prompt-inner { padding: 16px 18px; }
-    .prompt-inner pre {
-      margin: 0 0 14px; white-space: pre-wrap; word-wrap: break-word;
-      font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.65; color: var(--text);
-    }
-    .copy-btn {
-      border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 8px;
-      padding: 6px 14px; font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; cursor: pointer;
-    }
-    .copy-btn:hover { border-color: var(--text-muted); }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
       .reveal, .stagger .word { opacity: 1 !important; transform: none !important; }
     }
     @media (max-width: 700px) {
       .hero { padding: 32px 24px; } .hero h1 { font-size: 1.9rem; }
+      .collectible { width: 180px; height: 240px; }
     }
   </style>
 </head>
@@ -249,100 +134,52 @@
     <a href="index.html" class="back-link">&larr; All posts</a>
 
     <article class="post">
-      <!-- HERO -->
       <div class="hero">
-        <p class="kicker">What the good free templates have in common</p>
+        <p class="kicker">How the animated sites are actually built</p>
         <h1 class="stagger" id="hero-title">How to Design Better with AI</h1>
         <p class="lede">
-          I looked at all the free templates on one of the big motion-design sites, expecting a bunch of
-          different ideas. There&rsquo;s really only one. The good ones aren&rsquo;t good because of the
-          animation. They&rsquo;re good because each picks a specific fake company and stays consistent with
-          it. That&rsquo;s the post. The demos below are live, and I built them from scratch.
+          The animated sites you screenshot aren&rsquo;t doing anything exotic. It&rsquo;s a handful of small
+          effects, all cheap, mostly just CSS. Here&rsquo;s each one running live, with the code, and how to
+          get AI to build them for you.
         </p>
       </div>
 
       <p class="post-meta">
-        June 20, 2026 &middot; 9 min read
-        <span class="tag">Design Analysis</span><span class="tag">Coherence</span><span class="tag">Claude</span>
+        June 20, 2026 &middot; 7 min read
+        <span class="tag">Animation</span><span class="tag">CSS</span><span class="tag">Claude</span>
       </p>
 
       <p class="reveal">
-        The free tier is usually filler, and plenty of these are. But the ones that look good all share
-        something, and it took me a second pass to see what it was.
-      </p>
-      <p class="reveal">
-        None of them is &ldquo;a hero section.&rdquo; It&rsquo;s a hero for SkyElite Private Jets. For Orbis,
-        an NFT drop. For Securify, Neuralyn, Datacore. There&rsquo;s even a 404 page with its own fake company
-        behind it. None of these businesses are real &mdash; someone made one up and designed for that exact
-        thing instead of for &ldquo;a website.&rdquo;
+        I pulled apart the templates on one of the big motion-design sites to figure out what makes them feel
+        expensive. It comes down to about six effects. None of them needs a designer, and most don&rsquo;t even
+        need a library. Every demo below is live and built from scratch &mdash; view source if you want the
+        real thing.
       </p>
 
-      <h2 class="reveal">What they all do</h2>
+      <h2 class="reveal">A drifting gradient background</h2>
       <p class="reveal">
-        Across the good ones, the same five choices show up:
+        The most common one. The big gradient at the top of this page is four colors and a single keyframe
+        that slides the background position back and forth. People assume it&rsquo;s a shader. It isn&rsquo;t:
       </p>
-      <ol class="moves reveal">
-        <li><strong>Make up a company that sounds real.</strong></li>
-        <li><strong>Pick a field that suits a dark, moody look</strong> &mdash; software, AI, crypto, luxury. Not a dentist.</li>
-        <li><strong>Build the page around one thing</strong> &mdash; a product shot, a 3D object, a dashboard.</li>
-        <li><strong>Use one slow background motion, and nothing else.</strong></li>
-        <li><strong>One headline, one button.</strong></li>
-      </ol>
-      <p class="reveal">
-        It&rsquo;s not the animation. It&rsquo;s that everything on the page &mdash; the name, the colors, the
-        type, the one moving thing &mdash; agrees with the same made-up company. Nothing on the page fights
-        anything else. That consistency is what makes it look expensive, more than any single effect does.
-      </p>
-
-      <h2 class="reveal">The names</h2>
-      <p class="reveal">
-        These are real template names, scrolling past:
-      </p>
-      <div class="marquee reveal">
-        <div class="marquee__track" id="marquee-track"></div>
-      </div>
-      <p class="demo-cap">live demo &middot; real template names</p>
-      <p class="reveal">
-        Aetheris, Celestia, Luminex, Neuralyn, Nexora. They&rsquo;re built the same way &mdash; a vaguely
-        Latin or space-ish root with a tech-sounding suffix &mdash; and they all sound like a company that
-        raised money. They don&rsquo;t mean anything, which actually helps: a name that means nothing
-        can&rsquo;t clash with the rest of the design. The one forgettable template in the set is called
-        &ldquo;Modern Agency.&rdquo;
-      </p>
-
-      <h2 class="reveal">The subjects</h2>
-      <p class="reveal">
-        The subjects are telling too. It&rsquo;s always software, AI, security, crypto, jets, the occasional
-        museum. Never a plumber, never a dentist. Those don&rsquo;t suit a black background and a slow
-        gradient, so they&rsquo;re just not in the set. The templates only take on subjects that already fit
-        the look they wanted to use.
-      </p>
-
-      <h2 class="reveal">The motion</h2>
-      <p class="reveal">
-        This is the part people get wrong when they copy the style. The free animated backgrounds are all the
-        same kind of thing: slow, drifting, ambient. The names give it away &mdash; Fluid Motion, Aurora
-        Waves, Silk Ripple. None of them is busy. The motion is there to set a mood, not to perform.
-      </p>
-      <p class="reveal">
-        Using one instead of ten is the hard part, and it&rsquo;s usually where my own attempts went wrong.
-        Here are the actual effects, live on this page and written by hand. They&rsquo;re all simple.
-        That&rsquo;s sort of the point.
-      </p>
-
-      <p class="reveal">
-        The gradient at the top of the page is four colors and one keyframe. People assume it&rsquo;s a
-        shader. It isn&rsquo;t:
-      </p>
-      <pre class="code reveal"><code>@keyframes gradient-drift {
+      <pre class="code reveal"><code>.hero {
+  background-image: linear-gradient(120deg, #1f2937, #0e7490, #5b21b6, #1f2937);
+  background-size: 300% 300%;          /* bigger than the box, so it has room to move */
+  animation: gradient-drift 14s ease infinite;
+}
+@keyframes gradient-drift {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }</code></pre>
-
       <p class="reveal">
-        Things fade up as they come into view. It&rsquo;s an IntersectionObserver and one CSS class. Most of
-        the &ldquo;cinematic&rdquo; sites you&rsquo;ve seen are mostly this:
+        The only trick is making the gradient bigger than its container so there&rsquo;s somewhere to slide,
+        then moving it slowly. Keep it slow &mdash; fast gradients look cheap.
+      </p>
+
+      <h2 class="reveal">Things that fade in as you scroll</h2>
+      <p class="reveal">
+        Almost every &ldquo;cinematic&rdquo; site is mostly this: elements start invisible and slightly low,
+        then fade up when they enter the screen. One IntersectionObserver, one CSS class:
       </p>
       <pre class="code reveal"><code>const io = new IntersectionObserver((entries) =&gt; {
   for (const e of entries) {
@@ -351,141 +188,118 @@
 }, { threshold: 0.2 });
 document.querySelectorAll('.reveal').forEach((el) =&gt; io.observe(el));</code></pre>
       <p class="reveal">
-        The part that matters is the easing. That
-        <code class="inline">cubic-bezier(0.22, 1, 0.36, 1)</code> &mdash; quick to start, slow to land &mdash;
-        is most of the difference between this looking deliberate and looking like a slideshow. Default linear
-        easing is usually the giveaway.
+        The part people get wrong is the easing. That
+        <code class="inline">cubic-bezier(0.22, 1, 0.36, 1)</code> &mdash; fast to start, slow to land &mdash;
+        is most of the difference between this looking deliberate and looking like a slideshow. Every paragraph
+        on this page came in on that curve.
       </p>
 
-      <p class="reveal">Word-by-word headline: split the text into spans and delay each one. Same effect as the title up top.</p>
+      <h2 class="reveal">Headlines that reveal word by word</h2>
       <div class="demo reveal">
-        <p class="stagger" id="demo-stagger" style="font-family:Georgia,serif;font-size:1.5rem;font-weight:700;margin:0;max-width:none;">
-          Split the line into words. Stagger them. Take all the credit.
+        <p class="stagger" style="font-family:Georgia,serif;font-size:1.5rem;font-weight:700;margin:0;max-width:none;">
+          Split the line into words. Reveal them one at a time.
         </p>
       </div>
       <p class="demo-cap">live demo &middot; staggered text</p>
+      <p class="reveal">
+        Split the headline into one span per word, give each a slightly later
+        <code class="inline">transition-delay</code>, and run the same fade-up. The big title at the top of the
+        page does exactly this. Scroll it off and back and it replays.
+      </p>
 
-      <p class="reveal">A card that leans toward your cursor:</p>
+      <h2 class="reveal">An infinite marquee</h2>
+      <div class="marquee reveal">
+        <div class="marquee__track" id="marquee-track"></div>
+      </div>
+      <p class="demo-cap">live demo &middot; infinite marquee</p>
+      <p class="reveal">
+        A strip that scrolls forever. The trick is to duplicate the list, then move the track by exactly
+        &minus;50%. When the loop restarts, the second copy is sitting exactly where the first one started, so
+        there&rsquo;s no visible jump. The fading edges are just a gradient mask on each side.
+      </p>
+
+      <h2 class="reveal">A card that tilts toward your cursor</h2>
       <div class="demo reveal">
         <div class="tilt" id="tilt">
           <h4>Move your cursor over me</h4>
-          <p>I turn your pointer into a few degrees of rotation and ease back to flat. Take the easing out
-          and I become a haunted business card.</p>
+          <p>I turn your pointer position into a few degrees of rotation, then ease back to flat when you leave.</p>
         </div>
       </div>
       <p class="demo-cap">live demo &middot; hover / move your cursor over the card</p>
       <p class="reveal">
-        The math is trivial. The only thing that makes it feel good is easing it back to flat so it settles
-        instead of snapping. Same lesson as the backgrounds.
+        Track where the cursor is over the card, map that to a small rotation on two axes, done. The only thing
+        that makes it feel good instead of cheap is easing it back to flat so it settles instead of snapping.
       </p>
 
-      <h2 class="reveal">Try it yourself</h2>
-      <p class="reveal">
-        Here&rsquo;s a hero I built to show the idea &mdash; my own code, a made-up collectibles brand, a 3D
-        piece in WebGL. The switch turns the &ldquo;discipline&rdquo; on and off. The content barely changes.
-        With it on, everything points the same direction. With it off, you get the generic version. Flip it,
-        and drag the gem while you&rsquo;re there.
-      </p>
-      <div class="showcase reveal">
-        <div class="demo-toggle">
-          <span>Discipline</span>
-          <button class="switch on" id="disc-btn" aria-pressed="true" aria-label="Toggle design discipline"><span class="knob"></span></button>
-          <span id="disc-label">on &mdash; a committed fiction</span>
-        </div>
-        <div class="heroDemo" id="heroDemo">
-          <div class="spot"></div>
-          <div class="collectible" id="collectible">
-            <div class="gem-glow"></div>
-            <canvas class="gem-canvas" id="gem-canvas"></canvas>
-            <div class="gem-fallback"></div>
-          </div>
-          <div class="generic-blob" aria-hidden="true">stock photo<br>of a handshake</div>
-          <p class="kick" id="hd-kick">Orbis &middot; Editions</p>
-          <h3 class="hl" id="hd-hl">One drop. Five hundred pieces. Gone by noon.</h3>
-          <p class="sub" id="hd-sub">Hand-numbered digital collectibles. The timer hits zero at twelve; so does your chance.</p>
-          <div class="cta">
-            <button class="btn-gold" id="hd-cta">Join the drop</button>
-            <button class="btn-ghost">Learn More</button>
-            <button class="btn-ghost">Contact Sales</button>
-          </div>
-        </div>
-        <p class="stage-hint">flip the switch &middot; drag the gem to spin it</p>
-        <p class="reveal" style="margin-top:18px;">
-          The off version isn&rsquo;t broken. The text is fine and the layout is fine. It just didn&rsquo;t
-          commit to anything &mdash; a vague headline, three buttons instead of one, a placeholder where a real
-          idea should be. That&rsquo;s usually the actual problem, not a lack of effort.
-        </p>
-
-        <div class="prompt-box" id="prompt-box">
-          <button class="prompt-toggle" id="prompt-toggle" aria-expanded="false">
-            <span><span class="chev">&#9656;</span> &nbsp;The prompt that builds one of these &mdash; expand and analyze it</span>
-            <span style="color:var(--text-muted);font-size:0.78rem;">click</span>
-          </button>
-          <div class="prompt-body" id="prompt-body">
-            <div class="prompt-inner">
-<pre id="prompt-text">Build ONE hero section for Orbis — a digital collectibles label that does
-single timed drops. Five rules, no exceptions:
-
-1. Brand: scarcity as luxury. It should feel like you are already late.
-2. The vertical earns the look: collectibles, so commit to near-black, one
-   electric accent, and a single hero object that looks worth owning.
-3. One artifact: a 3D collectible, slowly rotating and bobbing, lit so the
-   edges catch. No grids of thumbnails, no logo wall.
-4. One motion: the object rotates; nothing else moves. Respect
-   prefers-reduced-motion and let it sit still if asked.
-5. One message, one button: a countdown-flavored headline and a single
-   "Join the drop" CTA. No secondary links begging for attention.
-
-Type: one confident display face, one clean sans. Numbers should feel minted.
-Rule of thumb: if a choice doesn't make the drop feel scarcer, cut it.
-Constraints over adjectives.</pre>
-              <button class="copy-btn" id="copy-btn">Copy prompt</button>
-            </div>
-          </div>
+      <h2 class="reveal">A real 3D object</h2>
+      <div class="gemstage reveal">
+        <div class="collectible" id="collectible">
+          <div class="gem-glow"></div>
+          <canvas class="gem-canvas" id="gem-canvas"></canvas>
+          <div class="gem-fallback"></div>
         </div>
       </div>
+      <p class="demo-cap">live demo &middot; 3D object (WebGL) &middot; drag to spin</p>
       <p class="reveal">
-        Most of that prompt is about leaving things out: one object, one motion, one button. It&rsquo;s the
-        same five choices, written as instructions.
+        This is the one that actually impresses people, and it&rsquo;s the only one here that needs a library.
+        It&rsquo;s a faceted gem rendered with Three.js, using a glass-like material that bends light (with a
+        little rainbow dispersion along the edges) and a small generated environment so it has something to
+        reflect. It rotates on its own; grab it and throw it. It&rsquo;s about forty lines of setup. If WebGL
+        isn&rsquo;t available it quietly falls back to a spinning CSS gem.
       </p>
 
-      <h2 class="reveal">Why it works</h2>
+      <h2 class="reveal">Getting AI to build these</h2>
       <p class="reveal">
-        You can&rsquo;t really picture &ldquo;a SaaS.&rdquo; You can picture a specific black-and-gold jet
-        site. A specific fake company gives the viewer something concrete, so the page reads as a real product
-        instead of a placeholder. And it&rsquo;s not much extra work &mdash; once everything lines up, it just
-        looks intentional.
-      </p>
-
-      <h2 class="reveal">Doing this with AI</h2>
-      <p class="reveal">
-        This is also why sites you build with AI tend to look generic. &ldquo;Make it pop, add some
-        animations&rdquo; gives the model nothing to be consistent about. When I want something that
-        doesn&rsquo;t look like every other gradient-with-a-button, I give it the same five things:
+        You can have Claude write any of these in one shot, but how you ask decides what you get. Vague prompts
+        give vague animations. What works for me:
       </p>
       <ul class="tips reveal">
-        <li><strong>Give it the fake company first.</strong> &ldquo;A hero for SkyElite, a private jet charter
-          for people who hate airports&rdquo; gets you a real design. &ldquo;A SaaS hero&rdquo; gets you nothing.</li>
-        <li><strong>Name one motion and rule out the rest.</strong> &ldquo;One slow gradient in the background,
-          nothing else moving&rdquo; works better than &ldquo;make it dynamic.&rdquo;</li>
-        <li><strong>Ask for one main thing and one button.</strong> A single thing to show, a single thing to do.</li>
-        <li><strong>Mention reduced motion.</strong> One <code class="inline">prefers-reduced-motion</code>
-          query turns the animation off for people who need it. Easy to forget, worth not forgetting.</li>
-        <li><strong>Write the code yourself.</strong> Learn the technique; don&rsquo;t copy someone&rsquo;s
-          actual template. Everything here is built from scratch, which I&rsquo;ll admit is a funny thing to
-          say after a whole post spent studying other people&rsquo;s.</li>
+        <li><strong>Name the exact effect.</strong> &ldquo;A scroll reveal that fades up with ease-out-expo&rdquo;
+          gets you something usable. &ldquo;Make it animated&rdquo; doesn&rsquo;t.</li>
+        <li><strong>Ask for one main motion, not ten.</strong> Too much movement is the most common way this
+          goes wrong &mdash; it stops looking designed and starts looking nervous.</li>
+        <li><strong>Give it numbers.</strong> Durations, easing curves, how far things travel. &ldquo;Fade up
+          24px over 0.6s&rdquo; beats &ldquo;smooth and modern.&rdquo;</li>
+        <li><strong>Say &ldquo;respect prefers-reduced-motion.&rdquo;</strong> One media query turns the
+          animation off for people who need it. Easy to forget, worth not forgetting.</li>
       </ul>
+      <p class="reveal">
+        Here&rsquo;s a prompt that builds most of this page&rsquo;s hero in one go. Expand it, copy it, change
+        the numbers:
+      </p>
+      <div class="prompt-box" id="prompt-box">
+        <button class="prompt-toggle" id="prompt-toggle" aria-expanded="false">
+          <span><span class="chev">&#9656;</span> &nbsp;A prompt for an animated hero</span>
+          <span style="color:var(--text-muted);font-size:0.78rem;">click</span>
+        </button>
+        <div class="prompt-body" id="prompt-body">
+          <div class="prompt-inner">
+<pre id="prompt-text">Build a hero section with these animations and nothing else moving:
 
-      <h2 class="reveal">The actual takeaway</h2>
+- Background: a slow gradient drift. Use a large multi-stop gradient
+  (background-size around 300%) and animate its position over ~14s. No shader.
+- Headline: reveal it word by word on load. Wrap each word in a span and
+  fade it up with a small stagger, easing cubic-bezier(0.22, 1, 0.36, 1).
+- On scroll: fade the sections below up by 24px as they enter view, same
+  easing, once each (IntersectionObserver).
+- One accent: a single 3D object with Three.js, slowly rotating, drag to spin.
+
+Keep the motion to just these. Respect prefers-reduced-motion: if it's set,
+skip the animations and render the final state.</pre>
+            <button class="copy-btn" id="copy-btn">Copy prompt</button>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="reveal">That&rsquo;s the whole list</h2>
       <div class="callout reveal">
-        <strong>The good template wasn&rsquo;t more talented than you. It just picked one specific idea and stuck to it.</strong>
-        <p>Pick a specific fake company, design for it and nothing else, use one bit of motion, and say one
-        thing. That&rsquo;s most of the difference between looking generic and looking finished. The tools are
-        all free. The choosing is the hard part.</p>
+        <strong>None of these is hard. The effects are free and mostly a few lines each.</strong>
+        <p>What separates the good version from the cheap one is the easing and the restraint: slow curves, and
+        one motion instead of ten. Pick a couple, tune them until they feel right, and stop there.</p>
       </div>
       <p class="reveal">
-        So before you start, make up the specific company &mdash; SkyElite, Orbis, whatever &mdash; and build
-        for that one thing. It&rsquo;s a small change, and it does most of the work.
+        Grab whichever effect you liked, drop it into your next project, and spend your time on the timing. That
+        is where all the &ldquo;how is this built&rdquo; actually lives.
       </p>
     </article>
   </main>
@@ -494,10 +308,10 @@ Constraints over adjectives.</pre>
 
   <script>
     // Theme toggle (matches the rest of the site)
-    (function() {
+    (function () {
       var t = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', t);
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
       });
     })();
@@ -508,130 +322,65 @@ Constraints over adjectives.</pre>
       document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Marquee — the actual (gloriously specific) free template names. Doubled so -50% loops seamlessly.
-      var names = ['SkyElite Private Jets','Orbis NFT','Securify Data Security','Datacore Booking',
-                   'Neuralyn','Aetheris Voyage','Celestia','Luminex','Nexora Automation',
-                   'Convix Software','Nexto 404','Stellar AI'];
+    document.addEventListener('DOMContentLoaded', function () {
+      // Marquee — fill with the effect names, doubled so -50% loops seamlessly
+      var labels = ['gradient drift', 'scroll reveal', 'staggered text', 'infinite marquee',
+                    'cursor tilt', '3D in WebGL', 'eased transitions', 'reduced-motion safe'];
       var track = document.getElementById('marquee-track');
-      names.concat(names).forEach(function(label) {
-        var span = document.createElement('span');
-        span.className = 'chip';
-        span.textContent = label;
-        track.appendChild(span);
+      if (track) labels.concat(labels).forEach(function (l) {
+        var s = document.createElement('span'); s.className = 'chip'; s.textContent = l; track.appendChild(s);
       });
 
-      // Split staggered headlines into word spans with stepped delays
-      document.querySelectorAll('.stagger').forEach(function(el) {
+      // Split staggered headlines into words with stepped delays
+      document.querySelectorAll('.stagger').forEach(function (el) {
         var words = el.textContent.trim().split(/\s+/);
         el.textContent = '';
-        words.forEach(function(w, i) {
+        words.forEach(function (w, i) {
           var s = document.createElement('span');
-          s.className = 'word';
-          s.textContent = w + ' ';
+          s.className = 'word'; s.textContent = w + ' ';
           s.style.transitionDelay = (i * 0.07) + 's';
           el.appendChild(s);
         });
       });
 
       // Scroll reveal
-      var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-        });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
       }, { threshold: 0.2 });
-      document.querySelectorAll('.reveal, .stagger').forEach(function(el) { io.observe(el); });
-      // Hero title is above the fold — trigger it immediately
+      document.querySelectorAll('.reveal, .stagger').forEach(function (el) { io.observe(el); });
       var hero = document.getElementById('hero-title');
-      if (hero) requestAnimationFrame(function() { hero.classList.add('in'); });
+      if (hero) requestAnimationFrame(function () { hero.classList.add('in'); });
 
-      // Pointer-tracking tilt
+      // Cursor tilt
       var tilt = document.getElementById('tilt');
       if (tilt) {
-        tilt.addEventListener('mousemove', function(e) {
+        tilt.addEventListener('mousemove', function (e) {
           var r = tilt.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width;
-          var py = (e.clientY - r.top) / r.height;
-          var rx = (0.5 - py) * 16;
-          var ry = (px - 0.5) * 16;
-          tilt.style.transform = 'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+          var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+          tilt.style.transform = 'perspective(800px) rotateX(' + ((0.5 - py) * 16) + 'deg) rotateY(' + ((px - 0.5) * 16) + 'deg)';
         });
-        tilt.addEventListener('mouseleave', function() {
-          tilt.style.transform = 'perspective(800px) rotateX(0) rotateY(0)';
-        });
+        tilt.addEventListener('mouseleave', function () { tilt.style.transform = 'perspective(800px) rotateX(0) rotateY(0)'; });
       }
 
-      // ---- Exhibit B: live hero demo, discipline on/off ----
-      (function() {
-        var hero = document.getElementById('heroDemo');
-        var btn = document.getElementById('disc-btn');
-        var label = document.getElementById('disc-label');
-        var kick = document.getElementById('hd-kick');
-        var hl = document.getElementById('hd-hl');
-        var sub = document.getElementById('hd-sub');
-        var cta = document.getElementById('hd-cta');
-        if (!hero || !btn) return;
-
-        var committed = {
-          kick: 'Orbis · Editions',
-          hl: 'One drop. Five hundred pieces. Gone by noon.',
-          sub: 'Hand-numbered digital collectibles. The timer hits zero at twelve; so does your chance.',
-          cta: 'Join the drop'
-        };
-        var generic = {
-          kick: 'Welcome',
-          hl: 'We Build Modern Digital Solutions',
-          sub: 'Innovative, scalable, end-to-end experiences that empower forward-thinking brands to unlock synergy at scale.',
-          cta: 'Get Started'
-        };
-
-        function render(on) {
-          var d = on ? committed : generic;
-          kick.textContent = d.kick;
-          hl.textContent = d.hl;
-          sub.textContent = d.sub;
-          cta.textContent = d.cta;
-          hero.classList.toggle('generic', !on);
-          btn.classList.toggle('on', on);
-          btn.classList.toggle('off', !on);
-          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-          label.textContent = on ? 'on — a committed fiction' : 'off — generic mush';
-        }
-
-        var on = true;
-        btn.addEventListener('click', function() { on = !on; render(on); });
-        render(true);
-      })();
-
-      // ---- Expandable prompt + copy ----
-      (function() {
-        var box = document.getElementById('prompt-box');
-        var toggle = document.getElementById('prompt-toggle');
-        var copyBtn = document.getElementById('copy-btn');
-        var promptText = document.getElementById('prompt-text');
-        if (toggle && box) {
-          toggle.addEventListener('click', function() {
-            var open = box.classList.toggle('open');
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-          });
-        }
-        if (copyBtn && promptText) {
-          copyBtn.addEventListener('click', function() {
-            var text = promptText.textContent;
-            var done = function() {
-              copyBtn.textContent = 'Copied';
-              setTimeout(function() { copyBtn.textContent = 'Copy prompt'; }, 1600);
-            };
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText(text).then(done, done);
-            } else { done(); }
-          });
-        }
-      })();
+      // Expandable prompt + copy
+      var box = document.getElementById('prompt-box'),
+          toggle = document.getElementById('prompt-toggle'),
+          copyBtn = document.getElementById('copy-btn'),
+          promptText = document.getElementById('prompt-text');
+      if (toggle && box) toggle.addEventListener('click', function () {
+        var open = box.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      if (copyBtn && promptText) copyBtn.addEventListener('click', function () {
+        var text = promptText.textContent;
+        var done = function () { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy prompt'; }, 1600); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+        else done();
+      });
     });
   </script>
 
-  <!-- Exhibit B artifact: original 3D collectible in WebGL (Three.js via CDN), CSS-gem fallback -->
+  <!-- The 3D object: original WebGL gem (Three.js via import map), CSS-gem fallback -->
   <script type="importmap">
   {
     "imports": {
@@ -648,12 +397,10 @@ Constraints over adjectives.</pre>
       function fallback() { host.classList.add('fallback'); }
 
       var THREE;
-      try {
-        THREE = await import('three');
-      } catch (e) { fallback(); return; }
+      try { THREE = await import('three'); } catch (e) { fallback(); return; }
 
       try {
-        var w = host.clientWidth || 210, h = host.clientHeight || 300;
+        var w = host.clientWidth || 240, h = host.clientHeight || 300;
         var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
         renderer.setSize(w, h, false);
@@ -667,8 +414,7 @@ Constraints over adjectives.</pre>
         var group = new THREE.Group();
         scene.add(group);
 
-        // Real reflections/refractions need something to bend. Generate a
-        // small studio environment and use it as the scene's lighting probe.
+        // Reflections/refractions need something to bend: a small studio environment.
         var envTex = null;
         try {
           var envMod = await import('three/addons/environments/RoomEnvironment.js');
@@ -677,8 +423,6 @@ Constraints over adjectives.</pre>
           scene.environment = envTex;
         } catch (_) {}
 
-        // The collectible: a faceted gem. Glassy and refractive (with chromatic
-        // dispersion) when we have an environment to bend; a polished solid if not.
         var geo = new THREE.IcosahedronGeometry(1.16, 0);
         var mat;
         if (envTex) {
@@ -716,8 +460,7 @@ Constraints over adjectives.</pre>
         canvas.addEventListener('pointermove', function (e) {
           if (!dragging) return;
           var dx = e.clientX - lastX, dy = e.clientY - lastY;
-          group.rotation.y += dx * 0.01;
-          group.rotation.x += dy * 0.01;
+          group.rotation.y += dx * 0.01; group.rotation.x += dy * 0.01;
           spin = Math.max(-0.08, Math.min(0.08, dx * 0.01));
           lastX = e.clientX; lastY = e.clientY;
         });
