@@ -14,6 +14,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <nav>
     <div class="nav-logo"><a href="../index.html">ARL</a></div>
     <ul>
@@ -26,7 +27,7 @@
     </ul>
   </nav>
 
-  <main>
+  <main id="main">
     <a class="back-link" href="index.html">← Reading Lists</a>
     <h1>Mathematics</h1>
     <p class="subtitle">Pure and applied mathematics — from olympiad to graduate level</p>
@@ -180,7 +181,7 @@
     </div>
 
   </main>
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
+  <button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle dark mode"><span aria-hidden="true">🌙</span></button>
   <script>
     (function() {
       var t = localStorage.getItem('theme') || 'light';

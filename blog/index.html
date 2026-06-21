@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <nav>
     <div class="nav-logo"><a href="../index.html">ARL</a></div>
     <ul>
@@ -20,7 +21,7 @@
     </ul>
   </nav>
 
-  <main>
+  <main id="main">
     <h1>Blog</h1>
     <p class="subtitle">Writing on mathematics, markets, and whatever else.</p>
 
@@ -30,7 +31,7 @@
       <p>The animated sites you screenshot come down to about six small effects — drifting gradients, scroll reveals, staggered headlines, an infinite marquee, a cursor tilt, a 3D object in WebGL. Each one running live, with the code, and how to get AI to build them.</p>
     </div>
   </main>
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
+  <button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle dark mode"><span aria-hidden="true">🌙</span></button>
   <script>
     (function() {
       var t = localStorage.getItem('theme') || 'light';

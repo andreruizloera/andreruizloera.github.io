@@ -4,6 +4,43 @@
   box-sizing: border-box;
 }
 
+/* Skip-to-content link: hidden until focused */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  z-index: 1000;
+  padding: 8px 14px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* Visible keyboard focus indicator */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 :root {
   --bg: #f9f9f7;
   --text: #222;

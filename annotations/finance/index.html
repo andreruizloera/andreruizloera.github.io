@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../../style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <nav>
     <div class="nav-logo"><a href="../../index.html">ARL</a></div>
     <ul>
@@ -26,7 +27,7 @@
     </ul>
   </nav>
 
-  <main>
+  <main id="main">
     <h1>Finance</h1>
     <p class="subtitle">Annotations on finance books and papers</p>
 
@@ -41,7 +42,7 @@
     </div>
     -->
   </main>
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
+  <button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle dark mode"><span aria-hidden="true">🌙</span></button>
   <script>
     (function() {
       var t = localStorage.getItem('theme') || 'light';
