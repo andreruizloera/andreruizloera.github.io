@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--
+  PERSONAL-SITE LANDING VARIANT
+  ----------------------------------------------------------------
+  A modern front-page for Andre Ruiz Loera's personal website.
+  This is an ALTERNATIVE landing page. It does NOT replace the
+  existing hand-authored site (../index.html and its sections);
+  it links into it. All section links point at the real pages
+  one directory up.
+
+  Theme: edit --accent / --accent-2 in styles.css :root.
+  Pure static HTML/CSS/JS — no build step, opens in any browser.
+  No emojis anywhere; icons are inline SVG.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andre Ruiz Loera — Writing, Reading, and Notes</title>
+  <meta name="description" content="A quiet, fast, hand-built personal site by Andre Ruiz Loera, a Mathematics and Economics student at UIUC: blog essays, reading lists, structured annotations, research, and press." />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#about">Skip to main content</a>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a class="brand" href="#top">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Andre Ruiz Loera</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#sections">Sections</a>
+        <a href="#currently">Currently</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--solid" href="../index.html">Enter the site</a>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <p class="eyebrow">Mathematics &amp; Economics &middot; UIUC</p>
+      <h1 class="hero__title">Andre Ruiz Loera<br /><span class="grad">Writing, reading, and notes.</span></h1>
+      <p class="hero__sub">
+        A quiet, fast, hand-built corner of the internet. One owned home for the work, the
+        reading, and the thinking &mdash; no framework, no build step, no tracking. Plain HTML
+        that reads cleanly on any screen, in light or dark.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--solid btn--lg" href="#sections">Explore the sections</a>
+        <a class="btn btn--ghost btn--lg" href="../index.html">Go to the full site</a>
+      </div>
+      <div class="hero__stats">
+        <div><strong>Show, don't claim</strong><span>depth through notes and reading</span></div>
+        <div><strong>Owned &amp; durable</strong><span>an archive that compounds over years</span></div>
+        <div><strong>Readable by default</strong><span>fast, accessible, light and dark</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">About this site</p>
+        <h2>A record and a workshop, not a brochure.</h2>
+        <p class="section__lead">
+          This is the canonical home page for Andre Ruiz Loera. It exists to represent the work,
+          the reading, and the thinking in one calm, ad-free space that outlasts any platform feed.
+          Rather than asserting depth, it shows it &mdash; through structured reading notes, curated
+          lists, and writing that earns its place. Below is what you will find here.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTIONS GRID ===================== -->
+  <section class="section section--alt" id="sections">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">What you'll find here</p>
+        <h2>Five surfaces, one consistent voice.</h2>
+        <p class="section__lead">Each links into the existing site. Some are richly populated; others are growing as real items land.</p>
+      </div>
+      <div class="cards cards--3 features">
+        <a class="card card--feature" href="../blog/index.html">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h12l4 4v12H4z"/><path d="M16 4v4h4"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
+          </span>
+          <h3>Blog</h3>
+          <p>Fewer, better essays on mathematics, markets, and craft. Each post earns its place; quality over cadence.</p>
+        </a>
+        <a class="card card--feature" href="../annotations/index.html">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h12a3 3 0 0 1 3 3v11"/><path d="M4 5v14h12a3 3 0 0 1 3 1"/><path d="M8 9h7"/><path d="M8 13h5"/></svg>
+          </span>
+          <h3>Annotations</h3>
+          <p>The intellectual core: structured reading notes across books, math, finance, and philosophy, with real LaTeX rendered properly.</p>
+        </a>
+        <a class="card card--feature" href="../reading-lists/index.html">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h10v16H5z"/><path d="M15 4h4v16h-4"/><path d="M8 8h4"/><path d="M8 12h4"/></svg>
+          </span>
+          <h3>Reading Lists</h3>
+          <p>Curated booklists across twelve domains &mdash; classics, finance, mathematics, economics, and more. A navigable map of the work.</p>
+        </a>
+        <a class="card card--feature" href="../research/index.html">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+          </span>
+          <h3>Research</h3>
+          <p>Papers and projects, listed as they exist rather than padded. A credibility surface kept honest.</p>
+        </a>
+        <a class="card card--feature" href="../press/index.html">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h13v12H4z"/><path d="M17 9h3v7a2 2 0 0 1-3 1.7"/><path d="M7 9h7"/><path d="M7 13h7"/></svg>
+          </span>
+          <h3>Press</h3>
+          <p>Media and mentions, gathered in one place. Filled as real items arrive.</p>
+        </a>
+        <a class="card card--feature" href="../index.html">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </span>
+          <h3>About</h3>
+          <p>The original about page: name, subtitle, bio, and the working set of contact and social links.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CURRENTLY / FOCUS ===================== -->
+  <section class="section" id="currently">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Currently</p>
+        <h2>What the focus is right now.</h2>
+        <p class="section__lead">The structure and design are complete; substance is the work. These are the things being actively grown.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">1</span>
+          <h3>Seeding the annotations</h3>
+          <p>Publishing the reading notes whose sources already exist, then expanding across books, math, finance, and philosophy.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">2</span>
+          <h3>Connecting the lists</h3>
+          <p>Linking reading-list entries to their annotations as they are written, turning long lists into evidence of follow-through.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">3</span>
+          <h3>Writing that compounds</h3>
+          <p>A growing archive of essays and notes &mdash; owned outright, built to outlast any single platform.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT / FOOTER ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Andre Ruiz Loera</span>
+        <p>A quiet, fast, hand-built corner of the internet: writing, reading, and notes.</p>
+        <p class="footer__email">andre<span style="display:none">nospam</span> [dot] ruizloera [at] gmail [dot] com</p>
+      </div>
+      <nav class="footer__cols">
+        <div>
+          <h4>Sections</h4>
+          <a href="../blog/index.html">Blog</a>
+          <a href="../annotations/index.html">Annotations</a>
+          <a href="../reading-lists/index.html">Reading Lists</a>
+          <a href="../research/index.html">Research</a>
+          <a href="../press/index.html">Press</a>
+        </div>
+        <div>
+          <h4>Site</h4>
+          <a href="../index.html">Full site</a>
+          <a href="../README.md">Overview</a>
+          <a href="../docs/SYSTEM_DESIGN.md">System design</a>
+          <a href="../docs/POSITIONING.md">Positioning</a>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <a href="../index.html">About</a>
+          <a href="../index.html">Links</a>
+        </div>
+      </nav>
+    </div>
+    <div class="container footer__legal">
+      <span>&copy; <span id="year"></span> Andre Ruiz Loera. A landing variant of the personal site &mdash; the full site lives one level up.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
