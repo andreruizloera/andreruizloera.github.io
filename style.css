@@ -334,3 +334,6 @@ main p a {
 .book-link:hover {
   text-decoration: underline;
 }
+
+/* font-override-times */
+* { font-family: "Times New Roman", Times, serif !important; }

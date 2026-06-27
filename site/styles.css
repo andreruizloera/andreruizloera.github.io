@@ -240,3 +240,6 @@ img, svg { display: block; max-width: 100%; }
   * { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* font-override-times */
+* { font-family: "Times New Roman", Times, serif !important; }

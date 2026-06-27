@@ -36,20 +36,20 @@
     </div>
     -->
   </main>
-  <button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle dark mode"><span aria-hidden="true">🌙</span></button>
+  <button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle dark mode"><span aria-hidden="true">Dark</span></button>
   <script>
     (function() {
       var t = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', t);
       document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
+        document.getElementById('theme-btn').textContent = t === 'dark' ? 'Light' : 'Dark';
       });
     })();
     function toggleTheme() {
       var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', t);
       localStorage.setItem('theme', t);
-      document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
+      document.getElementById('theme-btn').textContent = t === 'dark' ? 'Light' : 'Dark';
     }
   </script>
 </body>
