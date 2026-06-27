@@ -28,20 +28,20 @@ This document describes the architecture, the page-template convention, the asse
    │  LaTeX notes → pdflatex/xelatex → .pdf          │
    └───────────────────────┬─────────────────────────┘
                            │  git commit + push (main)
-                           ▼
+                           v
    SOURCE = ARTIFACT (no build step)
    ┌───────────────────────────────────────────────┐
    │  GitHub repo: andreruizloera.github.io          │
    │  default branch served as-is                    │
    └───────────────────────┬─────────────────────────┘
                            │  GitHub Pages publish
-                           ▼
+                           v
    HOSTING / EDGE
    ┌───────────────────────────────────────────────┐
    │  GitHub Pages + Fastly CDN (HTTPS, caching)     │
    └───────────────────────┬─────────────────────────┘
                            │  HTTPS
-                           ▼
+                           v
    CLIENT (browser)
    ┌───────────────────────────────────────────────┐
    │  render HTML + style.css                        │
