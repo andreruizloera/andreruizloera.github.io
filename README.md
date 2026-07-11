@@ -10,6 +10,9 @@ This is the source for [`andreruizloera.github.io`](https://andreruizloera.githu
 
 - **[`docs/SYSTEM_DESIGN.md`](docs/SYSTEM_DESIGN.md)** — architecture of the static site: content store, the page-template convention, the asset pipeline (shared CSS, MathJax, per-post effects), critical authoring/deploy flows, performance & SEO, hosting/reliability, privacy, and a phased roadmap.
 - **[`docs/POSITIONING.md`](docs/POSITIONING.md)** — purpose and goals, who it's for, voice and content strategy, what "good" looks like, and comparable personal sites / digital gardens.
+- **[`docs/BUSINESS_PLAN.md`](docs/BUSINESS_PLAN.md)** — strategy & objectives: purpose, 12-month goals, audience, success metrics, content/growth channels, cost to run, and a quarterly roadmap (framed as a personal site, not a revenue business).
+- **[`docs/SECURITY.md`](docs/SECURITY.md)** — threat model and hardening: assets, static-site controls (HTTPS/HSTS, CSP, security headers), secrets and supply chain, privacy/compliance, incident response, and a security roadmap.
+- **[`docs/LAUNCH_READINESS.md`](docs/LAUNCH_READINESS.md)** — what exists vs. what remains, exact services needed, deploy steps, a pre-launch checklist, and a Go/No-Go gate.
 
 ---
 

@@ -1,0 +1,22 @@
+# Security headers for header-capable static hosts (Netlify, Cloudflare Pages, etc.).
+#
+# NOTE: GitHub Pages (the current host) does NOT honor this file. It is included so that
+# hardening is already in place if the site ever moves to a host that supports custom headers.
+# On GitHub Pages, the portable fallback is the <meta http-equiv="Content-Security-Policy">
+# tag on the entry pages, and HTTPS/HSTS are enforced by the host for *.github.io.
+#
+# The CSP intentionally allows 'unsafe-inline' because this is a build-free, hand-authored site:
+# the theme toggle is an inline script/handler and blog posts carry scoped per-post effects.
+# A nonce/hash CSP would require a build step, which contradicts the site's architecture.
+# It still whitelists exactly one external script origin (jsDelivr, for MathJax on annotation
+# pages) and locks down default-src, framing, plugins, base URIs, and form targets.
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self'; connect-src 'self'; form-action 'self'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+</content>

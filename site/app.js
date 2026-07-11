@@ -1,38 +1,29 @@
-/* Landing page interactions — pure vanilla JS, no dependencies. */
+/* Landing interactions — pure vanilla JS, no dependencies. */
 (function () {
   "use strict";
 
-  // Mobile nav toggle
-  var nav = document.querySelector(".nav");
-  var toggle = document.getElementById("navToggle");
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-    nav.querySelectorAll(".nav__links a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
+  var reduce = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Scroll-reveal for sections/cards
-  var revealTargets = document.querySelectorAll(".section, .cta__inner, .card, .step");
-  revealTargets.forEach(function (el) { el.classList.add("reveal"); });
-  if ("IntersectionObserver" in window) {
+  // Scroll-reveal for sections and list entries.
+  var targets = document.querySelectorAll(".reveal");
+
+  if (reduce || !("IntersectionObserver" in window)) {
+    targets.forEach(function (el) { el.classList.add("in"); });
+  } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.12 });
-    revealTargets.forEach(function (el) { io.observe(el); });
-  } else {
-    revealTargets.forEach(function (el) { el.classList.add("in"); });
+    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+
+    targets.forEach(function (el) { io.observe(el); });
   }
 
-  // Current year in footer
+  // Current year in footer.
   var yr = document.getElementById("year");
   if (yr) { yr.textContent = String(new Date().getFullYear()); }
 })();
