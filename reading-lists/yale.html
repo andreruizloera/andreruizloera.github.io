@@ -14,6 +14,14 @@
     .course-meta { font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; margin: 0 0 10px; color: var(--text-muted); }
     .tally { font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; color: var(--text-muted); max-width: 680px; line-height: 1.6; }
     .tally b { color: var(--text); }
+    .counts { display: inline-block; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); border: 1px solid var(--border); padding: 1px 6px; margin-right: 10px; }
+    .counts.none { color: var(--text-muted); border-style: dashed; text-transform: none; letter-spacing: 0; }
+    .major-index { max-width: 680px; margin: 26px 0 8px; }
+    .major-index h2 { font-size: 1.05rem; font-family: Georgia, serif; border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 12px; color: var(--text); }
+    .major-index dl { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 0.86rem; }
+    .major-index dt { color: var(--text); font-weight: bold; margin-top: 12px; }
+    .major-index dd { margin: 3px 0 0; color: var(--text-muted); line-height: 1.6; }
+    .major-index dd a { color: var(--text-muted); }
   </style>
 </head>
 <body>
@@ -42,9 +50,27 @@
       Only Open Yale Courses publishes syllabi; every other Yale syllabus sits behind a login,
       so nothing here is invented to fill a gap.</p>
 
-    <div class="book-section">
+    <div class="major-index">
+      <h2>Which courses serve which major</h2>
+      <dl>
+        <dt>English &mdash; 14 credits, 7 free courses</dt>
+        <dd><a href="#amst-246">AMST 246</a>, <a href="#engl-220">ENGL 220</a>, <a href="#engl-291">ENGL 291</a>, <a href="#engl-300">ENGL 300</a>, <a href="#engl-310">ENGL 310</a>, <a href="#ital-310">ITAL 310</a>, <a href="#span-300">SPAN 300</a></dd>
+        <dt>Classics &mdash; 12 credits, 4 free courses</dt>
+        <dd><a href="#clcv-205">CLCV 205</a>, <a href="#hsar-252">HSAR 252</a>, <a href="#rlst-145">RLST 145</a>, <a href="#rlst-152">RLST 152</a></dd>
+        <dt>Philosophy &mdash; 12 credits, 4 free courses</dt>
+        <dd><a href="#phil-176">PHIL 176</a>, <a href="#phil-181">PHIL 181</a>, <a href="#plsc-114">PLSC 114</a>, <a href="#socy-151">SOCY 151</a></dd>
+        <dt>History &mdash; 12 credits, 9 free courses</dt>
+        <dd><a href="#afam-162">AFAM 162</a>, <a href="#hist-116">HIST 116</a>, <a href="#hist-119">HIST 119</a>, <a href="#hist-202">HIST 202</a>, <a href="#hist-210">HIST 210</a>, <a href="#hist-234">HIST 234</a>, <a href="#hist-251">HIST 251</a>, <a href="#hist-276">HIST 276</a>, <a href="#hsar-252">HSAR 252</a></dd>
+        <dt>Economics &mdash; 12 credits, 3 free courses</dt>
+        <dd><a href="#econ-159">ECON 159</a>, <a href="#econ-251">ECON 251</a>, <a href="#econ-252">ECON 252</a></dd>
+        <dt>Ethics, Politics &amp; Economics &mdash; 15 credits, 7 free courses</dt>
+        <dd><a href="#econ-159">ECON 159</a>, <a href="#econ-252">ECON 252</a>, <a href="#phil-176">PHIL 176</a>, <a href="#phil-181">PHIL 181</a>, <a href="#plsc-114">PLSC 114</a>, <a href="#plsc-270">PLSC 270</a>, <a href="#socy-151">SOCY 151</a></dd>
+      </dl>
+    </div>
+
+    <div class="book-section" id="afam-162">
       <h2>AFAM 162 &middot; African American History: From Emancipation to the Present</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/african-american-studies/afam-162">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/african-american-studies/afam-162">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>The Fire Next Time</span><span class="author">James Baldwin</span></li>
         <li><span>Pullman Porters and the Rise of Black Protest Politics</span><span class="author">Beth Bates</span></li>
@@ -73,9 +99,9 @@
         <li><span>Films Ethnic Notions,</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="amst-246">
       <h2>AMST 246 &middot; Hemingway, Fitzgerald, Faulkner</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/american-studies/amst-246">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/american-studies/amst-246">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>As I Lay Dying. Knopf Doubleday, 1991</span><span class="author">William Faulkner</span></li>
         <li><span>Light in August. Knopf Doubleday, 1991</span><span class="author">William Faulkner</span></li>
@@ -88,16 +114,16 @@
         <li><span>To Have and Have Not. Scribner, 1996</span><span class="author">Ernest Hemingway</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="astr-160">
       <h2>ASTR 160 &middot; Frontiers and Controversies in Astrophysics</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/astronomy/astr-160">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/astronomy/astr-160">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>See reading assignments for individual lectures</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="beng-100">
       <h2>BENG 100 &middot; Frontiers of Biomedical Engineering</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/biomedical-engineering/beng-100">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/biomedical-engineering/beng-100">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Blanchard, and Joseph D. Bronzino, eds. Introduction to Biomedical Engineering</span><span class="author">Enderle, John D., Susan M</span></li>
         <li><span>Drug Delivery</span><span class="author">Mark Saltzman</span></li>
@@ -106,42 +132,42 @@
         <li><span>Biomedical Engineering: Bridging Medicine and Technology , in preparation by Mark Saltzman (forthcoming by Cambridge University Press)</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="chem-125a">
       <h2>CHEM 125a &middot; Freshman Organic Chemistry I</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/chemistry/chem-125a">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/chemistry/chem-125a">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Please see Resources section for each individual lecture</span><span class="author">Reading assignments, problem sets, PowerPoint presentations, and other resources for this course can be accessed from Professor McBride&#x27;s on-campus course website, which was developed for his Fall 2008 students</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="chem-125b">
       <h2>CHEM 125b &middot; Freshman Organic Chemistry II</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/chemistry/chem-125b">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/chemistry/chem-125b">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Reading assignments, problem sets, PowerPoint presentations, and other resources for this course can be accessed from Professor McBride&#x27;s on-campus course website, which was developed for his Spring 2011 students:</span><span class="author"></span></li>
         <li><span>and Steven A. Fleming, W. W. Norton &amp; Company, New York, 2010</span><span class="author">https://webspace.yale.edu/chem125 Optional Text: Organic Chemistry , 4th edition, Maitland Jones, Jr</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="clcv-205">
       <h2>CLCV 205 &middot; Introduction to Ancient Greek History</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/classics/clcv-205">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Classics</span><a href="https://oyc.yale.edu/classics/clcv-205">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Ancient Greece</span><span class="author">Pomeroy, Burstein, Donlan and Roberts</span></li>
         <li><span>&quot;Problems in Ancient History.&quot; In The Ancient Near East and Greece</span><span class="author">Donald Kagan</span></li>
         <li><span>Plutarch, The Rise and Fall of the Athens</span><span class="author">The Histories Herodotus</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="econ-159">
       <h2>ECON 159 &middot; Game Theory</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/economics/econ-159">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Economics, EP&amp;E</span><a href="https://oyc.yale.edu/economics/econ-159">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Dixit and B. Nalebuff. Thinking Strategically , Norton 1991</span><span class="author">A</span></li>
         <li><span>Watson</span><span class="author">J</span></li>
         <li><span>Dutta. Strategies and Games: Theory And Practice , MIT 1999</span><span class="author">P.K</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="econ-251">
       <h2>ECON 251 &middot; Financial Theory</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/economics/econ-251">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Economics</span><a href="https://oyc.yale.edu/economics/econ-251">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Merton. Finance, Upper Saddle River, New Jersey: Prentice Hall, 2000</span><span class="author">Bodie, Zvi, and Robert C</span></li>
         <li><span>An Introduction to Derivatives, 3rd edition, Fort Worth, Texas: The Dryden Press, Harcourt Brace College Publishers, 1995</span><span class="author">Don M Chance</span></li>
@@ -161,9 +187,9 @@
         <li><span>Money, Credit, and Capital, Boston: Irwin-McGraw Hill, 1998</span><span class="author">James with Stephen Golub Tobin</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="econ-252">
       <h2>ECON 252 &middot; Financial Markets</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/economics/econ-252">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Economics, EP&amp;E</span><a href="https://oyc.yale.edu/economics/econ-252">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Jones, and Michael G. Ferri. Foundations of Financial Markets and Institutions , 4th ed. Prentice Hall, 2010</span><span class="author">Main texts Fabozzi, Frank J., Franco Modigliani, Frank J</span></li>
         <li><span>Finance and the Good Society</span><span class="author">Robert J Shiller</span></li>
@@ -188,26 +214,26 @@
         <li><span>Sumner, William Graham</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="eeb-122">
       <h2>EEB 122 &middot; Principles of Evolution, Ecology and Behavior</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/ecology-and-evolutionary-biology/eeb-122">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/ecology-and-evolutionary-biology/eeb-122">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Introductory Ecology</span><span class="author">Peter and Irwin Forseth Cotgreave</span></li>
         <li><span>and Nicholas B. Davies. An Introduction to Behavioral Ecology , 3rd ed</span><span class="author">John R Krebs</span></li>
         <li><span>and Rolf Hoekstra</span><span class="author">Stephen C Stearns</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="engl-220">
       <h2>ENGL 220 &middot; Milton</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/english/engl-220">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/english/engl-220">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>John Milton. Complete Poems and Major Prose. Macmillan Publishing Company: New York, 1957</span><span class="author">Hughes, Merritt, ed</span></li>
         <li><span>The Holy Bible: King James Version (optional)</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="engl-291">
       <h2>ENGL 291 &middot; The American Novel Since 1945</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/english/engl-291">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/english/engl-291">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Richard Wright, Black Boy (American Hunger) (Harper Perennial Restored edition, 1993) 1945</span><span class="author"></span></li>
         <li><span>Flannery O&#x27;Connor, Wise Blood (Farrar, Straus and Giroux) 1949</span><span class="author"></span></li>
@@ -223,16 +249,16 @@
         <li><span>Students&#x27; Choice Novel for Spring, 2008: Jonathan Safran Foer, Everything is Illuminated (Houghton-Mifflin) 2002</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="engl-300">
       <h2>ENGL 300 &middot; Introduction to Theory of Literature</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/english/engl-300">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/english/engl-300">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>The Critical Tradition , 3rd ed</span><span class="author">Richter, David, ed</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="engl-310">
       <h2>ENGL 310 &middot; Modern Poetry</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/english/engl-310">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/english/engl-310">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>The Norton Anthology of Modern and Contemporary Poetry</span><span class="author">Ramazani, Jahan, Richard Ellmann, and Robert O&#x27;Clair, eds</span></li>
         <li><span>The Complete Poems, 1927-1979</span><span class="author">Elizabeth RIS Course Packet Bishop</span></li>
@@ -249,9 +275,9 @@
         <li><span>The Poetry of Robert Frost. The Collected Poems</span><span class="author">Lathem, Edward Connery, ed</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="evst-255">
       <h2>EVST 255 &middot; Environmental Politics and Law</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/environmental-studies/evst-255">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/environmental-studies/evst-255">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>A Question of Intent</span><span class="author">David Kessler</span></li>
         <li><span>The Omnivore&#x27;s Dilemma</span><span class="author">Michael Pollan</span></li>
@@ -259,16 +285,16 @@
         <li><span>Understanding Environmental Law</span><span class="author">Weinberg, Philip, and Kevin Reilly</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="gg-140">
       <h2>GG 140 &middot; The Atmosphere, the Ocean, and Environmental Change</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/geology-and-geophysics/gg-140">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/geology-and-geophysics/gg-140">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Donald. Essentials of Meteorology</span><span class="author">C Ahrens</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-116">
       <h2>HIST 116 &middot; The American Revolution</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-116">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-116">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Faces of Revolution: Personalities and Themes in the Struggle for American Independence</span><span class="author">Bernard Bailyn</span></li>
         <li><span>Major Problems in the Era of the American Revolution, 1760-1791</span><span class="author">Brown, Richard D., ed</span></li>
@@ -285,9 +311,9 @@
         <li><span>The American Revolution: A History</span><span class="author">Gordon S Wood</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-119">
       <h2>HIST 119 &middot; The Civil War and Reconstruction Era, 1845-1877</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-119">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-119">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Hill and Wang. David Blight, Why the Civil War Came. New York: Oxford University. Charles R. Dew,</span><span class="author">Half Slave and Half Free: The Roots of the Civil War Bruce Levine</span></li>
         <li><span>Apostles of Disunion: Southern Secession Commissioners and the Causes of the Civil War. University of Virginia Press. Drew G. Faust, Mothers of Invention: Women of the Slaveholding South in the American Civil War</span><span class="author"></span></li>
@@ -300,9 +326,9 @@
         <li><span>Race and Reunion: The Civil War In American Memory. Films: Films will be scheduled during the course: especially several episodes of the PBS series, &quot;The Civil War.&quot; The film, &quot;Reconstruction: America&#x27;s Unfinished Civil War,&quot; will also be assigned. Selections of Civil War era poetry may also be provided at times during the course</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-202">
       <h2>HIST 202 &middot; European Civilization, 1648-1945</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-202">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-202">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Ordinary Men</span><span class="author">Christopher Browning</span></li>
         <li><span>A History of Modern Europe: From the Renaissance to the Present. 2nd ed. New York: W. W. Norton &amp; Company, 2004</span><span class="author">John Merriman</span></li>
@@ -312,9 +338,9 @@
         <li><span>Germinal</span><span class="author">Emile Zola</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-210">
       <h2>HIST 210 &middot; The Early Middle Ages, 284–1000</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-210">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-210">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Central Texts Charlemagne’s Courtier: The Complete Einhard . ed. Paul Edward Dutton, Broadview Press, 1998</span><span class="author"></span></li>
         <li><span>Gregory of Tours: The Merovingians . ed. Alexander Callander Murray, Broadview Press, 2006</span><span class="author"></span></li>
@@ -330,9 +356,9 @@
         <li><span>Benedict, ed. Ruth J. Dean. Blackwell, 1964</span><span class="author">Rule of St</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-234">
       <h2>HIST 234 &middot; Epidemics in Western Society Since 1600</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-234">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-234">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>No Magic Bullet</span><span class="author">Allan Brandt</span></li>
         <li><span>The Making of a Social Disease: Tuberculosis in Nineteenth-Century France</span><span class="author">David Barnes</span></li>
@@ -346,9 +372,9 @@
         <li><span>My Own Country</span><span class="author">Abraham Verghese</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-251">
       <h2>HIST 251 &middot; Early Modern England: Politics, Religion, and Society under the Tudors and Stuarts</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-251">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-251">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>The Sinews of Power</span><span class="author">John Brewer</span></li>
         <li><span>The Oxford History of the British Empire: Origins of Empire</span><span class="author">Canny, Nicholas, ed</span></li>
@@ -363,9 +389,9 @@
         <li><span>English Society, 1580-1680</span><span class="author">Keith Wrightson</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hist-276">
       <h2>HIST 276 &middot; France Since 1871</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history/hist-276">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">History</span><a href="https://oyc.yale.edu/history/hist-276">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Under Fire</span><span class="author">Henri Barbusse</span></li>
         <li><span>Strange Defeat. New York: Norton, 1999</span><span class="author">Marc Bloch</span></li>
@@ -375,17 +401,17 @@
         <li><span>Germinal</span><span class="author">Emile Zola</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="hsar-252">
       <h2>HSAR 252 &middot; Roman Architecture</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/history-of-art/hsar-252">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Classics, History</span><a href="https://oyc.yale.edu/history-of-art/hsar-252">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Roman Imperial Architecture</span><span class="author">John B Ward-Perkins</span></li>
         <li><span>Rome: An Oxford Archaeological Guide, second edition, Oxford and New York: Oxford University Press, 2010</span><span class="author">Amanda Claridge</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="ital-310">
       <h2>ITAL 310 &middot; Dante in Translation</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/italian-language-and-literature/ital-310">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/italian-language-and-literature/ital-310">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Divine Comedy</span><span class="author">Primary Texts: Dante</span></li>
         <li><span>Vita Nuova</span><span class="author">Dante</span></li>
@@ -406,9 +432,9 @@
         <li><span>The Aeneid</span><span class="author">Virgil</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="mcdb-150">
       <h2>MCDB 150 &middot; Global Problems of Population Growth</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/molecular-cellular-and-developmental-biology/mcdb-150">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/molecular-cellular-and-developmental-biology/mcdb-150">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>[Colorado Springs]: Biblica, 2011. (BibleGateway.com). The Creation: Genesis 1, Dust to Dust: Genesis 3:19, Onan: Genesis 38:8; Deuteronomy 25:5, Abortion: Exodus 21:22, Jump for Joy: Luke 1:24 :26 :36; Jeremiah 1:4-5</span><span class="author">New International Version Bible</span></li>
         <li><span>Why Population Matters</span><span class="author">Nancy and Steven Sinding Birdsall</span></li>
@@ -433,9 +459,9 @@
         <li><span>Lidz. Oedipus in the Stone Age: A Psychoanalytic Study of Masculinization in Papua New Guinea</span><span class="author">Theodore and Ruth W Lidz</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="phil-176">
       <h2>PHIL 176 &middot; Death</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/death/phil-176">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Philosophy, EP&amp;E</span><a href="https://oyc.yale.edu/death/phil-176">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>&quot;The Dream.&quot; In History of the World in 10 ½ Chapters</span><span class="author">Plato, Phaedo John Perry, A Dialogue on Personal Identity and Immortality Leo Tolstoy, The Death of Ivan Ilych Course Packet: Barnes, Julian</span></li>
         <li><span>&quot;The Morality and Rationality of Suicide.&quot; In Moral Problems</span><span class="author">Richard . Brandt</span></li>
@@ -449,9 +475,9 @@
         <li><span>How to Think About Weird Things . New York: McGraw Hill, 2005. pp 307-323 Swift, Jonathan. Gulliver&#x27;s Travels , Part III, chapter 10. Williams, Bernard. &quot;The Makropulos Case: Reflections on the Tedium of Immortality.&quot; In Language, Metaphysics, and Death. Edited by John Donnelly. New York: Fordham University Press, 1978. pp. 229-242</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="phil-181">
       <h2>PHIL 181 &middot; Philosophy and the Science of Human Nature</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/philosophy/phil-181">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Philosophy, EP&amp;E</span><a href="https://oyc.yale.edu/philosophy/phil-181">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Hackett Publishing, 2000</span><span class="author">Required texts Aristotle, Nicomachean Ethics , translated Terence Irwin</span></li>
         <li><span>The Oxford Dictionary of Philosophy , second edition. Oxford University Press, 2008</span><span class="author">Simon Blackburn</span></li>
@@ -472,18 +498,18 @@
         <li><span>Cahn, eds</span><span class="author">Gendler, Tamar, Susanna Siegel and Steven M</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="phys-200">
       <h2>PHYS 200 &middot; Fundamentals of Physics I</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/physics/phys-200">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/physics/phys-200">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>1998</span><span class="author">Richard and Jay Pasachoff Wolfson</span></li>
         <li><span>Reading, MA: Addison Wesley Publishing Company</span><span class="author">3d ed Physics with Modern Physics for Scientists and Engineers</span></li>
         <li><span>Basic Training in Mathematics: A Fitness Program for Science Students . New York: Springer Publishing Company</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="phys-201">
       <h2>PHYS 201 &middot; Fundamentals of Physics II</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/physics/phys-201">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/physics/phys-201">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Thornton. 2005</span><span class="author">Fishbane, Paul M., Stephen Gasiorowicz, and Stephen T</span></li>
         <li><span>Englewood Cliffs, N.J.: Prentice-Hall. Serway, Raymond A., and John W. Jewett, Jr. 2008</span><span class="author">3rd Edition Physics for Scientists and Engineers with Modern Physics</span></li>
@@ -492,17 +518,17 @@
         <li><span>Basic Training in Mathematics: A Fitness Program for Science Students . New York: Springer Publishing Company</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="plsc-114">
       <h2>PLSC 114 &middot; Introduction to Political Philosophy</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/political-science/plsc-114">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Philosophy, EP&amp;E</span><a href="https://oyc.yale.edu/political-science/plsc-114">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Plato, Trial and Death of Socrates Plato, Republic Aristotle, Politics Machiavelli, The Prince Thomas Hobbes, Leviathan John Locke, Second Treatise of Government</span><span class="author"></span></li>
         <li><span>Jean-Jacques Rousseau, Political Writings Alexis de Tocqueville, Democracy in America</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="plsc-270">
       <h2>PLSC 270 &middot; Capitalism: Success, Crisis, and Reform</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/political-science/plsc-270">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">EP&amp;E</span><a href="https://oyc.yale.edu/political-science/plsc-270">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>The White Tiger. Harper Collins India, 2008</span><span class="author">Aravind Adiga</span></li>
         <li><span>Thank You for Smoking. Random House, 1994. (optional text) Chandler, Alfred D. The Visible Hand: The Managerial Revolution in American Business</span><span class="author">Christopher Buckley</span></li>
@@ -517,17 +543,17 @@
         <li><span>Wealth of Nations, orig. pub. 1776. Selected case studies from Harvard Business School and Yale School of Management</span><span class="author">Adam Smith</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="psyc-110">
       <h2>PSYC 110 &middot; Introduction to Psychology</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/introduction-psychology/psyc-110">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/introduction-psychology/psyc-110">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Psychology</span><span class="author">Peter Gray</span></li>
         <li><span>The Norton Psychology Reader</span><span class="author">Marcus, Gary, ed</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="psyc-123">
       <h2>PSYC 123 &middot; The Psychology, Biology and Politics of Food</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/psychology/psyc-123">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts none">not required for these majors</span><a href="https://oyc.yale.edu/psychology/psyc-123">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>and Katherine B. Horgen. Food Fight: The Inside Story of the Food Industry, America&#x27;s Obesity Crisis, and What We Can Do About It. New York: McGraw-Hill/Contemporary Books, 2004</span><span class="author">Kelly D Main Texts Brownell</span></li>
         <li><span>In Defense of Food: An Eater&#x27;s Manifesto. New York: The Penguin Press, 2008</span><span class="author">Michael Pollan</span></li>
@@ -548,18 +574,18 @@
         <li><span>445-456</span><span class="author">Environmental Health Perspectives, 110 (2002), pp</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="rlst-145">
       <h2>RLST 145 &middot; Introduction to the Old Testament (Hebrew Bible)</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/religious-studies/rlst-145">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Classics</span><a href="https://oyc.yale.edu/religious-studies/rlst-145">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>2004</span><span class="author">Berlin, Adele, and Marc Zvi Brettler, eds., Michael Fishbane, senior consulting editor</span></li>
         <li><span>The Jewish Study Bible: Featuring the Jewish Publication Society Tanakh Translation. Oxford: Oxford University Press. Pritchard, James B, ed. 1958</span><span class="author"></span></li>
         <li><span>Princeton, N.J.: Princeton University Press</span><span class="author">Volume 1: An Anthology of Texts and Pictures The Ancient Near East</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="rlst-152">
       <h2>RLST 152 &middot; Introduction to the New Testament History and Literature</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/religious-studies/rlst-152">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Classics</span><a href="https://oyc.yale.edu/religious-studies/rlst-152">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>A modern translation of the Bible. The New Revised Standard Version is recommended. A good study-Bible edition is The New Oxford Annotated Bible with Apocrypha . Other reputable modern editions, such as</span><span class="author"></span></li>
         <li><span>This is meant to exclude old versions, such as the King James Version</span><span class="author">The New English Bible , The Jerusalem Bible , or The New International Version , are acceptable</span></li>
@@ -567,9 +593,9 @@
         <li><span>New York: Oxford University Press, 2007</span><span class="author">4th ed</span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="socy-151">
       <h2>SOCY 151 &middot; Foundations of Modern Social Theory</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/sociology/socy-151">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">Philosophy, EP&amp;E</span><a href="https://oyc.yale.edu/sociology/socy-151">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>The Division of Labor</span><span class="author">Émile Durkheim</span></li>
         <li><span>The Rules of Sociological Method</span><span class="author">Émile Durkheim</span></li>
@@ -593,9 +619,9 @@
         <li><span>Weber, Max</span><span class="author"></span></li>
       </ul>
     </div>
-    <div class="book-section">
+    <div class="book-section" id="span-300">
       <h2>SPAN 300 &middot; Cervantes&#x27; Don Quixote</h2>
-      <p class="course-meta"><a href="https://oyc.yale.edu/spanish-and-portuguese/span-300">Lectures and syllabus at Open Yale Courses</a></p>
+      <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/spanish-and-portuguese/span-300">Lectures and syllabus at Open Yale Courses</a></p>
       <ul class="book-list">
         <li><span>Don Quixote de la Mancha</span><span class="author">Miguel De Cervantes</span></li>
         <li><span>Exemplary Stories</span><span class="author">Miguel De Cervantes</span></li>
