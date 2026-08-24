@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <title>Yale, Self-Studied: The Major Map &mdash; Andre Ruiz Loera</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root { --accent: #00356b; --accent-wash: rgba(0,53,107,.07); }
+    [data-theme="dark"] { --accent: #8ab0d4; --accent-wash: rgba(138,176,212,.12); }
+
+    .map-lede { max-width: 62ch; }
+
+    .tally { display: flex; flex-wrap: wrap; border: 1px solid var(--border);
+      max-width: 680px; margin: 22px 0 34px; }
+    .tally div { flex: 1 1 110px; padding: 10px 14px;
+      border-right: 1px solid var(--border-subtle); }
+    .tally div:last-child { border-right: none; }
+    .tally b { display: block; font-size: 1.35rem; line-height: 1.15;
+      font-variant-numeric: tabular-nums; color: var(--text); }
+    .tally span { font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); }
+
+    .rail { margin: 0 0 30px; padding: 0 0 16px;
+      border-bottom: 1px solid var(--border); }
+    .rail p { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); margin: 0 0 10px; }
+    .rail ol { list-style: none; margin: 0; padding: 0;
+      display: flex; flex-wrap: wrap; gap: 6px; }
+    .rail a { display: inline-block; font-size: 0.82rem; color: var(--text);
+      text-decoration: none; padding: 4px 9px; border: 1px solid var(--border); }
+    .rail a:hover { background: var(--accent-wash); }
+    .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .rail a .c { color: var(--text-muted); font-size: 0.74rem;
+      font-variant-numeric: tabular-nums; margin-left: 5px; }
+
+    .matrix-wrap { overflow-x: auto; border: 1px solid var(--border);
+      max-width: 680px; margin: 0 0 8px; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.78rem; }
+    th, td { padding: 5px 8px; text-align: left;
+      border-bottom: 1px solid var(--border-subtle); white-space: nowrap; }
+    thead th { font-size: 0.64rem; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: normal;
+      border-bottom: 1px solid var(--border); vertical-align: bottom; }
+    thead th a { color: var(--text-muted); text-decoration: none;
+      border-bottom: 1px dotted var(--border); }
+    thead th a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    td.code { font-variant-numeric: tabular-nums; color: var(--text); }
+    td.name { white-space: normal; color: var(--text-muted); max-width: 260px; }
+    td.n { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+    td.m { text-align: center; width: 46px; color: var(--accent); }
+    td.m .off { color: var(--border); }
+    tbody tr:hover { background: var(--accent-wash); }
+    tr.gap td { border-bottom: 1px solid var(--border); height: 2px; padding: 0; }
+    .matrix-note { font-size: 0.74rem; color: var(--text-muted);
+      max-width: 62ch; margin: 0 0 38px; }
+
+    .major { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border);
+      scroll-margin-top: 20px; }
+    .major h2 { font-size: 1.25rem; margin: 0 0 3px; color: var(--text); }
+    .major .sec-meta { font-size: 0.74rem; color: var(--text-muted);
+      font-variant-numeric: tabular-nums; margin: 0 0 14px; }
+    .why { max-width: 62ch; margin: 0 0 20px; padding-left: 15px;
+      border-left: 2px solid var(--accent); }
+    .why .tag { display: block; font-size: 0.66rem; letter-spacing: 0.11em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+    .why p { margin: 0 0 9px; font-size: 0.95rem; }
+    .why p:last-child { margin-bottom: 0; }
+
+    ul.courses { list-style: none; margin: 0; padding: 0; max-width: 680px; }
+    ul.courses li { display: flex; justify-content: space-between; gap: 14px;
+      align-items: baseline; padding: 7px 0;
+      border-bottom: 1px solid var(--border-subtle); font-size: 0.9rem; }
+    ul.courses .cc { color: var(--text-muted); font-size: 0.78rem;
+      font-variant-numeric: tabular-nums; flex: 0 0 78px; }
+    ul.courses .cn { flex: 1 1 auto; }
+    ul.courses .cn a { color: var(--text); }
+    ul.courses .ct { color: var(--text-muted); font-size: 0.76rem;
+      font-variant-numeric: tabular-nums; white-space: nowrap; flex-shrink: 0; }
+    .shared { font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--border);
+      padding: 1px 5px; margin-left: 7px; white-space: nowrap; }
+
+    .caveat { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--text-muted); max-width: 66ch; }
+    .caveat p { margin: 0 0 9px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <nav>
+    <div class="nav-logo"><a href="../index.html">ARL</a></div>
+    <ul>
+      <li><a href="../index.html">About</a></li>
+      <li><a href="../research/index.html">Research</a></li>
+      <li><a href="index.html" class="active">Blog</a></li>
+      <li><a href="../annotations/index.html">Annotations</a></li>
+      <li><a href="../reading-lists/index.html">Reading Lists</a></li>
+      <li><a href="../press/index.html">Press</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <a class="back-link" href="yale.html">&larr; Yale, Self-Studied</a>
+    <h1>The Major Map</h1>
+    <p class="meta">August 24, 2026 &middot; 39 courses &middot; 6 majors</p>
+    <p class="subtitle">What the 39 free Yale courses add up to, and what each block is for</p>
+
+    <p class="map-lede">Read as a booklist, Open Yale Courses is 328 texts in no particular order.
+      Read as a curriculum, it clusters into six majors &mdash; and the clusters overlap, because
+      Ethics, Politics &amp; Economics is built out of the other three rather than sitting beside
+      them. This is that structure.</p>
+
+    <div class="tally">
+      <div><b>39</b><span>Courses</span></div>
+      <div><b>328</b><span>Texts</span></div>
+      <div><b>6</b><span>Majors</span></div>
+      <div><b>34/70</b><span>Credits</span></div>
+    </div>
+
+    <div class="rail">
+      <p>Jump to</p>
+      <ol id="rail"></ol>
+    </div>
+
+    <div class="matrix-wrap"><table id="matrix"></table></div>
+    <p class="matrix-note">Rows are courses, columns are majors. A course with two marks counts
+      twice, which is the whole point of EP&amp;E. The thirteen below the rule count toward none
+      of the six.</p>
+
+    <div id="sections"></div>
+
+    <div class="caveat">
+      <p><strong>On the mapping.</strong> Course titles, text counts and links come straight from
+      the syllabi. The course-to-major assignment is my own, made from department codes and the way
+      Yale's majors are normally built; cross-listings are the sort of thing a director of
+      undergraduate studies rules on, so read the columns as an argument rather than a transcript.</p>
+      <p><strong>On the rationale.</strong> Also mine, read off what each block teaches rather than
+      off any official description.</p>
+    </div>
+  </main>
+
+  <button type="button" class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Toggle dark mode">Dark</button>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('theme-btn').textContent = t === 'dark' ? 'Light' : 'Dark';
+      });
+    })();
+    function toggleTheme() {
+      var t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      document.getElementById('theme-btn').textContent = t === 'dark' ? 'Light' : 'Dark';
+    }
+  </script>
+
+  <script>
+  var COURSES = [{"code": "AFAM 162", "name": "African American History: From Emancipation to the Present", "n": 25, "url": "https://oyc.yale.edu/african-american-studies/afam-162"}, {"code": "AMST 246", "name": "Hemingway, Fitzgerald, Faulkner", "n": 9, "url": "https://oyc.yale.edu/american-studies/amst-246"}, {"code": "ASTR 160", "name": "Frontiers and Controversies in Astrophysics", "n": 1, "url": "https://oyc.yale.edu/astronomy/astr-160"}, {"code": "BENG 100", "name": "Frontiers of Biomedical Engineering", "n": 5, "url": "https://oyc.yale.edu/biomedical-engineering/beng-100"}, {"code": "CHEM 125a", "name": "Freshman Organic Chemistry I", "n": 1, "url": "https://oyc.yale.edu/chemistry/chem-125a"}, {"code": "CHEM 125b", "name": "Freshman Organic Chemistry II", "n": 2, "url": "https://oyc.yale.edu/chemistry/chem-125b"}, {"code": "CLCV 205", "name": "Introduction to Ancient Greek History", "n": 3, "url": "https://oyc.yale.edu/classics/clcv-205"}, {"code": "ECON 159", "name": "Game Theory", "n": 3, "url": "https://oyc.yale.edu/economics/econ-159"}, {"code": "ECON 251", "name": "Financial Theory", "n": 16, "url": "https://oyc.yale.edu/economics/econ-251"}, {"code": "ECON 252", "name": "Financial Markets", "n": 21, "url": "https://oyc.yale.edu/economics/econ-252"}, {"code": "EEB 122", "name": "Principles of Evolution, Ecology and Behavior", "n": 3, "url": "https://oyc.yale.edu/ecology-and-evolutionary-biology/eeb-122"}, {"code": "ENGL 220", "name": "Milton", "n": 2, "url": "https://oyc.yale.edu/english/engl-220"}, {"code": "ENGL 291", "name": "The American Novel Since 1945", "n": 12, "url": "https://oyc.yale.edu/english/engl-291"}, {"code": "ENGL 300", "name": "Introduction to Theory of Literature", "n": 1, "url": "https://oyc.yale.edu/english/engl-300"}, {"code": "ENGL 310", "name": "Modern Poetry", "n": 13, "url": "https://oyc.yale.edu/english/engl-310"}, {"code": "EVST 255", "name": "Environmental Politics and Law", "n": 4, "url": "https://oyc.yale.edu/environmental-studies/evst-255"}, {"code": "GG 140", "name": "The Atmosphere, the Ocean, and Environmental Change", "n": 1, "url": "https://oyc.yale.edu/geology-and-geophysics/gg-140"}, {"code": "HIST 116", "name": "The American Revolution", "n": 13, "url": "https://oyc.yale.edu/history/hist-116"}, {"code": "HIST 119", "name": "The Civil War and Reconstruction Era, 1845-1877", "n": 9, "url": "https://oyc.yale.edu/history/hist-119"}, {"code": "HIST 202", "name": "European Civilization, 1648-1945", "n": 6, "url": "https://oyc.yale.edu/history/hist-202"}, {"code": "HIST 210", "name": "The Early Middle Ages, 284–1000", "n": 12, "url": "https://oyc.yale.edu/history/hist-210"}, {"code": "HIST 234", "name": "Epidemics in Western Society Since 1600", "n": 10, "url": "https://oyc.yale.edu/history/hist-234"}, {"code": "HIST 251", "name": "Early Modern England: Politics, Religion, and Society under the Tudors and Stuarts", "n": 11, "url": "https://oyc.yale.edu/history/hist-251"}, {"code": "HIST 276", "name": "France Since 1871", "n": 6, "url": "https://oyc.yale.edu/history/hist-276"}, {"code": "HSAR 252", "name": "Roman Architecture", "n": 2, "url": "https://oyc.yale.edu/history-of-art/hsar-252"}, {"code": "ITAL 310", "name": "Dante in Translation", "n": 17, "url": "https://oyc.yale.edu/italian-language-and-literature/ital-310"}, {"code": "MCDB 150", "name": "Global Problems of Population Growth", "n": 21, "url": "https://oyc.yale.edu/molecular-cellular-and-developmental-biology/mcdb-150"}, {"code": "PHIL 176", "name": "Death", "n": 10, "url": "https://oyc.yale.edu/death/phil-176"}, {"code": "PHIL 181", "name": "Philosophy and the Science of Human Nature", "n": 17, "url": "https://oyc.yale.edu/philosophy/phil-181"}, {"code": "PHYS 200", "name": "Fundamentals of Physics I", "n": 3, "url": "https://oyc.yale.edu/physics/phys-200"}, {"code": "PHYS 201", "name": "Fundamentals of Physics II", "n": 5, "url": "https://oyc.yale.edu/physics/phys-201"}, {"code": "PLSC 114", "name": "Introduction to Political Philosophy", "n": 2, "url": "https://oyc.yale.edu/political-science/plsc-114"}, {"code": "PLSC 270", "name": "Capitalism: Success, Crisis, and Reform", "n": 11, "url": "https://oyc.yale.edu/political-science/plsc-270"}, {"code": "PSYC 110", "name": "Introduction to Psychology", "n": 2, "url": "https://oyc.yale.edu/introduction-psychology/psyc-110"}, {"code": "PSYC 123", "name": "The Psychology, Biology and Politics of Food", "n": 17, "url": "https://oyc.yale.edu/psychology/psyc-123"}, {"code": "RLST 145", "name": "Introduction to the Old Testament (Hebrew Bible)", "n": 3, "url": "https://oyc.yale.edu/religious-studies/rlst-145"}, {"code": "RLST 152", "name": "Introduction to the New Testament History and Literature", "n": 4, "url": "https://oyc.yale.edu/religious-studies/rlst-152"}, {"code": "SOCY 151", "name": "Foundations of Modern Social Theory", "n": 20, "url": "https://oyc.yale.edu/sociology/socy-151"}, {"code": "SPAN 300", "name": "Cervantes' Don Quixote", "n": 5, "url": "https://oyc.yale.edu/spanish-and-portuguese/span-300"}];
+
+  var MAJORS = [
+    { key: "econ", label: "Economics", short: "Econ",
+      codes: ["ECON 159","ECON 251","ECON 252"],
+      tag: "The instrumental core",
+      why: ["Three courses, and each is taught by someone who built the thing they are teaching. Polak's <em>Game Theory</em> is the grammar of strategic reasoning. Geanakoplos's <em>Financial Theory</em> is the leverage cycle, from the economist who formulated it. Shiller's <em>Financial Markets</em> is behavioural finance from its Nobel laureate.",
+            "It is also the block with the shortest path to use. Forty texts across three courses, and the highest payoff per text of anything here."] },
+
+    { key: "epe", label: "Ethics, Politics &amp; Economics", short: "EP&amp;E",
+      codes: ["ECON 159","ECON 251","ECON 252","PHIL 176","PHIL 181","PLSC 114","PLSC 270","SOCY 151","EVST 255"],
+      tag: "The join, not a seventh subject",
+      why: ["EP&amp;E is not a separate pile. It is the intersection: six of its nine courses are already counted under Economics or Philosophy, and only <em>Capitalism</em>, <em>Foundations of Modern Social Theory</em> and <em>Environmental Politics and Law</em> belong to it alone.",
+            "Its use is corrective. Economics teaches markets as models; this teaches them as institutions somebody built and can build badly. Marx, Weber and Durkheim in SOCY 151 are the standing argument that prices sit downstream of arrangements that were chosen."] },
+
+    { key: "phil", label: "Philosophy", short: "Phil",
+      codes: ["PHIL 176","PHIL 181","PLSC 114"],
+      tag: "Argument hygiene",
+      why: ["Kagan's <em>Death</em> is the canonical exercise in following an argument exactly as far as it goes and no further, on the subject where the pull to stop early is strongest.",
+            "<em>Philosophy and the Science of Human Nature</em> is the one that earns its keep against quantitative work: rationality, choice under uncertainty, and the distance between a model of an agent and an agent."] },
+
+    { key: "hist", label: "History", short: "Hist",
+      codes: ["HIST 116","HIST 119","HIST 202","HIST 210","HIST 234","HIST 251","HIST 276","AFAM 162"],
+      tag: "The largest block, and it is about evidence",
+      why: ["Eight courses and 92 texts, more than any other cluster. What history trains is not dates but the discipline of holding a claim against sources that disagree with each other.",
+            "<em>Epidemics in Western Society</em> is the one to start with for the transferable skill: four centuries of models meeting reality and losing, which is the same failure mode as a backtest that works until it stops."] },
+
+    { key: "engl", label: "English &amp; Literature", short: "Engl",
+      codes: ["ENGL 220","ENGL 291","ENGL 300","ENGL 310","AMST 246","ITAL 310","SPAN 300"],
+      tag: "Prose is a working tool",
+      why: ["Seven courses, 59 texts. The reason to take it seriously is that an argument nobody can follow is an argument that does not travel, and the fix for that is never more notation.",
+            "<em>Introduction to Theory of Literature</em> assigns a single text and is the odd one out: it is about how reading works rather than what to read, which makes it the most portable course in the column."] },
+
+    { key: "clcv", label: "Classics", short: "Clcv",
+      codes: ["CLCV 205","HSAR 252"],
+      tag: "The thinnest column, and honestly so",
+      why: ["Two courses, five texts. Open Yale simply does not publish enough Classics to approach a major, and the honest thing is to say so rather than pad the column with adjacent courses.",
+            "<em>Roman Architecture</em> earns its place on its own terms regardless; it asks nothing of you but attention."] }
+  ];
+
+  var UNMAPPED = { key: "other", label: "Counts toward none of the six", short: "Unmapped",
+    tag: "Thirteen courses, 68 texts, no credit here",
+    why: ["The sciences and the social sciences outside the six: physics, chemistry, biology, psychology, religious studies, astronomy, geology. They earn nothing toward the majors above, which is exactly why they are listed rather than dropped.",
+          "Shankar's <em>Fundamentals of Physics</em> is the pair that matters most and counts for none of it. This block is read for the content, not the credit."] };
+
+  var byCode = {};
+  COURSES.forEach(function(c) { byCode[c.code] = c; });
+  var mappedSet = {};
+  MAJORS.forEach(function(m) { m.codes.forEach(function(c) { mappedSet[c] = true; }); });
+  UNMAPPED.codes = COURSES.filter(function(c) { return !mappedSet[c.code]; })
+                          .map(function(c) { return c.code; });
+
+  function sum(codes) {
+    return codes.reduce(function(t, k) { return t + byCode[k].n; }, 0);
+  }
+  function memberOf(code) {
+    return MAJORS.filter(function(m) { return m.codes.indexOf(code) !== -1; });
+  }
+
+  document.getElementById("rail").innerHTML = MAJORS.concat([UNMAPPED]).map(function(m) {
+    return '<li><a href="#' + m.key + '">' + m.short +
+           '<span class="c">' + m.codes.length + '</span></a></li>';
+  }).join("");
+
+  var order = [];
+  MAJORS.forEach(function(m) {
+    m.codes.forEach(function(c) { if (order.indexOf(c) === -1) order.push(c); });
+  });
+  function row(code, marks) {
+    var c = byCode[code];
+    var cells = MAJORS.map(function(m) {
+      var on = marks && m.codes.indexOf(code) !== -1;
+      return '<td class="m">' + (on ? "&#9679;" : '<span class="off">&middot;</span>') + '</td>';
+    }).join("");
+    return '<tr><td class="code">' + c.code + '</td><td class="name">' + c.name +
+           '</td>' + cells + '<td class="n">' + c.n + '</td></tr>';
+  }
+  document.getElementById("matrix").innerHTML =
+    '<thead><tr><th>Course</th><th>Title</th>' +
+    MAJORS.map(function(m) {
+      return '<th style="text-align:center"><a href="#' + m.key + '">' + m.short + '</a></th>';
+    }).join("") +
+    '<th style="text-align:right">Texts</th></tr></thead><tbody>' +
+    order.map(function(c) { return row(c, true); }).join("") +
+    '<tr class="gap"><td colspan="' + (MAJORS.length + 3) + '"></td></tr>' +
+    UNMAPPED.codes.map(function(c) { return row(c, false); }).join("") +
+    '</tbody>';
+
+  document.getElementById("sections").innerHTML = MAJORS.concat([UNMAPPED]).map(function(m) {
+    var items = m.codes.map(function(code) {
+      var c = byCode[code];
+      var also = memberOf(code).filter(function(x) { return x.key !== m.key; })
+                               .map(function(x) { return x.short; });
+      var badge = also.length ? '<span class="shared">also ' + also.join(", ") + '</span>' : "";
+      return '<li><span class="cc">' + c.code + '</span>' +
+             '<span class="cn"><a href="' + c.url + '">' + c.name + '</a>' + badge + '</span>' +
+             '<span class="ct">' + c.n + ' texts</span></li>';
+    }).join("");
+    var own = null;
+    if (m.key === "epe") {
+      own = m.codes.filter(function(c) { return memberOf(c).length === 1; }).length;
+    }
+    return '<div class="major" id="' + m.key + '">' +
+      '<h2>' + m.label + '</h2>' +
+      '<p class="sec-meta">' + m.codes.length + ' courses &middot; ' + sum(m.codes) + ' texts' +
+      (own !== null ? ' &middot; ' + own + ' of them its own' : '') + '</p>' +
+      '<div class="why"><span class="tag">' + m.tag + '</span>' +
+      m.why.map(function(p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
+      '<ul class="courses">' + items + '</ul></div>';
+  }).join("");
+  </script>
+</body>
+</html>
