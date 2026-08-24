@@ -35,6 +35,25 @@
     .rail a .c { color: var(--text-muted); font-size: 0.74rem;
       font-variant-numeric: tabular-nums; margin-left: 5px; }
 
+    .flow { margin: 0 0 34px; padding: 0; max-width: 680px; }
+    .flow svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .flow .bx { fill: var(--bg); stroke: var(--border); stroke-width: 1; }
+    .flow .bx.src { stroke: var(--text); }
+    .flow .bx.epe { fill: var(--accent-wash); stroke: var(--accent); }
+    .flow .bx.own { fill: none; stroke: var(--border); stroke-dasharray: 2 3; }
+    .flow .bx.dash { stroke-dasharray: 3 3; }
+    .flow .ln { stroke: var(--border); stroke-width: 1; fill: none; }
+    .flow .ln.dash { stroke-dasharray: 3 3; }
+    .flow .ln.feed { stroke: var(--accent); }
+    .flow text { text-anchor: middle; fill: var(--text); }
+    .flow .t1 { font-size: 13px; }
+    .flow .t2 { font-size: 10.5px; fill: var(--text-muted); }
+    .flow .t3 { font-size: 9.5px; fill: var(--text-muted); }
+    .flow .t4 { font-size: 10px; fill: var(--accent); }
+    .flow .mute { fill: var(--text-muted); }
+    .flow figcaption { font-size: 0.78rem; color: var(--text-muted);
+      margin-top: 12px; max-width: 62ch; }
+
     .matrix-wrap { overflow-x: auto; border: 1px solid var(--border);
       max-width: 680px; margin: 0 0 8px; }
     table { border-collapse: collapse; width: 100%; font-size: 0.78rem; }
@@ -124,9 +143,92 @@
       <ol id="rail"></ol>
     </div>
 
+
+    <figure class="flow">
+      <svg viewBox="0 0 860 430" role="img" aria-labelledby="flow-t flow-d"
+           preserveAspectRatio="xMidYMid meet">
+        <title id="flow-t">How the 39 Open Yale courses feed six majors</title>
+        <desc id="flow-d">All 39 courses split into six major blocks. Economics contributes
+          three courses to Ethics, Politics and Economics and Philosophy contributes three,
+          which together with three courses of its own make up that major's nine. Thirteen
+          courses feed no major at all.</desc>
+
+        <!-- source -->
+        <rect class="bx src" x="325" y="14" width="210" height="46" rx="2"/>
+        <text class="t1" x="430" y="35">39 Open Yale courses</text>
+        <text class="t2" x="430" y="50">328 texts, full syllabi</text>
+
+        <!-- trunk down to the bus -->
+        <path class="ln" d="M430 60 L430 88"/>
+        <path class="ln" d="M87 88 L773 88"/>
+        <path class="ln" d="M87 88 L87 118"/>
+        <path class="ln" d="M224 88 L224 118"/>
+        <path class="ln" d="M361 88 L361 118"/>
+        <path class="ln" d="M498 88 L498 118"/>
+        <path class="ln" d="M635 88 L635 118"/>
+        <path class="ln dash" d="M773 88 L773 118"/>
+
+        <!-- the six blocks -->
+        <rect class="bx" x="25"  y="118" width="125" height="58" rx="2"/>
+        <text class="t1" x="87"  y="141">Economics</text>
+        <text class="t2" x="87"  y="158">3 courses</text>
+        <text class="t3" x="87"  y="170">40 texts</text>
+
+        <rect class="bx" x="162" y="118" width="125" height="58" rx="2"/>
+        <text class="t1" x="224" y="141">Philosophy</text>
+        <text class="t2" x="224" y="158">3 courses</text>
+        <text class="t3" x="224" y="170">29 texts</text>
+
+        <rect class="bx" x="299" y="118" width="125" height="58" rx="2"/>
+        <text class="t1" x="361" y="141">History</text>
+        <text class="t2" x="361" y="158">8 courses</text>
+        <text class="t3" x="361" y="170">92 texts</text>
+
+        <rect class="bx" x="436" y="118" width="125" height="58" rx="2"/>
+        <text class="t1" x="498" y="141">English</text>
+        <text class="t2" x="498" y="158">7 courses</text>
+        <text class="t3" x="498" y="170">59 texts</text>
+
+        <rect class="bx" x="573" y="118" width="125" height="58" rx="2"/>
+        <text class="t1" x="635" y="141">Classics</text>
+        <text class="t2" x="635" y="158">2 courses</text>
+        <text class="t3" x="635" y="170">5 texts</text>
+
+        <rect class="bx dash" x="710" y="118" width="125" height="58" rx="2"/>
+        <text class="t1 mute" x="773" y="141">No major</text>
+        <text class="t2" x="773" y="158">13 courses</text>
+        <text class="t3" x="773" y="170">68 texts</text>
+
+        <!-- feeds into EP&amp;E -->
+        <path class="ln feed" d="M87 176 L87 232 Q87 244 99 244 L150 244"/>
+        <path class="ln feed" d="M224 176 L224 218 Q224 230 212 230 L150 230 Q138 230 138 242 L138 268"/>
+        <text class="t4" x="104" y="238">3</text>
+        <text class="t4" x="196" y="224">3</text>
+
+        <!-- its own three -->
+        <rect class="bx own" x="300" y="222" width="238" height="44" rx="2"/>
+        <text class="t2" x="419" y="240">PLSC 270 &#183; SOCY 151 &#183; EVST 255</text>
+        <text class="t3" x="419" y="255">its own three</text>
+        <path class="ln feed" d="M300 244 L262 244"/>
+
+        <!-- EP&amp;E -->
+        <rect class="bx epe" x="60" y="290" width="330" height="66" rx="2"/>
+        <text class="t1" x="225" y="315">Ethics, Politics &amp; Economics</text>
+        <text class="t2" x="225" y="333">9 courses, 6 of them borrowed above</text>
+        <text class="t3" x="225" y="347">104 texts counted, 35 of them only here</text>
+        <path class="ln feed" d="M138 268 L138 290"/>
+        <path class="ln feed" d="M150 244 Q225 244 225 268 L225 290"/>
+
+        <text class="t3 mute" x="430" y="400">Every course above appears once. Six appear twice.</text>
+      </svg>
+      <figcaption>The six blocks the 39 courses fall into. Economics and Philosophy each send
+        three courses down into Ethics, Politics &amp; Economics, which is why the numbers on
+        this page add up to more than 39 if you sum the blocks.</figcaption>
+    </figure>
+
     <div class="matrix-wrap"><table id="matrix"></table></div>
-    <p class="matrix-note">Rows are courses, columns are majors. Two dots on a row means that
-      course counts twice. The thirteen under the line count for nothing.</p>
+    <p class="matrix-note">Same thing course by course. Rows are courses, columns are majors,
+      two dots means it counts twice. The thirteen under the line count for nothing.</p>
 
     <div id="sections"></div>
 
