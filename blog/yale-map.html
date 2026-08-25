@@ -94,6 +94,11 @@
     .reqtable td { padding: 7px 0; border-bottom: 1px solid var(--border-subtle);
       vertical-align: baseline; font-size: 0.9rem; }
     .reqtable td.rq { padding-right: 14px; }
+    .reqtable tr.alt td { padding-top: 0; font-size: 0.82rem; line-height: 1.5; }
+    .altlab { display: inline-block; font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #1c7a4a; border: 1px solid #1c7a4a;
+      border-radius: 999px; padding: 0 7px; margin-right: 7px;
+      vertical-align: 1px; }
     .rqc { display: block; color: var(--text-muted); font-size: 0.8rem;
       margin-top: 3px; line-height: 1.45; }
     .reqtable td.cv { text-align: right; white-space: nowrap; width: 1%; }
@@ -162,8 +167,16 @@
       and the free ones reach one of them. Classics dies on two terms of Greek or Latin that do
       not exist here at any price.</p>
 
-    <p class="map-lede">That is still worth knowing. It tells me which parts I can actually get
-      from Yale for nothing and which parts I have to get somewhere else.</p>
+    <p class="map-lede">So I went looking for the missing pieces elsewhere, and for economics
+      they all exist. Yale keeps its syllabi on Canvas behind a login, but MIT publishes the
+      same courses in full: intro micro and macro, intermediate micro and macro, and
+      econometrics, with video lectures, problem sets, exams and solutions. Every one of the
+      five economics core requirements has a free equivalent, linked in the table below.</p>
+
+    <p class="map-lede">Which sharpens what the wall actually is. The economics core is not
+      hard to study on my own. What I cannot get is a seminar where somebody argues back, a
+      senior essay somebody reads, and two terms of Greek. Those are the parts that need a
+      university, and they are most of what a Yale degree turns out to be.</p>
 
     <div class="tally">
       <div><b>39</b><span>Courses</span></div>
@@ -883,31 +896,41 @@
         "need": "Introductory microeconomics",
         "courses": "ECON 1108 Quantitative Foundations of Microeconomics, or 1110 An Introduction to Microeconomic Analysis, or 1115 Introductory Microeconomics",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 14.01 Principles of Microeconomics, Gruber, Fall 2023. Video lectures, problem sets with solutions, exams with solutions.",
+        "alturl": "https://ocw.mit.edu/courses/14-01-principles-of-microeconomics-fall-2023/"
       },
       {
         "need": "Introductory macroeconomics",
         "courses": "ECON 1111 An Introduction to Macroeconomic Analysis, or 1116 Introductory Macroeconomics",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 14.02 Principles of Macroeconomics, Spring 2023. Full lecture videos through IS-LM, the labour market and the Phillips curve.",
+        "alturl": "https://ocw.mit.edu/courses/14-02-principles-of-macroeconomics-spring-2023/"
       },
       {
         "need": "Intermediate microeconomics",
         "courses": "ECON 2121 Intermediate Microeconomics, or 2125 Microeconomic Theory",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 14.04 Intermediate Microeconomic Theory, Fall 2020. Video lectures, five problem sets, two midterms and a final, all with solutions. Wants multivariable calculus.",
+        "alturl": "https://ocw.mit.edu/courses/14-04-intermediate-microeconomic-theory-fall-2020/"
       },
       {
         "need": "Intermediate macroeconomics",
         "courses": "ECON 2122 Intermediate Macroeconomics, or 2126 Macroeconomic Theory",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 14.05 Intermediate Macroeconomics, Spring 2013. Growth, government finance and short-run stability.",
+        "alturl": "https://ocw.mit.edu/courses/14-05-intermediate-macroeconomics-spring-2013/"
       },
       {
         "need": "Econometrics",
         "courses": "ECON 1117 Introduction to Data Analysis and Econometrics, or 2123 Intermediate Data Analysis and Econometrics, or 2136 Econometrics",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 14.32 Econometrics, Spring 2007. Regression through instrumental variables, panel data and limited dependent variables.",
+        "alturl": "https://ocw.mit.edu/courses/14-32-econometrics-spring-2007/"
       },
       {
         "need": "One mathematics course",
@@ -943,7 +966,9 @@
         "need": "Intermediate microeconomics",
         "courses": "ECON 2121 or 2125",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 14.04 Intermediate Microeconomic Theory, Fall 2020. Video lectures, five problem sets, two midterms and a final, all with solutions. Wants multivariable calculus.",
+        "alturl": "https://ocw.mit.edu/courses/14-04-intermediate-microeconomic-theory-fall-2020/"
       },
       {
         "need": "Three core seminars, one from the Classics series",
@@ -1222,7 +1247,10 @@
               + '</td>'
               + '<td class="cv"><span class="pill ' + mark + '">' + word
               + '</span></td></tr>'
-              + (r.note ? '<tr class="nt"><td colspan="2">' + r.note + '</td></tr>' : "");
+              + (r.note ? '<tr class="nt"><td colspan="2">' + r.note + '</td></tr>' : "")
+              + (r.alt ? '<tr class="alt"><td colspan="2"><span class="altlab">'
+                  + 'free elsewhere</span> <a href="' + r.alturl + '">' + r.alt
+                  + '</a></td></tr>' : "");
           }).join("")
         + '</tbody></table>'
         + '<p class="reqsrc">' + met + ' of these ' + R.rows.length
