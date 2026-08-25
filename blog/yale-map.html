@@ -124,12 +124,13 @@
     <a class="back-link" href="yale.html">&larr; Yale, Self-Studied</a>
     <h1>The Major Map</h1>
     <p class="meta">August 24, 2026 &middot; 39 courses &middot; 6 majors</p>
-    <p class="subtitle">What the 39 free Yale courses add up to</p>
+    <p class="subtitle">What Yale's 39 free courses actually add up to</p>
 
-    <p class="map-lede">Yale puts 39 courses online with full syllabi. Between them they cover
-      chunks of six majors. The chunks overlap heavily, because Ethics, Politics &amp; Economics
-      borrows most of its courses from Economics and Philosophy. Here is the whole thing in one
-      place, with what each block actually gets you.</p>
+    <p class="map-lede">Yale has 39 courses online with full syllabi and no paywall. I went
+      through all of them to work out what they add up to, and the answer is pieces of six
+      majors with a lot of overlap, because Ethics, Politics &amp; Economics borrows most of its
+      courses from Economics and Philosophy. This is the whole thing on one page with what I
+      think each block is worth.</p>
 
     <div class="tally">
       <div><b>39</b><span>Courses</span></div>
@@ -228,16 +229,16 @@
 
     <div class="matrix-wrap"><table id="matrix"></table></div>
     <p class="matrix-note">Same thing course by course. Rows are courses, columns are majors,
-      two dots means it counts twice. The thirteen under the line count for nothing.</p>
+      two dots means it counts twice. The thirteen below the line count for nothing.</p>
 
     <div id="sections"></div>
 
     <div class="caveat">
-      <p>Titles, text counts and links come from the syllabi. The column assignments are mine,
-      worked out from department codes and the usual shape of these majors. A director of
-      undergraduate studies would rule differently on some cross-listings. Treat the columns as
-      a considered guess.</p>
-      <p>So is the writing under each heading.</p>
+      <p>Titles, text counts and links come straight from the syllabi. The columns are mine.
+      I worked them out from department codes and the usual shape of these majors, and a
+      director of undergraduate studies would rule differently on some of the cross-listings,
+      so treat them as my best guess rather than anything official.</p>
+      <p>The writing under each heading is mine too, and it is opinion.</p>
     </div>
   </main>
 
@@ -264,45 +265,45 @@
   var MAJORS = [
     { key: "econ", label: "Economics", short: "Econ",
       codes: ["ECON 159","ECON 251","ECON 252"],
-      tag: "Start here",
-      why: ["Three courses. Polak on game theory, Geanakoplos on financial theory, Shiller on financial markets. Geanakoplos built the leverage cycle he teaches. Shiller won a Nobel for the work behind his.",
-            "Forty texts across the three. Densest payoff per page on this list, and the quickest to turn into something you can use."] },
+      tag: "Where I would start",
+      why: ["Three courses. Polak on game theory, Geanakoplos on financial theory, Shiller on financial markets. Geanakoplos built the leverage cycle he teaches and Shiller has a Nobel for the work behind his, so you are getting this from the people who did it.",
+            "Forty texts across the three. This is the column closest to what I already work on, and the one I would start with."] },
 
     { key: "epe", label: "Ethics, Politics &amp; Economics", short: "EP&amp;E",
       codes: ["ECON 159","ECON 251","ECON 252","PHIL 176","PHIL 181","PLSC 114","PLSC 270","SOCY 151","EVST 255"],
       tag: "Mostly borrowed",
-      why: ["Six of the nine courses here already appear under Economics or Philosophy. Only <em>Capitalism</em>, <em>Foundations of Modern Social Theory</em> and <em>Environmental Politics and Law</em> are its own.",
-            "The value is corrective. Economics hands you markets as machinery. Marx, Weber and Durkheim hand you markets as things people built, with all the choices still visible in them."] },
+      why: ["Six of these nine already show up under Economics or Philosophy. Only <em>Capitalism</em>, <em>Foundations of Modern Social Theory</em> and <em>Environmental Politics and Law</em> belong to it alone.",
+            "I keep it as its own column because the borrowed pieces land differently when I read them together. Economics hands me markets as machinery. Marx, Weber and Durkheim hand me markets as something people built, with the choices still visible."] },
 
     { key: "phil", label: "Philosophy", short: "Phil",
       codes: ["PHIL 176","PHIL 181","PLSC 114"],
-      tag: "Argument hygiene",
-      why: ["Kagan spends 26 lectures following one argument to the end, on the topic where everyone flinches early. Good practice for anything.",
-            "<em>Philosophy and the Science of Human Nature</em> is the one that pays off against quantitative work: rationality, choice under uncertainty, and how far a real person sits from the agent in a model."] },
+      tag: "Argument practice",
+      why: ["Kagan spends 26 lectures following one argument all the way down, on the topic where most people flinch early. I would take it for the method more than the subject.",
+            "<em>Philosophy and the Science of Human Nature</em> is the one that touches my actual work: rationality, choice under uncertainty, and how far a real person sits from the agent in a model."] },
 
     { key: "hist", label: "History", short: "Hist",
       codes: ["HIST 116","HIST 119","HIST 202","HIST 210","HIST 234","HIST 251","HIST 276","AFAM 162"],
       tag: "The biggest pile",
-      why: ["Eight courses, 92 texts, more than anything else here. The skill on offer is holding a claim steady against sources that contradict each other. That is most of the job.",
-            "Start with <em>Epidemics in Western Society</em>. Four centuries of models hitting reality and losing. Anyone who has watched a backtest die in production will recognise the shape."] },
+      why: ["Eight courses and 92 texts, more than any other column here. What I get out of it is holding a claim steady when my sources disagree with each other, which is most of the work in anything I read seriously.",
+            "I would start with <em>Epidemics in Western Society</em>. Four centuries of models meeting reality and losing. I have watched enough of my own code die on contact with real data to find that familiar."] },
 
     { key: "engl", label: "English &amp; Literature", short: "Engl",
       codes: ["ENGL 220","ENGL 291","ENGL 300","ENGL 310","AMST 246","ITAL 310","SPAN 300"],
       tag: "Writing is a tool",
-      why: ["Seven courses, 59 texts. An argument nobody can follow dies where it sits, and more notation has never once fixed that.",
-            "<em>Introduction to Theory of Literature</em> assigns one text and spends the term on how reading works. Most portable thing in this column."] },
+      why: ["Seven courses, 59 texts. An argument nobody can follow is dead on arrival, and I have never once fixed that by adding notation.",
+            "<em>Introduction to Theory of Literature</em> assigns one text and spends the whole term on how reading works. Probably the most portable thing on this page."] },
 
     { key: "clcv", label: "Classics", short: "Clcv",
       codes: ["CLCV 205","HSAR 252"],
-      tag: "Thin, and that is the truth",
-      why: ["Two courses, five texts. Yale does not publish enough Classics to get near the major. Padding this column with loosely related courses would be dishonest, so it stays short.",
-            "<em>Roman Architecture</em> earns its place anyway. It asks nothing of you but attention."] }
+      tag: "Thin, honestly",
+      why: ["Two courses, five texts. Yale does not put out enough Classics to get anywhere near the major. I could pad this column with loosely related courses and I am not going to.",
+            "<em>Roman Architecture</em> earns its spot anyway. It asks nothing of me but attention."] }
   ];
 
   var UNMAPPED = { key: "other", label: "Counts toward none of the six", short: "Unmapped",
     tag: "Thirteen courses, no credit",
-    why: ["Physics, chemistry, biology, psychology, religion, astronomy, geology. None of it counts toward the six majors above. Dropping them would misrepresent what Yale actually publishes, so here they are.",
-          "Shankar's two physics courses are the best thing in this block and earn you exactly zero credit. Watch them anyway."] };
+    why: ["Physics, chemistry, biology, psychology, religion, astronomy, geology. None of it counts toward the six majors above. I am listing them because leaving them out would misrepresent what Yale actually puts online.",
+          "Shankar's two physics courses are the best thing in this block and count for exactly nothing. I would watch them anyway."] };
 
   var byCode = {};
   COURSES.forEach(function(c) { byCode[c.code] = c; });
