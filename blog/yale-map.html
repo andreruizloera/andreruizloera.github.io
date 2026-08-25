@@ -87,6 +87,25 @@
     .why p { margin: 0 0 9px; font-size: 0.95rem; }
     .why p:last-child { margin-bottom: 0; }
 
+    .reqs { margin: 18px 0 6px; max-width: 680px; }
+    .reqs h3 { font-size: 0.66rem; letter-spacing: 0.11em; text-transform: uppercase;
+      color: var(--text-muted); margin: 0 0 9px; font-weight: 600; }
+    .reqtable { width: 100%; border-collapse: collapse; }
+    .reqtable td { padding: 7px 0; border-bottom: 1px solid var(--border-subtle);
+      vertical-align: baseline; font-size: 0.9rem; }
+    .reqtable td.rq { padding-right: 14px; }
+    .reqtable td.cv { text-align: right; white-space: nowrap; width: 1%; }
+    .reqtable tr.nt td { padding-top: 0; color: var(--text-muted);
+      font-size: 0.8rem; }
+    .pill { display: inline-block; padding: 1px 9px; border-radius: 999px;
+      font-size: 0.7rem; letter-spacing: 0.02em; border: 1px solid currentColor; }
+    .pill.yes { color: #1c7a4a; }
+    .pill.part { color: #9a6b12; }
+    .pill.no { color: var(--text-muted); opacity: 0.75; }
+    .reqsrc { color: var(--text-muted); font-size: 0.8rem; margin: 9px 0 0;
+      max-width: 62ch; }
+    .whichfree { color: var(--text-muted); font-size: 0.78rem;
+      letter-spacing: 0.06em; text-transform: uppercase; margin: 18px 0 7px; }
     ul.courses { list-style: none; margin: 0; padding: 0; max-width: 680px; }
     ul.courses li { display: flex; justify-content: space-between; gap: 14px;
       align-items: baseline; padding: 7px 0;
@@ -126,17 +145,25 @@
     <p class="meta">August 24, 2026 &middot; 39 courses &middot; 6 majors</p>
     <p class="subtitle">What Yale's 39 free courses actually add up to</p>
 
-    <p class="map-lede">Yale has 39 courses online with full syllabi and no paywall. I went
-      through all of them to work out what they add up to, and the answer is pieces of six
-      majors with a lot of overlap, because Ethics, Politics &amp; Economics borrows most of its
-      courses from Economics and Philosophy. This is the whole thing on one page with what I
-      think each block is worth.</p>
+    <p class="map-lede">Yale has 39 courses online with full syllabi and no paywall, and Yale
+      also publishes exactly what each major requires. So I put the two side by side. Under
+      every major below is the real requirement list out of the Programs of Study, with what the
+      free courses cover marked against it.</p>
+
+    <p class="map-lede">The answer is that none of the six is close, and it is the same wall
+      every time. Seminars, senior essays and language courses are not lecture recordings, and
+      those are exactly what the requirements are built out of. Economics wants twelve courses
+      and the free ones reach one of them. Classics dies on two terms of Greek or Latin that do
+      not exist here at any price.</p>
+
+    <p class="map-lede">That is still worth knowing. It tells me which parts I can actually get
+      from Yale for nothing and which parts I have to get somewhere else.</p>
 
     <div class="tally">
       <div><b>39</b><span>Courses</span></div>
       <div><b>328</b><span>Texts</span></div>
       <div><b>6</b><span>Majors</span></div>
-      <div><b>34/70</b><span>Credits</span></div>
+      <div><b>0/6</b><span>Majors finishable</span></div>
     </div>
 
     <div class="rail">
@@ -229,16 +256,23 @@
 
     <div class="matrix-wrap"><table id="matrix"></table></div>
     <p class="matrix-note">Same thing course by course. Rows are courses, columns are majors,
-      two dots means it counts twice. The thirteen below the line count for nothing.</p>
+      two dots means it counts twice. The thirteen below the line count for nothing. A dot here
+      means the course sits in that department, not that it satisfies a requirement. The
+      requirement tables under each major are the ones that answer that.</p>
 
     <div id="sections"></div>
 
     <div class="caveat">
-      <p>Titles, text counts and links come straight from the syllabi. The columns are mine.
-      I worked them out from department codes and the usual shape of these majors, and a
-      director of undergraduate studies would rule differently on some of the cross-listings,
-      so treat them as my best guess rather than anything official.</p>
-      <p>The writing under each heading is mine too, and it is opinion.</p>
+      <p>The requirement lists come from the Yale College Programs of Study 2026 to 2027 and
+      each one links back to its page. Titles, text counts and links for the free courses come
+      from the Open Yale Courses syllabi.</p>
+      <p>The covered, partly and nothing marks are my reading of how a free course lines up
+      against a requirement, and a director of undergraduate studies would rule differently on
+      some of them. Two things I checked rather than assumed: Yale renumbered its courses, so
+      the ECON 159 on Open Yale is ECON 2259 in the current catalog and still Polak's, and the
+      other two economics courses, Geanakoplos on Financial Theory and Shiller on Financial
+      Markets, are not in the catalog at all any more.</p>
+      <p>The writing under each heading is mine and it is opinion.</p>
     </div>
   </main>
 
@@ -262,6 +296,205 @@
   <script>
   var COURSES = [{"code": "AFAM 162", "name": "African American History: From Emancipation to the Present", "n": 25, "url": "https://oyc.yale.edu/african-american-studies/afam-162"}, {"code": "AMST 246", "name": "Hemingway, Fitzgerald, Faulkner", "n": 9, "url": "https://oyc.yale.edu/american-studies/amst-246"}, {"code": "ASTR 160", "name": "Frontiers and Controversies in Astrophysics", "n": 1, "url": "https://oyc.yale.edu/astronomy/astr-160"}, {"code": "BENG 100", "name": "Frontiers of Biomedical Engineering", "n": 5, "url": "https://oyc.yale.edu/biomedical-engineering/beng-100"}, {"code": "CHEM 125a", "name": "Freshman Organic Chemistry I", "n": 1, "url": "https://oyc.yale.edu/chemistry/chem-125a"}, {"code": "CHEM 125b", "name": "Freshman Organic Chemistry II", "n": 2, "url": "https://oyc.yale.edu/chemistry/chem-125b"}, {"code": "CLCV 205", "name": "Introduction to Ancient Greek History", "n": 3, "url": "https://oyc.yale.edu/classics/clcv-205"}, {"code": "ECON 159", "name": "Game Theory", "n": 3, "url": "https://oyc.yale.edu/economics/econ-159"}, {"code": "ECON 251", "name": "Financial Theory", "n": 16, "url": "https://oyc.yale.edu/economics/econ-251"}, {"code": "ECON 252", "name": "Financial Markets", "n": 21, "url": "https://oyc.yale.edu/economics/econ-252"}, {"code": "EEB 122", "name": "Principles of Evolution, Ecology and Behavior", "n": 3, "url": "https://oyc.yale.edu/ecology-and-evolutionary-biology/eeb-122"}, {"code": "ENGL 220", "name": "Milton", "n": 2, "url": "https://oyc.yale.edu/english/engl-220"}, {"code": "ENGL 291", "name": "The American Novel Since 1945", "n": 12, "url": "https://oyc.yale.edu/english/engl-291"}, {"code": "ENGL 300", "name": "Introduction to Theory of Literature", "n": 1, "url": "https://oyc.yale.edu/english/engl-300"}, {"code": "ENGL 310", "name": "Modern Poetry", "n": 13, "url": "https://oyc.yale.edu/english/engl-310"}, {"code": "EVST 255", "name": "Environmental Politics and Law", "n": 4, "url": "https://oyc.yale.edu/environmental-studies/evst-255"}, {"code": "GG 140", "name": "The Atmosphere, the Ocean, and Environmental Change", "n": 1, "url": "https://oyc.yale.edu/geology-and-geophysics/gg-140"}, {"code": "HIST 116", "name": "The American Revolution", "n": 13, "url": "https://oyc.yale.edu/history/hist-116"}, {"code": "HIST 119", "name": "The Civil War and Reconstruction Era, 1845-1877", "n": 9, "url": "https://oyc.yale.edu/history/hist-119"}, {"code": "HIST 202", "name": "European Civilization, 1648-1945", "n": 6, "url": "https://oyc.yale.edu/history/hist-202"}, {"code": "HIST 210", "name": "The Early Middle Ages, 284–1000", "n": 12, "url": "https://oyc.yale.edu/history/hist-210"}, {"code": "HIST 234", "name": "Epidemics in Western Society Since 1600", "n": 10, "url": "https://oyc.yale.edu/history/hist-234"}, {"code": "HIST 251", "name": "Early Modern England: Politics, Religion, and Society under the Tudors and Stuarts", "n": 11, "url": "https://oyc.yale.edu/history/hist-251"}, {"code": "HIST 276", "name": "France Since 1871", "n": 6, "url": "https://oyc.yale.edu/history/hist-276"}, {"code": "HSAR 252", "name": "Roman Architecture", "n": 2, "url": "https://oyc.yale.edu/history-of-art/hsar-252"}, {"code": "ITAL 310", "name": "Dante in Translation", "n": 17, "url": "https://oyc.yale.edu/italian-language-and-literature/ital-310"}, {"code": "MCDB 150", "name": "Global Problems of Population Growth", "n": 21, "url": "https://oyc.yale.edu/molecular-cellular-and-developmental-biology/mcdb-150"}, {"code": "PHIL 176", "name": "Death", "n": 10, "url": "https://oyc.yale.edu/death/phil-176"}, {"code": "PHIL 181", "name": "Philosophy and the Science of Human Nature", "n": 17, "url": "https://oyc.yale.edu/philosophy/phil-181"}, {"code": "PHYS 200", "name": "Fundamentals of Physics I", "n": 3, "url": "https://oyc.yale.edu/physics/phys-200"}, {"code": "PHYS 201", "name": "Fundamentals of Physics II", "n": 5, "url": "https://oyc.yale.edu/physics/phys-201"}, {"code": "PLSC 114", "name": "Introduction to Political Philosophy", "n": 2, "url": "https://oyc.yale.edu/political-science/plsc-114"}, {"code": "PLSC 270", "name": "Capitalism: Success, Crisis, and Reform", "n": 11, "url": "https://oyc.yale.edu/political-science/plsc-270"}, {"code": "PSYC 110", "name": "Introduction to Psychology", "n": 2, "url": "https://oyc.yale.edu/introduction-psychology/psyc-110"}, {"code": "PSYC 123", "name": "The Psychology, Biology and Politics of Food", "n": 17, "url": "https://oyc.yale.edu/psychology/psyc-123"}, {"code": "RLST 145", "name": "Introduction to the Old Testament (Hebrew Bible)", "n": 3, "url": "https://oyc.yale.edu/religious-studies/rlst-145"}, {"code": "RLST 152", "name": "Introduction to the New Testament History and Literature", "n": 4, "url": "https://oyc.yale.edu/religious-studies/rlst-152"}, {"code": "SOCY 151", "name": "Foundations of Modern Social Theory", "n": 20, "url": "https://oyc.yale.edu/sociology/socy-151"}, {"code": "SPAN 300", "name": "Cervantes' Don Quixote", "n": 5, "url": "https://oyc.yale.edu/spanish-and-portuguese/span-300"}];
 
+
+  var REQS = {
+  "econ": {
+    "total": "12",
+    "src": "https://catalog.yale.edu/ycps/subjects-of-instruction/economics/",
+    "rows": [
+      {
+        "need": "Introductory microeconomics (ECON 1108, 1110 or 1115)",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Introductory macroeconomics (ECON 1111 or 1116)",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Intermediate microeconomics (ECON 2121 or 2125)",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Intermediate macroeconomics (ECON 2122 or 2126)",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Econometrics (ECON 1117, 2123 or 2136)",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "One math course (MATH 1120 or above)",
+        "cov": "none",
+        "note": "no maths on OYC at all"
+      },
+      {
+        "need": "Four electives, ECON 2000 or above",
+        "cov": "part",
+        "note": "Game Theory is now ECON 2259 and still Polak's, so it counts. Financial Theory and Financial Markets are gone from the catalog."
+      },
+      {
+        "need": "Two senior courses, ECON 4400 to 4491",
+        "cov": "none",
+        "note": ""
+      }
+    ]
+  },
+  "epe": {
+    "total": "15",
+    "src": "https://catalog.yale.edu/ycps/subjects-of-instruction/ethics-politics-economics/",
+    "rows": [
+      {
+        "need": "Eight introductory courses before you can even declare",
+        "cov": "part",
+        "note": "Political philosophy and game theory are on OYC. Ethics, the PLSC intro, both economics intros and econometrics are not."
+      },
+      {
+        "need": "ECON 2121 or 2125, intermediate micro",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Three core seminars, one from the Classics series",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Three courses in a concentration, at most one a lecture",
+        "cov": "none",
+        "note": "OYC is lectures, so it fails this by construction"
+      },
+      {
+        "need": "Senior essay, EP&amp;E 4491 or 4492 and 4493",
+        "cov": "none",
+        "note": ""
+      }
+    ]
+  },
+  "phil": {
+    "total": "12",
+    "src": "https://catalog.yale.edu/ycps/subjects-of-instruction/philosophy/",
+    "rows": [
+      {
+        "need": "Three in history of philosophy, including PHIL 1125 and 1126",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Two in metaphysics and epistemology",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Two in ethics and value theory",
+        "cov": "part",
+        "note": "Death is value theory if a DUS is feeling generous"
+      },
+      {
+        "need": "One in logic",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Two philosophy seminars at 3000 or above",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Senior requirement: a third seminar or an independent project",
+        "cov": "none",
+        "note": ""
+      }
+    ]
+  },
+  "hist": {
+    "total": "12",
+    "src": "https://catalog.yale.edu/ycps/subjects-of-instruction/history/",
+    "rows": [
+      {
+        "need": "Two credits in preindustrial history",
+        "cov": "yes",
+        "note": "Early Middle Ages and Early Modern England both qualify"
+      },
+      {
+        "need": "Two departmental seminars",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "One credit in five of six world regions",
+        "cov": "part",
+        "note": "OYC gives me Europe and the US. Africa, Asia, Latin America and the Middle East are missing."
+      },
+      {
+        "need": "Senior essay, HIST 4995 to 4997",
+        "cov": "none",
+        "note": ""
+      }
+    ]
+  },
+  "engl": {
+    "total": "14",
+    "src": "https://catalog.yale.edu/ycps/subjects-of-instruction/english-language-literature/",
+    "rows": [
+      {
+        "need": "Three from ENGL 1025, 1026, 1027, 1028",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "One in each of four historical periods",
+        "cov": "part",
+        "note": "Milton covers Renaissance, Modern Poetry and The American Novel cover the twentieth century. Medieval and the eighteenth and nineteenth are missing."
+      },
+      {
+        "need": "One junior seminar",
+        "cov": "none",
+        "note": ""
+      },
+      {
+        "need": "Two senior seminars, or a senior essay",
+        "cov": "none",
+        "note": ""
+      }
+    ]
+  },
+  "clcv": {
+    "total": "12",
+    "src": "https://catalog.yale.edu/ycps/subjects-of-instruction/classics/",
+    "rows": [
+      {
+        "need": "Two in ancient history or classical art and archaeology",
+        "cov": "yes",
+        "note": "Ancient Greek History and Roman Architecture, exactly the two OYC has"
+      },
+      {
+        "need": "Two in Greek or Latin numbered 2003 or above",
+        "cov": "none",
+        "note": "this is the one that ends it. No language teaching on OYC."
+      },
+      {
+        "need": "One broadly on Greek literature or culture",
+        "cov": "part",
+        "note": ""
+      },
+      {
+        "need": "One broadly on Roman literature or culture",
+        "cov": "part",
+        "note": ""
+      },
+      {
+        "need": "Senior tutorial, CLCV 4998 and 4999",
+        "cov": "none",
+        "note": ""
+      }
+    ]
+  }
+};
   var MAJORS = [
     { key: "econ", label: "Economics", short: "Econ",
       codes: ["ECON 159","ECON 251","ECON 252"],
@@ -362,12 +595,37 @@
     if (m.key === "epe") {
       own = m.codes.filter(function(c) { return memberOf(c).length === 1; }).length;
     }
+    var R = REQS[m.key];
+    var reqHtml = "";
+    if (R) {
+      var met = R.rows.filter(function(r) { return r.cov === "yes"; }).length;
+      var part = R.rows.filter(function(r) { return r.cov === "part"; }).length;
+      reqHtml = '<div class="reqs"><h3>What Yale actually requires: '
+        + R.total + ' courses</h3>'
+        + '<table class="reqtable"><tbody>'
+        + R.rows.map(function(r) {
+            var mark = r.cov === "yes" ? "yes" : r.cov === "part" ? "part" : "no";
+            var word = r.cov === "yes" ? "covered"
+                     : r.cov === "part" ? "partly" : "nothing";
+            return '<tr class="' + mark + '"><td class="rq">' + r.need + '</td>'
+              + '<td class="cv"><span class="pill ' + mark + '">' + word
+              + '</span></td></tr>'
+              + (r.note ? '<tr class="nt"><td colspan="2">' + r.note + '</td></tr>' : "");
+          }).join("")
+        + '</tbody></table>'
+        + '<p class="reqsrc">' + met + ' of these ' + R.rows.length
+        + ' requirement lines are covered outright, ' + part + ' partly. '
+        + '<a href="' + R.src + '">Requirements from the Yale College Programs '
+        + 'of Study 2026 to 2027</a>.</p></div>';
+    }
     return '<div class="major" id="' + m.key + '">' +
       '<h2>' + m.label + '</h2>' +
-      '<p class="sec-meta">' + m.codes.length + ' courses &middot; ' + sum(m.codes) + ' texts' +
+      '<p class="sec-meta">' + m.codes.length + ' free courses &middot; ' + sum(m.codes) + ' texts' +
       (own !== null ? ' &middot; ' + own + ' of them its own' : '') + '</p>' +
       '<div class="why"><span class="tag">' + m.tag + '</span>' +
       m.why.map(function(p) { return '<p>' + p + '</p>'; }).join("") + '</div>' +
+      reqHtml +
+      '<p class="whichfree">The free courses in this column</p>' +
       '<ul class="courses">' + items + '</ul></div>';
   }).join("");
   </script>
