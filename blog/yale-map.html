@@ -95,6 +95,8 @@
       vertical-align: baseline; font-size: 0.9rem; }
     .reqtable td.rq { padding-right: 14px; }
     .reqtable tr.alt td { padding-top: 0; font-size: 0.82rem; line-height: 1.5; }
+    .altlab.dead { color: var(--text-muted); border-color: var(--text-muted); }
+    .reqtable tr.nosub td { color: var(--text-muted); }
     .altlab { display: inline-block; font-size: 0.62rem; letter-spacing: 0.1em;
       text-transform: uppercase; color: #1c7a4a; border: 1px solid #1c7a4a;
       border-radius: 999px; padding: 0 7px; margin-right: 7px;
@@ -167,22 +169,30 @@
       and the free ones reach one of them. Classics dies on two terms of Greek or Latin that do
       not exist here at any price.</p>
 
-    <p class="map-lede">So I went looking for the missing pieces elsewhere, and for economics
-      they all exist. Yale keeps its syllabi on Canvas behind a login, but MIT publishes the
-      same courses in full: intro micro and macro, intermediate micro and macro, and
-      econometrics, with video lectures, problem sets, exams and solutions. Every one of the
-      five economics core requirements has a free equivalent, linked in the table below.</p>
+    <p class="map-lede">So I went looking for the missing pieces elsewhere and found most of
+      them. Yale keeps its syllabi on Canvas behind a login, but the courses themselves are not
+      secret. Of the 32 requirement lines across the six majors, <b>7 are covered by Open Yale
+      already, 14 more have a free route I could find, and 11 have nothing</b>. Every one of
+      those routes is linked in the tables below.</p>
 
-    <p class="map-lede">Which sharpens what the wall actually is. The economics core is not
-      hard to study on my own. What I cannot get is a seminar where somebody argues back, a
-      senior essay somebody reads, and two terms of Greek. Those are the parts that need a
-      university, and they are most of what a Yale degree turns out to be.</p>
+    <p class="map-lede">The economics core comes out whole. MIT publishes intro micro and
+      macro, intermediate micro and macro, econometrics and the calculus prerequisite, with
+      video lectures, problem sets and exams with solutions. Logic, ancient philosophy and
+      metaphysics come from MIT too. Medieval literature fills the gap Open Yale leaves in the
+      English periods. Greek and Latin have a free textbook and a commentary project, which is
+      not the same as two graded terms but is not nothing either.</p>
+
+    <p class="map-lede">The eleven with nothing are all the same shape. Seminars, senior
+      essays, senior tutorials, and EP&amp;E's rule that at most one concentration course may be
+      a lecture. Every one of them needs somebody to argue back, read the draft, or sign off,
+      and no amount of published material substitutes for that. That is the honest boundary
+      here: the reading is free and the room is not.</p>
 
     <div class="tally">
       <div><b>39</b><span>Courses</span></div>
       <div><b>328</b><span>Texts</span></div>
       <div><b>6</b><span>Majors</span></div>
-      <div><b>0/6</b><span>Majors finishable</span></div>
+      <div><b>14/32</b><span>Gaps with a free route</span></div>
     </div>
 
     <div class="rail">
@@ -936,7 +946,9 @@
         "need": "One mathematics course",
         "courses": "MATH 1120 or above",
         "cov": "none",
-        "note": "Open Yale publishes no mathematics at all"
+        "note": "Open Yale publishes no mathematics at all",
+        "alt": "MIT 18.01 Single Variable Calculus and 18.02 Multivariable Calculus, both with video lectures, problem sets and exams with solutions. 18.02 is also the prerequisite MIT 14.04 asks for.",
+        "alturl": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/"
       },
       {
         "need": "Four electives, ECON 2000 or above",
@@ -948,7 +960,8 @@
         "need": "Two senior courses",
         "courses": "ECON 4400 to 4491, one taken in senior year",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       }
     ]
   },
@@ -974,19 +987,22 @@
         "need": "Three core seminars, one from the Classics series",
         "courses": "EP&amp;E seminars",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       },
       {
         "need": "Three courses in a concentration",
         "courses": "at most one may be a lecture",
         "cov": "none",
-        "note": "Open Yale is entirely lectures, so this line fails by construction"
+        "note": "Open Yale is entirely lectures, so this line fails by construction",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       },
       {
         "need": "Senior essay",
         "courses": "EP&amp;E 4491, or 4492 and 4493",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       }
     ]
   },
@@ -998,13 +1014,17 @@
         "need": "Three in history of philosophy",
         "courses": "including PHIL 1125 Introduction to Ancient Philosophy and PHIL 1126 Introduction to Modern Philosophy from Descartes to Kant",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 24.200 Ancient Philosophy covers the PHIL 1125 half: nature, law, justice, knowledge, virtue and death in the Greeks. Nothing free lines up with the Descartes to Kant half.",
+        "alturl": "https://ocw.mit.edu/courses/24-200-ancient-philosophy-fall-2004/"
       },
       {
         "need": "Two in metaphysics and epistemology",
         "courses": "",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 24.00 Problems of Philosophy, Fall 2019. God, consciousness, free will, persistence over time, with four papers set and no prerequisites.",
+        "alturl": "https://ocw.mit.edu/courses/24-00-problems-of-philosophy-fall-2019/"
       },
       {
         "need": "Two in ethics and value theory",
@@ -1016,19 +1036,23 @@
         "need": "One in logic",
         "courses": "",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "MIT 24.241 Logic I, Fall 2009. Sentential and predicate logic through soundness and completeness, with six quizzes, a final and problem sets with solutions.",
+        "alturl": "https://ocw.mit.edu/courses/24-241-logic-i-fall-2009/"
       },
       {
         "need": "Two philosophy seminars",
         "courses": "numbered 3000 or above",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       },
       {
         "need": "Senior requirement",
         "courses": "a third seminar, or an independent project (PHIL 4490, 4491)",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       }
     ]
   },
@@ -1046,19 +1070,23 @@
         "need": "Two departmental seminars",
         "courses": "",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       },
       {
         "need": "One credit in five of six world regions",
         "courses": "Africa, Asia, Europe, Latin America, Middle East, United States",
         "cov": "part",
-        "note": "Open Yale gives me Europe and the United States. Africa, Asia, Latin America and the Middle East are missing."
+        "note": "Open Yale gives me Europe and the United States. Africa, Asia, Latin America and the Middle East are missing.",
+        "alt": "Open Yale gives Europe and the United States only. Africa, Asia, Latin America and the Middle East have no free Yale course, and this line wants five of the six.",
+        "alturl": "https://oyc.yale.edu/history"
       },
       {
         "need": "Senior essay",
         "courses": "HIST 4997, or 4995 and 4996",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       }
     ]
   },
@@ -1070,25 +1098,31 @@
         "need": "Three introductory readings courses",
         "courses": "three of ENGL 1025 Readings in English Poetry I, 1026 Readings in English Poetry II, 1027 Readings in American Literature, 1028 Readings in Comparative World English Literatures",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "alt": "Open Yale's own Modern Poetry and The American Novel Since 1945 are the closest thing, and neither is one of the four ENGL 1025 to 1028 courses this line names.",
+        "alturl": "https://oyc.yale.edu/english"
       },
       {
         "need": "One course in each of four historical periods",
         "courses": "medieval, Renaissance, eighteenth and nineteenth century, twentieth and twenty-first",
         "cov": "part",
-        "note": "Milton covers the Renaissance and Modern Poetry and The American Novel Since 1945 cover the twentieth century. Medieval and the eighteenth and nineteenth are missing."
+        "note": "Milton covers the Renaissance and Modern Poetry and The American Novel Since 1945 cover the twentieth century. Medieval and the eighteenth and nineteenth are missing.",
+        "alt": "MIT 21L.460 Medieval Literature: Dante, Boccaccio, Chaucer covers the medieval gap, including all of Troilus and Criseyde in Middle English. The eighteenth and nineteenth centuries stay open.",
+        "alturl": "https://ocw.mit.edu/courses/21l-460-medieval-literature-dante-boccaccio-chaucer-spring-2005/"
       },
       {
         "need": "One junior seminar",
         "courses": "",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       },
       {
         "need": "Senior requirement",
         "courses": "two senior seminars, or one seminar and a senior essay (ENGL 4100), or a two-term essay (ENGL 4100, 4101)",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       }
     ]
   },
@@ -1106,7 +1140,9 @@
         "need": "Two in Greek or Latin",
         "courses": "numbered 2003 or above",
         "cov": "none",
-        "note": "This is the line that ends it. Open Yale teaches no language courses at any level."
+        "note": "This is the line that ends it. Open Yale teaches no language courses at any level.",
+        "alt": "Ancient Greek for Everyone, a free open textbook, plus Dickinson College Commentaries for reading real Greek and Latin with apparatus. Self-teaching a language is not the same as two graded terms of it.",
+        "alturl": "https://ancientgreek.pressbooks.com/"
       },
       {
         "need": "One broadly on Greek literature or culture",
@@ -1124,7 +1160,8 @@
         "need": "Senior tutorial",
         "courses": "CLCV 4998 and 4999",
         "cov": "none",
-        "note": ""
+        "note": "",
+        "nosub": "No substitute exists for this, free or paid, outside a university."
       }
     ]
   }
@@ -1250,7 +1287,10 @@
               + (r.note ? '<tr class="nt"><td colspan="2">' + r.note + '</td></tr>' : "")
               + (r.alt ? '<tr class="alt"><td colspan="2"><span class="altlab">'
                   + 'free elsewhere</span> <a href="' + r.alturl + '">' + r.alt
-                  + '</a></td></tr>' : "");
+                  + '</a></td></tr>' : "")
+              + (r.nosub ? '<tr class="alt nosub"><td colspan="2">'
+                  + '<span class="altlab dead">no substitute</span> ' + r.nosub
+                  + '</td></tr>' : "");
           }).join("")
         + '</tbody></table>'
         + '<p class="reqsrc">' + met + ' of these ' + R.rows.length
