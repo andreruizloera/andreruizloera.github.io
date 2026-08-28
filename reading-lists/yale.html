@@ -16,6 +16,11 @@
     .tally b { color: var(--text); }
     .counts { display: inline-block; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); border: 1px solid var(--border); padding: 1px 6px; margin-right: 10px; }
     .counts.none { color: var(--text-muted); border-style: dashed; text-transform: none; letter-spacing: 0; }
+    .counts.found { border-style: solid; }
+    .counts.recon { color: var(--text-muted); border-style: dotted; }
+    .gap-note { font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; color: var(--text-muted);
+      max-width: 680px; line-height: 1.6; border-left: 3px solid var(--border); padding-left: 14px; margin: 26px 0; }
+    .gap-note b { color: var(--text); }
     .major-index { max-width: 680px; margin: 26px 0 8px; }
     .major-index h2 { font-size: 1.05rem; font-family: Georgia, serif; border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 12px; color: var(--text); }
     .major-index dl { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 0.86rem; }
@@ -48,7 +53,9 @@
       These courses fill <b>34</b> of the roughly <b>70</b> credits needed for six Yale majors
       &mdash; English, Classics, Philosophy, History, Economics, and Ethics, Politics &amp; Economics.
       Only Open Yale Courses publishes syllabi; every other Yale syllabus sits behind a login,
-      so nothing here is invented to fill a gap.</p>
+      so <b>nothing in that list is invented to fill a gap</b>. A second list, further down,
+      covers the required courses Open Yale does not reach, and it is marked separately
+      because most of it is reconstructed rather than quoted.</p>
 
     <div class="major-index">
       <h2>Which courses serve which major</h2>
@@ -619,6 +626,7 @@
         <li><span>Weber, Max</span><span class="author"></span></li>
       </ul>
     </div>
+
     <div class="book-section" id="span-300">
       <h2>SPAN 300 &middot; Cervantes&#x27; Don Quixote</h2>
       <p class="course-meta"><span class="counts">English</span><a href="https://oyc.yale.edu/spanish-and-portuguese/span-300">Lectures and syllabus at Open Yale Courses</a></p>
@@ -628,6 +636,97 @@
         <li><span>Cervantes&#x27; Don Quixote: A Casebook</span><span class="author">González Echevarría, Roberto, ed</span></li>
         <li><span>Imperial Spain, 1469-1716</span><span class="author">John Huxtable Elliott</span></li>
         <li><span>Don Quijote de la Mancha , ed. Francisco Rico</span><span class="author">Miguel For those reading Cervantes in Spanish: De Cervantes</span></li>
+      </ul>
+    </div>
+
+    <h1 style="margin-top:64px;">The Other 36 Credits</h1>
+    <p class="subtitle">The required courses Open Yale does not reach</p>
+
+    <div class="gap-note">
+      <p>The list above is quoted from Yale. <b>This one is not</b>, and the difference matters
+        more than the books do.</p>
+      <p>Open Yale covers 34 of the roughly 70 credits behind these six majors. The rest are the
+        courses every major actually requires and nobody publishes: intermediate theory,
+        econometrics, logic, the history-of-philosophy sequence, the language sequences. I went
+        looking for those syllabi on department pages, faculty pages, course catalogues, Reddit
+        and student course sites. <b>Almost none of them are public.</b> Yale's own catalogue
+        gives course descriptions and no reading lists, and the syllabus itself sits on Canvas
+        behind a login.</p>
+      <p>So each entry below carries one of two marks, and they are not the same kind of claim:</p>
+      <ul>
+        <li><span class="counts found">syllabus found</span> means a real syllabus for that Yale
+          course is public and linked. Trust it as far as its date.</li>
+        <li><span class="counts recon">reconstructed</span> means <b>no syllabus was found and
+          these are my best guess</b> at what a course like that assigns, from the course
+          catalogue description and the standard text in the field. It is not what Yale assigns.
+          It is what a course of that name and level usually assigns.</li>
+      </ul>
+      <p>Nothing reconstructed should be quoted as Yale's syllabus, including by me.</p>
+    </div>
+
+    <div class="book-section" id="econ-121">
+      <h2>ECON 121 &middot; Intermediate Microeconomics</h2>
+      <p class="course-meta"><span class="counts found">syllabus found</span><a href="https://campuspress.yale.edu/dirkbergemann/teaching/econ-121b-2012/">Dirk Bergemann's Yale course page (ECON 121b)</a></p>
+      <ul class="book-list">
+        <li><span>Microeconomic Theory: Basic Principles and Extensions, 10th ed.</span><span class="author">Walter Nicholson and Christopher Snyder</span></li>
+        <li><span>Reinventing the Bazaar: A Natural History of Markets</span><span class="author">John McMillan</span></li>
+        <li><span>Essential Mathematics for Economic Analysis (suggested background)</span><span class="author">Knut Sydsaeter and Peter Hammond</span></li>
+        <li><span>&ldquo;Choices, Values, and Frames&rdquo;</span><span class="author">Kahneman and Tversky</span></li>
+        <li><span>&ldquo;Giffen Behavior and Subsistence Consumption&rdquo;</span><span class="author">Jensen and Miller</span></li>
+        <li><span>&ldquo;The Digital Provide&rdquo;</span><span class="author">Robert Jensen</span></li>
+        <li><span>&ldquo;Internet Advertising and the Generalized Second-Price Auction&rdquo;</span><span class="author">Edelman, Ostrovsky and Schwarz</span></li>
+      </ul>
+    </div>
+
+    <div class="book-section" id="econ-122">
+      <h2>ECON 122 &middot; Intermediate Macroeconomics</h2>
+      <p class="course-meta"><span class="counts recon">reconstructed</span>a syllabus copy circulating on a student notes site names the Jones text; not verified at a Yale source</p>
+      <ul class="book-list">
+        <li><span>Macroeconomics</span><span class="author">Charles I. Jones</span></li>
+        <li><span>Macroeconomics (widely used alternative at this level)</span><span class="author">Olivier Blanchard</span></li>
+      </ul>
+    </div>
+
+    <div class="book-section" id="econ-136">
+      <h2>ECON 117 / 123 / 136 &middot; Econometrics</h2>
+      <p class="course-meta"><span class="counts recon">reconstructed</span>the major requires one econometrics course in the department; no public syllabus found</p>
+      <ul class="book-list">
+        <li><span>Introduction to Econometrics</span><span class="author">James Stock and Mark Watson</span></li>
+        <li><span>Mostly Harmless Econometrics (commonly paired for the causal-inference half)</span><span class="author">Joshua Angrist and Jörn-Steffen Pischke</span></li>
+      </ul>
+    </div>
+
+    <div class="book-section" id="phil-125">
+      <h2>PHIL 125 &middot; Introduction to Ancient Philosophy</h2>
+      <p class="course-meta"><span class="counts recon">reconstructed</span>required of Philosophy majors, with PHIL 126, unless replaced by Directed Studies</p>
+      <ul class="book-list">
+        <li><span>Complete Works</span><span class="author">Plato, ed. John M. Cooper</span></li>
+        <li><span>Nicomachean Ethics</span><span class="author">Aristotle</span></li>
+        <li><span>Selections from the Physics, Metaphysics and De Anima</span><span class="author">Aristotle</span></li>
+        <li><span>A Presocratics Reader</span><span class="author">ed. Patricia Curd</span></li>
+      </ul>
+    </div>
+
+    <div class="book-section" id="phil-126">
+      <h2>PHIL 126 &middot; Introduction to Modern Philosophy from Descartes to Kant</h2>
+      <p class="course-meta"><span class="counts recon">reconstructed</span>required of Philosophy majors, with PHIL 125, unless replaced by Directed Studies</p>
+      <ul class="book-list">
+        <li><span>Meditations on First Philosophy</span><span class="author">René Descartes</span></li>
+        <li><span>Ethics</span><span class="author">Baruch Spinoza</span></li>
+        <li><span>Discourse on Metaphysics and The Monadology</span><span class="author">G. W. Leibniz</span></li>
+        <li><span>An Essay Concerning Human Understanding</span><span class="author">John Locke</span></li>
+        <li><span>A Treatise Concerning the Principles of Human Knowledge</span><span class="author">George Berkeley</span></li>
+        <li><span>An Enquiry Concerning Human Understanding</span><span class="author">David Hume</span></li>
+        <li><span>Critique of Pure Reason</span><span class="author">Immanuel Kant</span></li>
+      </ul>
+    </div>
+
+    <div class="book-section" id="phil-115">
+      <h2>PHIL 115 &middot; First-Order Logic</h2>
+      <p class="course-meta"><span class="counts recon">reconstructed</span>the major requires a logic course, preferably by the fall of junior year</p>
+      <ul class="book-list">
+        <li><span>Deductive Logic</span><span class="author">Warren Goldfarb</span></li>
+        <li><span>Language, Proof and Logic (commonly used alternative)</span><span class="author">Jon Barwise and John Etchemendy</span></li>
       </ul>
     </div>
 
